@@ -22,8 +22,6 @@ class JSONHandler {
             // TODO: Check err
             // TODO: Check for success response message 200 --> OK!
             
-            print("do stuff here")
-            
             guard let data = data else { return }
             
             do {
