@@ -8,10 +8,16 @@
 
 import Foundation
 
-class JSONHandler {
+class PostDownloader {
+
+    // MARK: Properties
     
+    // These properties are used to store the fetched data for reference
     var posts = [Post]()
     var downloaded = false
+    
+    
+    // MARK: Functions
     
     func downloadPosts() {
         
@@ -35,8 +41,25 @@ class JSONHandler {
             }
             
             }.resume()
-        
     }
     
-    
+    func findHighestUpvotedPost() -> Post {
+        
+        guard let firstValue = posts.first else {
+            print("Found nil in first value of posts array. Aborting sort method.")
+            return Post(id: "Not found", author: "Not found", created: 0, title: "Not found", version: 1, domain: "Not Found", url: "Not found", commentLink: "Not found", thumbnail: "Not found", upvoteCount: 1, commentCount: 1, fetchedAt: "Not found")
+        }
+        
+        var highestPost = firstValue
+        
+        for p in posts {
+            if p.upvoteCount > highestPost.upvoteCount {
+                highestPost = p
+            }
+        }
+        
+        //print("Highest upvoted post is \(highestPost.title) with \(highestPost.upvoteCount) upvotes")
+        return highestPost
+        
+    }
 }
