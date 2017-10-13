@@ -105,7 +105,7 @@
 			children = (
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				EA02BB081F907523000A8AF8 /* ViewController.swift */,
-				EA02BB3B1F9085B1000A8AF8 /* ImageDownloadExtension.swift */,
+				EA02BB3E1F908E1D000A8AF8 /* Extensions */,
 				EA02BB361F907547000A8AF8 /* JSON Model */,
 				EA02BB0A1F907523000A8AF8 /* Main.storyboard */,
 				EA02BB0D1F907523000A8AF8 /* Assets.xcassets */,
@@ -140,6 +140,14 @@
 				EA02BB341F907544000A8AF8 /* Post.swift */,
 			);
 			path = "JSON Model";
+			sourceTree = "<group>";
+		};
+		EA02BB3E1F908E1D000A8AF8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EA02BB3B1F9085B1000A8AF8 /* ImageDownloadExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

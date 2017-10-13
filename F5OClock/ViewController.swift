@@ -16,9 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var commentCountLabel: UILabel!
     
     @IBOutlet weak var thumbnail: UIImageView!
-    
-    
-    
+
     //MARK: Properties
     var posts = [Post]()
     var downloaded = false
@@ -60,7 +58,7 @@ class ViewController: UIViewController {
     
     func downloadImage() {
         
-        if posts.first?.thumbnail == "default" {
+        if posts.first?.thumbnail == "default" || posts.first?.thumbnail == "self" {
             thumbnail.image = #imageLiteral(resourceName: "defaultThumbnail.png")
         }
         
