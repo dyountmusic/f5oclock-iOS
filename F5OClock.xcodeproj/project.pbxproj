@@ -12,7 +12,7 @@
 		EA02BB0C1F907523000A8AF8 /* TopStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0A1F907523000A8AF8 /* TopStory.storyboard */; };
 		EA02BB0E1F907523000A8AF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0D1F907523000A8AF8 /* Assets.xcassets */; };
 		EA02BB111F907523000A8AF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0F1F907523000A8AF8 /* LaunchScreen.storyboard */; };
-		EA02BB1C1F907524000A8AF8 /* F5OClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB1B1F907524000A8AF8 /* F5OClockTests.swift */; };
+		EA02BB1C1F907524000A8AF8 /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB1B1F907524000A8AF8 /* PostTests.swift */; };
 		EA02BB271F907524000A8AF8 /* F5OClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB261F907524000A8AF8 /* F5OClockUITests.swift */; };
 		EA02BB351F907544000A8AF8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB341F907544000A8AF8 /* Post.swift */; };
 		EA02BB381F907989000A8AF8 /* PostDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB371F907989000A8AF8 /* PostDownloader.swift */; };
@@ -45,7 +45,7 @@
 		EA02BB101F907523000A8AF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA02BB121F907523000A8AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA02BB171F907524000A8AF8 /* F5OClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = F5OClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA02BB1B1F907524000A8AF8 /* F5OClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F5OClockTests.swift; sourceTree = "<group>"; };
+		EA02BB1B1F907524000A8AF8 /* PostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		EA02BB1D1F907524000A8AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA02BB221F907524000A8AF8 /* F5OClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = F5OClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA02BB261F907524000A8AF8 /* F5OClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F5OClockUITests.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		EA02BB1A1F907524000A8AF8 /* F5OClockTests */ = {
 			isa = PBXGroup;
 			children = (
-				EA02BB1B1F907524000A8AF8 /* F5OClockTests.swift */,
+				EA02BB1B1F907524000A8AF8 /* PostTests.swift */,
 				EA02BB1D1F907524000A8AF8 /* Info.plist */,
 			);
 			path = F5OClockTests;
@@ -296,7 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA02BB1C1F907524000A8AF8 /* F5OClockTests.swift in Sources */,
+				EA02BB1C1F907524000A8AF8 /* PostTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
