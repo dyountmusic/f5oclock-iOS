@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         
         while downloaded == false {
             while posts.first?.title == nil {
-                print("Title is \(posts.first?.title)")
+                //print("Title is \(posts.first?.title)")
                 titleLabel.text = posts.first?.title
                 downloadImage()
             }
@@ -81,8 +81,6 @@ class ViewController: UIViewController {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             // TODO: Check err
             // TODO: Check for success response message 200 --> OK!
-            
-            print("do stuff here")
             
             guard let data = data else { return }
             
