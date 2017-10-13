@@ -17,12 +17,32 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var thumbnail: UIImageView!
     
+    
+    
     //MARK: Properties
     var posts = [Post]()
     var downloaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateUI()
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func refreshTopStory(_ sender: Any) {
+        updateUI()
+        
+    }
+    
+    func updateUI() {
+        
+        downloaded = false
         
         downloadPosts()
         downloadImage()
@@ -36,12 +56,6 @@ class ViewController: UIViewController {
             upvoteCountLabel.text = "\(posts.first?.upvoteCount ?? 0) upvotes"
             commentCountLabel.text = "\(posts.first?.commentCount ?? 0) comments"
         }
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func downloadImage() {
