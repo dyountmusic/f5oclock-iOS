@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var upvoteCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var highestPostText: UILabel!
     
     @IBOutlet weak var thumbnail: UIImageView!
 
@@ -37,6 +38,10 @@ class ViewController: UIViewController {
         updateUI()
         
     }
+    @IBAction func findHighestUpvotedPost(_ sender: Any) {
+        var highestPost = findHighestUpvotedPost()
+        self.highestPostText.text = "Highest upvoted post is \(highestPost.title) with \(highestPost.upvoteCount) upvotes"
+    }
     
     func updateUI() {
         
@@ -51,6 +56,7 @@ class ViewController: UIViewController {
                 titleLabel.text = posts.first?.title
                 downloadImage()
             }
+            titleLabel.text = posts.first?.title
             upvoteCountLabel.text = "\(posts.first?.upvoteCount ?? 0) upvotes"
             commentCountLabel.text = "\(posts.first?.commentCount ?? 0) comments"
         }
@@ -91,9 +97,28 @@ class ViewController: UIViewController {
             }
             
             }.resume()
-        
     }
     
+    func findHighestUpvotedPost() -> Post {
+        
+        guard let firstValue = posts.first else {
+            print("Found nil in first value of posts array. Aborting sort method.")
+            return Post(id: "Not found", author: "Not found", created: 0, title: "Not found", version: 1, domain: "Not Found", url: "Not found", commentLink: "Not found", thumbnail: "Not found", upvoteCount: 1, commentCount: 1, fetchedAt: "Not found")
+        }
+        
+        var highestPost = firstValue
+        
+        for p in posts {
+            
+            if p.upvoteCount > highestPost.upvoteCount {
+                highestPost = p
+            }
+        }
+        
+        print("Highest upvoted post is \(highestPost.title) with \(highestPost.upvoteCount) upvotes")
+        return highestPost
+        
+    }
     
 }
 
