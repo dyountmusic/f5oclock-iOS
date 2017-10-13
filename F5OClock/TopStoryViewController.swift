@@ -65,11 +65,11 @@ class TopStoryViewController: UIViewController {
     
     func downloadImage() {
         
-        if postDownloader.posts.first?.thumbnail == "default" || postDownloader.posts.first?.thumbnail == "self" {
+        if postDownloader.findHighestUpvotedPost().thumbnail == "default" || postDownloader.findHighestUpvotedPost().thumbnail == "self" {
             thumbnail.image = #imageLiteral(resourceName: "defaultThumbnail.png")
         }
         
-        guard let thumbnailURL = postDownloader.posts.first?.thumbnail else { return }
+        let thumbnailURL = postDownloader.findHighestUpvotedPost().thumbnail
         thumbnail.downloadedFrom(link: thumbnailURL)
         
     }
