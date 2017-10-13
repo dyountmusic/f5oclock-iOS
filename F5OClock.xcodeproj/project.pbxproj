@@ -14,6 +14,8 @@
 		EA02BB111F907523000A8AF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0F1F907523000A8AF8 /* LaunchScreen.storyboard */; };
 		EA02BB1C1F907524000A8AF8 /* F5OClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB1B1F907524000A8AF8 /* F5OClockTests.swift */; };
 		EA02BB271F907524000A8AF8 /* F5OClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB261F907524000A8AF8 /* F5OClockUITests.swift */; };
+		EA02BB351F907544000A8AF8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB341F907544000A8AF8 /* Post.swift */; };
+		EA02BB381F907989000A8AF8 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB371F907989000A8AF8 /* JSONHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		EA02BB221F907524000A8AF8 /* F5OClockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = F5OClockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA02BB261F907524000A8AF8 /* F5OClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F5OClockUITests.swift; sourceTree = "<group>"; };
 		EA02BB281F907524000A8AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA02BB341F907544000A8AF8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EA02BB371F907989000A8AF8 /* JSONHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 			children = (
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				EA02BB081F907523000A8AF8 /* ViewController.swift */,
+				EA02BB361F907547000A8AF8 /* JSON Model */,
 				EA02BB0A1F907523000A8AF8 /* Main.storyboard */,
 				EA02BB0D1F907523000A8AF8 /* Assets.xcassets */,
 				EA02BB0F1F907523000A8AF8 /* LaunchScreen.storyboard */,
@@ -123,6 +128,15 @@
 				EA02BB281F907524000A8AF8 /* Info.plist */,
 			);
 			path = F5OClockUITests;
+			sourceTree = "<group>";
+		};
+		EA02BB361F907547000A8AF8 /* JSON Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA02BB371F907989000A8AF8 /* JSONHandler.swift */,
+				EA02BB341F907544000A8AF8 /* Post.swift */,
+			);
+			path = "JSON Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +273,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA02BB381F907989000A8AF8 /* JSONHandler.swift in Sources */,
+				EA02BB351F907544000A8AF8 /* Post.swift in Sources */,
 				EA02BB091F907523000A8AF8 /* ViewController.swift in Sources */,
 				EA02BB071F907523000A8AF8 /* AppDelegate.swift in Sources */,
 			);

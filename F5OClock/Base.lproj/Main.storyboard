@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +14,71 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="F5OClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uFm-G7-T4T">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                                <items>
+                                    <navigationItem title="Top Story" id="whK-Y0-O4D"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upvote Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wax-am-XB8">
+                                <rect key="frame" x="233" y="362" width="126" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="w4A-6h-GkL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e4-AB-6nx">
+                                <rect key="frame" x="16" y="352" width="126" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="126" id="FKM-zs-3MG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lan-9U-QOF">
+                                <rect key="frame" x="16" y="250" width="343" height="94"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="94" id="1KM-U4-334"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wax-am-XB8" firstAttribute="leading" secondItem="2e4-AB-6nx" secondAttribute="trailing" constant="91" id="2gj-WX-ide"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2e4-AB-6nx" secondAttribute="bottom" constant="254" id="ME0-Pl-t6H"/>
+                            <constraint firstItem="2e4-AB-6nx" firstAttribute="centerY" secondItem="wax-am-XB8" secondAttribute="centerY" id="PQK-Fe-fIN"/>
+                            <constraint firstAttribute="trailing" secondItem="uFm-G7-T4T" secondAttribute="trailing" id="Ugi-pK-dga"/>
+                            <constraint firstItem="2e4-AB-6nx" firstAttribute="top" secondItem="lan-9U-QOF" secondAttribute="bottom" constant="8" symbolic="YES" id="aUX-6X-mTX"/>
+                            <constraint firstItem="lan-9U-QOF" firstAttribute="trailing" secondItem="wax-am-XB8" secondAttribute="trailing" id="bW6-lr-5BP"/>
+                            <constraint firstItem="lan-9U-QOF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fq8-aO-qH8"/>
+                            <constraint firstItem="wax-am-XB8" firstAttribute="top" secondItem="lan-9U-QOF" secondAttribute="bottom" constant="18" id="pZB-cz-ov8"/>
+                            <constraint firstItem="uFm-G7-T4T" firstAttribute="centerX" secondItem="lan-9U-QOF" secondAttribute="centerX" id="rWr-Lc-Gsm"/>
+                            <constraint firstItem="uFm-G7-T4T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ryk-Ej-eia"/>
+                            <constraint firstItem="uFm-G7-T4T" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ucJ-Rr-DV4"/>
+                            <constraint firstItem="lan-9U-QOF" firstAttribute="leading" secondItem="2e4-AB-6nx" secondAttribute="leading" id="ysB-h1-BOn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="commentCountLabel" destination="2e4-AB-6nx" id="U64-s9-51S"/>
+                        <outlet property="titleLabel" destination="lan-9U-QOF" id="M19-q6-hGN"/>
+                        <outlet property="upvoteCountLabel" destination="wax-am-XB8" id="VDO-NB-bCp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="448.80000000000001" y="354.87256371814095"/>
         </scene>
     </scenes>
 </document>
