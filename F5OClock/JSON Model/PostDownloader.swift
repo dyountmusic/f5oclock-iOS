@@ -21,6 +21,8 @@ class PostDownloader {
     
     func downloadPosts() {
         
+        downloaded = false
+        
         let jsonURLString = "http://www.f5oclock.com/getPosts"
         guard let url = URL(string: jsonURLString) else { return }
         
@@ -31,7 +33,6 @@ class PostDownloader {
             guard let data = data else { return }
             
             do {
-                
                 let downloadedPosts = try JSONDecoder().decode([Post].self, from: data)
                 self.posts = downloadedPosts
                 self.downloaded = true

@@ -25,6 +25,7 @@ class TopStoryViewController: UIViewController {
         super.viewDidLoad()
         
         updateUI()
+        findHighestUpvotedPost(self)
         
     }
     
@@ -48,20 +49,18 @@ class TopStoryViewController: UIViewController {
     // MARK: Functions
     
     func updateUI() {
-        
-        postDownloader.downloaded = false
+
         postDownloader.downloadPosts()
-        downloadImage()
         
         while postDownloader.downloaded == false {
-            while postDownloader.posts.first?.title == nil {
-                titleLabel.text = postDownloader.posts.first?.title
-                downloadImage()
-            }
-            titleLabel.text = postDownloader.posts.first?.title
-            upvoteCountLabel.text = "\(postDownloader.posts.first?.upvoteCount ?? 0) upvotes"
-            commentCountLabel.text = "\(postDownloader.posts.first?.commentCount ?? 0) comments"
+            // Waiting until the data is downloaded to execute the next line
         }
+        
+        downloadImage()
+        titleLabel.text = postDownloader.findHighestUpvotedPost().title
+        commentCountLabel.text = "\(postDownloader.findHighestUpvotedPost().commentCount) comments"
+        upvoteCountLabel.text = "\(postDownloader.findHighestUpvotedPost().upvoteCount) upvotes"
+
     }
     
     func downloadImage() {
