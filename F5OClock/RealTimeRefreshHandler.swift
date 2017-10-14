@@ -16,6 +16,9 @@ class RealTimeRefreshHandler {
     var timerDispatchSourceTimer : DispatchSourceTimer?
     
     func startTimer(viewController: TopStoryViewController) {
+        
+        isRealTime = true
+        
         if #available(iOS 10.0, *) {
             timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
                 // do something here
@@ -38,6 +41,9 @@ class RealTimeRefreshHandler {
     }
     
     func stopTimer() {
+        
+        isRealTime = false
+        
         timer?.invalidate()
         //timerDispatchSourceTimer?.suspend() // if I want to suspend timer
         timerDispatchSourceTimer?.cancel()

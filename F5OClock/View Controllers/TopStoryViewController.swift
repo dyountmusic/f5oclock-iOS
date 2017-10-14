@@ -24,6 +24,7 @@ class TopStoryViewController: UIViewController {
     
     var postDownloader = PostDownloader()
     let userDefaults = UserDefaults()
+    let realTimeHandler = RealTimeRefreshHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class TopStoryViewController: UIViewController {
         updateUI()
         
         if userDefaults.bool(forKey: "RealTimeEnabled") == true {
-            RealTimeRefreshHandler.startTimer(self)
+            realTimeHandler.startTimer(viewController: self)
         }
         
     }
@@ -45,6 +46,7 @@ class TopStoryViewController: UIViewController {
     // MARK: Interface Builder Actions
     
     @IBAction func refreshTopStory(_ sender: Any) {
+        
         updateUI()
         
     }
@@ -52,7 +54,7 @@ class TopStoryViewController: UIViewController {
     // MARK: Functions
     
     func updateUI() {
-
+        
         postDownloader.downloadPosts()
         
         while postDownloader.downloaded == false {

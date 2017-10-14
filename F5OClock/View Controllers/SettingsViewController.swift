@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     let userDefaults = UserDefaults()
+    
     @IBOutlet weak var realTimeSwitch: UISwitch!
     
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class SettingsViewController: UIViewController {
     @IBAction func realTimeSwitchToggled(_ sender: Any) {
         if realTimeSwitch.isOn {
             userDefaults.set(true, forKey: "RealTimeEnabled")
+            
         } else {
             userDefaults.set(false, forKey: "RealTimeEnabled")
         }
