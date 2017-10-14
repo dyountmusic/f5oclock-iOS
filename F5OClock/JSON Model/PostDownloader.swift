@@ -54,6 +54,20 @@ class PostDownloader {
             }.resume()
     }
     
+    func sortPosts() {
+        
+        let sortedPosts = posts.sorted(by: { $0.upvoteCount > $1.upvoteCount })
+        posts = sortedPosts
+        
+        print("I think I sorted the posts by upvoteCount")
+        
+        for p in posts {
+            print("Upvote count after sorting is \(p.upvoteCount)")
+        }
+        
+        
+    }
+    
     func findHighestUpvotedPost() -> Post {
         
         guard let firstValue = posts.first else {

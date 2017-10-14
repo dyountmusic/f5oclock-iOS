@@ -68,15 +68,9 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("TableViewCellForRowAt is finally being called.")
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostTableViewCell else { return UITableViewCell() }
         
-        print("BEGIN CELL DEBUG")
-        
-        print(postDownloader.posts[indexPath.row].title)
-        
-        print("END CELL DEBUG")
+        postDownloader.sortPosts()
         
         cell.titleLabel.text = postDownloader.posts[indexPath.row].title
         cell.upvoteCountLabel.text = "\(postDownloader.posts[indexPath.row].upvoteCount) upvotes."
@@ -113,10 +107,9 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
             //imageActivityIndicator.isHidden = false
         }
         
-        print("Reloading table")
-        print(postDownloader.posts.count)
-        
+        self.tableView.beginUpdates()
         self.tableView.reloadData()
+        self.tableView.endUpdates()
         
     }
     
