@@ -19,13 +19,21 @@ class TopStoryViewController: UIViewController {
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var thumbnail: UIImageView!
 
+    
+    // MARK: Properties
+    
     var postDownloader = PostDownloader()
+    let userDefaults = UserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imageActivityIndicator.isHidden = true
         updateUI()
+        
+        if userDefaults.bool(forKey: "RealTimeEnabled") == true {
+            RealTimeRefreshHandler.startTimer(self)
+        }
         
     }
     

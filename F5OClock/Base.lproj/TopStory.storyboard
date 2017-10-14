@@ -33,6 +33,9 @@
                             </navigationBar>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpl-N1-4O4">
                                 <rect key="frame" x="345" y="128" width="51" height="31"/>
+                                <connections>
+                                    <action selector="realTimeSwitchToggled:" destination="Tip-4P-faa" eventType="valueChanged" id="JlF-uH-JG9"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,6 +52,10 @@
                         <viewLayoutGuide key="safeArea" id="4wF-Nd-FaS"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settingsUnselected" selectedImage="settingsSelected" id="74A-aK-UMV"/>
+                    <connections>
+                        <outlet property="RealTimeSwitch" destination="bpl-N1-4O4" id="mEw-Em-Hh5"/>
+                        <outlet property="realTimeSwitch" destination="bpl-N1-4O4" id="04y-Xe-7kq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8a-Id-SpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
