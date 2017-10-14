@@ -22,7 +22,7 @@ class RealTimeRefreshHandler {
         if #available(iOS 10.0, *) {
             timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
                 // do something here
-                
+                self?.isRealTime = true
                 viewController.updateUI()
                 
             }

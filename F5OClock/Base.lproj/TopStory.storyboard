@@ -141,11 +141,11 @@
             </objects>
             <point key="canvasLocation" x="1172" y="353"/>
         </scene>
-        <!--Top Story-->
+        <!--Rising Stories-->
         <scene sceneID="Z4e-0W-Lad">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m1t-TW-YVE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Top Story" image="topStoryUnselected" selectedImage="topStorySelected" id="ljZ-Ry-OXE"/>
+                    <tabBarItem key="tabBarItem" title="Rising Stories" image="topStoryUnselected" selectedImage="topStorySelected" id="ljZ-Ry-OXE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6bM-pO-cCT">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>

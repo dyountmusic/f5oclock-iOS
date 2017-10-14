@@ -78,11 +78,11 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
         cell.upvoteCountLabel.text = "\(postDownloader.posts[indexPath.row].upvoteCount) 🔼"
         cell.commentCountLabel.text = "\(postDownloader.posts[indexPath.row].commentCount) 💬"
         
-        if postDownloader.posts[indexPath.row].upvoteCount >= 20 {
+        if postDownloader.posts[indexPath.row].upvoteCount >= 50 {
             cell.backgroundColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 0.3379999995)
         }
         
-        if postDownloader.posts[indexPath.row].upvoteCount >= 50 {
+        if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
             cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
         }
         
