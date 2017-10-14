@@ -27,8 +27,18 @@ class PostDownloader {
         guard let url = URL(string: jsonURLString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            // TODO: Check err
-            // TODO: Check for success response message 200 --> OK!
+            
+            if error != nil {
+                print("A fatal error occured when retrieving data from the server with \(String(describing: error))")
+                return
+            }
+            
+            let status = (response as! HTTPURLResponse).statusCode
+            
+            if status != 200 {
+                print("Status code looks a bit weird, check it out: \(status)")
+                return
+            }
             
             guard let data = data else { return }
             

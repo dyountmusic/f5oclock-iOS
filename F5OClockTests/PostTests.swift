@@ -64,6 +64,8 @@ class PostTests: XCTestCase {
         
         let jsonMockStringObject = JSONMock()
         
+        print(jsonMockStringObject.jsonString)
+        
         guard let data = Data(base64Encoded: jsonMockStringObject.jsonString) else {
             XCTFail()
             return
