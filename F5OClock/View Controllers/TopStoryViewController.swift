@@ -62,7 +62,7 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
     // MARK: TableView Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(postDownloader.posts.count)
+        
         return postDownloader.posts.count
     }
     
@@ -75,6 +75,14 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
         cell.titleLabel.text = postDownloader.posts[indexPath.row].title
         cell.upvoteCountLabel.text = "\(postDownloader.posts[indexPath.row].upvoteCount) upvotes."
         cell.commentCountLabel.text = "\(postDownloader.posts[indexPath.row].commentCount) comments."
+        
+        if postDownloader.posts[indexPath.row].upvoteCount >= 20 {
+            cell.backgroundColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 0.3379999995)
+        }
+        
+        if postDownloader.posts[indexPath.row].upvoteCount >= 50 {
+            cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
+        }
         
         if postDownloader.posts[indexPath.row].thumbnail == "default" || postDownloader.posts[indexPath.row].thumbnail == "self" {
             cell.thumbnail.image = #imageLiteral(resourceName: "defaultThumbnail.png")
@@ -107,9 +115,7 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
             //imageActivityIndicator.isHidden = false
         }
         
-        self.tableView.beginUpdates()
         self.tableView.reloadData()
-        self.tableView.endUpdates()
         
     }
     
