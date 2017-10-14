@@ -8,9 +8,10 @@
 
 import UIKit
 
-class TopStoryViewController: UIViewController {
+class TopStoryViewController: UIViewController, UITableViewDataSource {
     
     //MARK: Interface Builder Properties
+    @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var upvoteCountLabel: UILabel!
@@ -30,7 +31,6 @@ class TopStoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageActivityIndicator.isHidden = true
         updateUI()
         
         if userDefaults.bool(forKey: "RealTimeEnabled") == true {
@@ -59,6 +59,39 @@ class TopStoryViewController: UIViewController {
         
     }
     
+    // MARK: TableView Functions
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(postDownloader.posts.count)
+        return postDownloader.posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        print("TableViewCellForRowAt is finally being called.")
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostTableViewCell else { return UITableViewCell() }
+        
+        print("BEGIN CELL DEBUG")
+        
+        print(postDownloader.posts[indexPath.row].title)
+        
+        print("END CELL DEBUG")
+        
+        cell.titleLabel.text = postDownloader.posts[indexPath.row].title
+        cell.upvoteCountLabel.text = "\(postDownloader.posts[indexPath.row].upvoteCount) upvotes."
+        cell.commentCountLabel.text = "\(postDownloader.posts[indexPath.row].commentCount) comments."
+        
+        if postDownloader.posts[indexPath.row].thumbnail == "default" || postDownloader.posts[indexPath.row].thumbnail == "self" {
+            cell.thumbnail.image = #imageLiteral(resourceName: "defaultThumbnail.png")
+        }
+        
+        let thumbnailURL = postDownloader.posts[indexPath.row].thumbnail
+        cell.thumbnail.downloadedFrom(link: thumbnailURL)
+        
+        return cell
+    }
+    
     // MARK: Functions
     
     func updateUI() {
@@ -77,26 +110,13 @@ class TopStoryViewController: UIViewController {
         
         while postDownloader.downloaded == false {
             // Waiting until the data is downloaded to execute the next line
-            imageActivityIndicator.isHidden = false
+            //imageActivityIndicator.isHidden = false
         }
         
-        imageActivityIndicator.isHidden = true
+        print("Reloading table")
+        print(postDownloader.posts.count)
         
-        downloadImage()
-        titleLabel.text = postDownloader.findHighestUpvotedPost().title
-        commentCountLabel.text = "\(postDownloader.findHighestUpvotedPost().commentCount) comments"
-        upvoteCountLabel.text = "\(postDownloader.findHighestUpvotedPost().upvoteCount) upvotes"
-
-    }
-    
-    func downloadImage() {
-        
-        if postDownloader.findHighestUpvotedPost().thumbnail == "default" || postDownloader.findHighestUpvotedPost().thumbnail == "self" {
-            thumbnail.image = #imageLiteral(resourceName: "defaultThumbnail.png")
-        }
-        
-        let thumbnailURL = postDownloader.findHighestUpvotedPost().thumbnail
-        thumbnail.downloadedFrom(link: thumbnailURL)
+        self.tableView.reloadData()
         
     }
     
