@@ -15,7 +15,6 @@ class TopStoryViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var upvoteCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
-    @IBOutlet weak var highestPostText: UILabel!
     
     @IBOutlet weak var thumbnail: UIImageView!
 
@@ -25,7 +24,6 @@ class TopStoryViewController: UIViewController {
         super.viewDidLoad()
         
         updateUI()
-        findHighestUpvotedPost(self)
         
     }
     
@@ -39,11 +37,6 @@ class TopStoryViewController: UIViewController {
     @IBAction func refreshTopStory(_ sender: Any) {
         updateUI()
         
-    }
-    
-    @IBAction func findHighestUpvotedPost(_ sender: Any) {
-        let highestPost = postDownloader.findHighestUpvotedPost()
-        self.highestPostText.text = "Highest upvoted post is \(highestPost.title) with \(highestPost.upvoteCount) upvotes"
     }
     
     // MARK: Functions
