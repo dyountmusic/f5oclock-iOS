@@ -19,25 +19,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Time Refresh Enabled   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-3Y-IHi">
-                                <rect key="frame" x="20" y="128" width="218" height="31"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bpl-N1-4O4">
-                                <rect key="frame" x="349" y="128" width="51" height="31"/>
+                                <rect key="frame" x="345" y="92" width="51" height="31"/>
                                 <connections>
                                     <action selector="realTimeSwitchToggled:" destination="Tip-4P-faa" eventType="valueChanged" id="JlF-uH-JG9"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 🕐 Real Time Refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-3Y-IHi">
+                                <rect key="frame" x="20" y="92" width="170" height="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="4wF-Nd-FaS" secondAttribute="top" constant="64" id="R9P-VO-R0Z"/>
+                            <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="4wF-Nd-FaS" secondAttribute="top" constant="28" id="R9P-VO-R0Z"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="bpl-N1-4O4" secondAttribute="top" id="UBM-bV-sx5"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="EaF-jP-IOO" secondAttribute="leadingMargin" id="hoq-a1-Xcd"/>
-                            <constraint firstItem="4wF-Nd-FaS" firstAttribute="trailing" secondItem="bpl-N1-4O4" secondAttribute="trailing" constant="16" id="jSQ-W7-DFH"/>
+                            <constraint firstItem="4wF-Nd-FaS" firstAttribute="trailing" secondItem="bpl-N1-4O4" secondAttribute="trailing" constant="20" id="jSQ-W7-DFH"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="bottom" secondItem="bpl-N1-4O4" secondAttribute="bottom" id="pyj-es-aHz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4wF-Nd-FaS"/>
@@ -52,20 +52,20 @@
             </objects>
             <point key="canvasLocation" x="3032" y="687"/>
         </scene>
-        <!--Top Story-->
+        <!--📈🔥 Stories-->
         <scene sceneID="tbc-Xd-zlp">
             <objects>
                 <viewController id="69V-d2-L3V" customClass="TopStoryViewController" customModule="F5OClock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jxf-Dw-wO3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jxf-Dw-wO3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="140" id="Zo5-rC-ZHx" customClass="PostTableViewCell" customModule="F5OClock" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="140"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="120" id="Zo5-rC-ZHx" customClass="PostTableViewCell" customModule="F5OClock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zo5-rC-ZHx" id="Gcs-yb-R8Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="139.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="119.66666666666667"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrM-dr-XIz">
@@ -107,7 +107,7 @@
                             <outlet property="dataSource" destination="69V-d2-L3V" id="NkA-pM-aYn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Top Story" id="6Tg-Hf-Yb0"/>
+                    <navigationItem key="navigationItem" title="📈🔥 Stories" id="6Tg-Hf-Yb0"/>
                     <connections>
                         <outlet property="tableView" destination="jxf-Dw-wO3" id="0IB-57-kzj"/>
                     </connections>

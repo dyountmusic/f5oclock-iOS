@@ -72,9 +72,11 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
         
         postDownloader.sortPosts()
         
+        cell.backgroundColor = UIColor.white
+        
         cell.titleLabel.text = postDownloader.posts[indexPath.row].title
-        cell.upvoteCountLabel.text = "\(postDownloader.posts[indexPath.row].upvoteCount) upvotes."
-        cell.commentCountLabel.text = "\(postDownloader.posts[indexPath.row].commentCount) comments."
+        cell.upvoteCountLabel.text = "\(postDownloader.posts[indexPath.row].upvoteCount) 🔼"
+        cell.commentCountLabel.text = "\(postDownloader.posts[indexPath.row].commentCount) 💬"
         
         if postDownloader.posts[indexPath.row].upvoteCount >= 20 {
             cell.backgroundColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 0.3379999995)
