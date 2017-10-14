@@ -37,6 +37,9 @@ class TopStoryViewController: UIViewController {
             realTimeHandler.startTimer(viewController: self)
         }
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
