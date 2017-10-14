@@ -16,6 +16,7 @@ class TopStoryViewController: UIViewController {
     @IBOutlet weak var upvoteCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     
+    @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var thumbnail: UIImageView!
 
     var postDownloader = PostDownloader()
@@ -23,6 +24,7 @@ class TopStoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imageActivityIndicator.isHidden = true
         updateUI()
         
     }
@@ -47,7 +49,11 @@ class TopStoryViewController: UIViewController {
         
         while postDownloader.downloaded == false {
             // Waiting until the data is downloaded to execute the next line
+            imageActivityIndicator.isHidden = false
+            imageActivityIndicator.startAnimating()
         }
+        
+        imageActivityIndicator.isHidden = true
         
         downloadImage()
         titleLabel.text = postDownloader.findHighestUpvotedPost().title
