@@ -22,7 +22,7 @@ class RealTimeRefreshHandler {
         if #available(iOS 10.0, *) {
             timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
                 // do something here
-                print("Timer has fired!")
+                
                 viewController.updateUI()
                 
             }
@@ -33,7 +33,7 @@ class RealTimeRefreshHandler {
             timerDispatchSourceTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(60))
             timerDispatchSourceTimer?.setEventHandler{
                 // do something here
-                print("Timer has fired!")
+                
                 viewController.updateUI()
             }
             timerDispatchSourceTimer?.resume()

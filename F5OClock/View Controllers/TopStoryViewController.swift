@@ -25,6 +25,7 @@ class TopStoryViewController: UIViewController {
     var postDownloader = PostDownloader()
     let userDefaults = UserDefaults()
     let realTimeHandler = RealTimeRefreshHandler()
+    var isRealTime = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,10 @@ class TopStoryViewController: UIViewController {
             realTimeHandler.startTimer(viewController: self)
         }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,12 +60,23 @@ class TopStoryViewController: UIViewController {
     
     func updateUI() {
         
+        if userDefaults.bool(forKey: "RealTimeEnabled") == false {
+            print("Stopping timer")
+            realTimeHandler.stopTimer()
+            isRealTime = false
+        }
+        
+        if userDefaults.bool(forKey: "RealTimeEnabled") == true && isRealTime == false {
+            print("Starting timer")
+            realTimeHandler.startTimer(viewController: self)
+            isRealTime = true
+        }
+        
         postDownloader.downloadPosts()
         
         while postDownloader.downloaded == false {
             // Waiting until the data is downloaded to execute the next line
             imageActivityIndicator.isHidden = false
-            imageActivityIndicator.startAnimating()
         }
         
         imageActivityIndicator.isHidden = true
