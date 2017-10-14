@@ -61,13 +61,11 @@ class TopStoryViewController: UIViewController {
     func updateUI() {
         
         if userDefaults.bool(forKey: "RealTimeEnabled") == false {
-            print("Stopping timer")
             realTimeHandler.stopTimer()
             isRealTime = false
         }
         
         if userDefaults.bool(forKey: "RealTimeEnabled") == true && isRealTime == false {
-            print("Starting timer")
             realTimeHandler.startTimer(viewController: self)
             isRealTime = true
         }

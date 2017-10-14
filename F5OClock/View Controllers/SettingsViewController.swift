@@ -17,6 +17,13 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if userDefaults.bool(forKey: "RealTimeEnabled") == true {
+            realTimeSwitch.isOn = true
+        }
+        
+        if userDefaults.bool(forKey: "RealTimeEnabled") == false {
+            realTimeSwitch.isOn = false
+        }
         // Do any additional setup after loading the view.
     }
 
