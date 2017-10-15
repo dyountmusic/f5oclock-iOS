@@ -13,14 +13,6 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
     //MARK: Interface Builder Properties
     @IBOutlet var tableView: UITableView!
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var upvoteCountLabel: UILabel!
-    @IBOutlet weak var commentCountLabel: UILabel!
-    
-    @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var thumbnail: UIImageView!
-
-    
     // MARK: Properties
     
     var postDownloader = PostDownloader()
@@ -30,16 +22,25 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
+        // Perform regular UI update for data
         updateUI()
         
+        // Look for user settings for real time feature
         if userDefaults.bool(forKey: "RealTimeEnabled") == true {
             realTimeHandler.startTimer(viewController: self)
         }
         
+        // Configure Navigation Bar
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        
+        // Configure Refresh Control
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshPostTableView(_ :)), for: .valueChanged)
+        refreshControl.tintColor = #colorLiteral(red: 0, green: 0.4624785185, blue: 0.7407966852, alpha: 1)
         
     }
     
@@ -50,14 +51,6 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: Interface Builder Actions
-    
-    @IBAction func refreshTopStory(_ sender: Any) {
-        
-        updateUI()
-        
     }
     
     // MARK: TableView Functions
@@ -119,6 +112,18 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
         
         self.tableView.reloadData()
         
+    }
+    
+    @objc private func refreshPostTableView(_ sender: Any) {
+        
+        updateUI()
+        
+        while postDownloader.downloaded == false {
+            
+        }
+        
+        tableView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
 }
