@@ -96,7 +96,18 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if let url = URL(string: urlString) {
             
+            
             let vc = SFSafariViewController(url: url)
+            
+            if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
+                vc.preferredControlTintColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
+            } else if postDownloader.posts[indexPath.row].upvoteCount >= 50 {
+                vc.preferredControlTintColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 1)
+            } else {
+                vc.preferredControlTintColor = #colorLiteral(red: 0, green: 0.4624785185, blue: 0.7407966852, alpha: 1)
+            }
+            
+            
             present(vc, animated: true)
         }
     }
