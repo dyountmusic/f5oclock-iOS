@@ -27,6 +27,7 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
     let userDefaults = UserDefaults()
     let realTimeHandler = RealTimeRefreshHandler()
     var isRealTime = true
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +115,6 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
         
         while postDownloader.downloaded == false {
             // Waiting until the data is downloaded to execute the next line
-            //imageActivityIndicator.isHidden = false
         }
         
         self.tableView.reloadData()
