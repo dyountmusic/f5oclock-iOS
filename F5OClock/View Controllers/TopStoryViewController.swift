@@ -9,7 +9,9 @@
 import UIKit
 import SafariServices
 
-class TopStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TopStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
+    
+    
     
     //MARK: Interface Builder Properties
     @IBOutlet var tableView: UITableView!
@@ -25,6 +27,11 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // Register for 3D touch Peak and Pop
+        if (traitCollection.forceTouchCapability == .available) {
+            registerForPreviewing(with: self, sourceView: view)
+        }
         
         // Perform regular UI update for data
         updateUI()
@@ -92,6 +99,7 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let urlString = postDownloader.posts[indexPath.row].url
         
         if let url = URL(string: urlString) {
@@ -110,6 +118,30 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             
             present(vc, animated: true)
         }
+    }
+    
+    // MARK: Peak and Pop Functions
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
+        
+        let urlString = postDownloader.posts[indexPath.row].url
+        
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+        
+        let vc = SFSafariViewController(url: url)
+        vc.preferredContentSize = CGSize(width: 0.0, height: 600)
+        previewingContext.sourceRect = cell.frame
+        return vc
+        
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        present(viewControllerToCommit, animated: true)
     }
     
     
