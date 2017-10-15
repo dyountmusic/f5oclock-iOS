@@ -116,9 +116,11 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
     
     @objc private func refreshPostTableView(_ sender: Any) {
         
-        updateUI()
-        
-        while postDownloader.downloaded == false {
+        DispatchQueue.main.async {
+            self.updateUI()
+            while self.postDownloader.downloaded == false {
+                // Wait for data to be downloaded
+            }
             
         }
         
