@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SafariServices
 
-class TopStoryViewController: UIViewController, UITableViewDataSource {
+class TopStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //MARK: Interface Builder Properties
     @IBOutlet var tableView: UITableView!
@@ -89,6 +90,17 @@ class TopStoryViewController: UIViewController, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let urlString = postDownloader.posts[indexPath.row].url
+        
+        if let url = URL(string: urlString) {
+            
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+        }
+    }
+    
     
     // MARK: Functions
     
