@@ -160,7 +160,9 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             // Waiting until the data is downloaded to execute the next line
         }
         
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         
     }
     
@@ -171,10 +173,10 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             while self.postDownloader.downloaded == false {
                 // Wait for data to be downloaded
             }
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            
         }
-        
-        tableView.reloadData()
-        self.refreshControl.endRefreshing()
     }
     
 }
