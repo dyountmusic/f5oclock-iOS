@@ -11,8 +11,6 @@ import SafariServices
 
 class TopStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
     
-    
-    
     //MARK: Interface Builder Properties
     @IBOutlet var tableView: UITableView!
     
@@ -71,9 +69,7 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostTableViewCell else { return UITableViewCell() }
-        
-        postDownloader.sortPosts()
-        
+
         cell.backgroundColor = UIColor.white
         
         cell.titleLabel.text = postDownloader.posts[indexPath.row].title
@@ -104,7 +100,6 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if let url = URL(string: urlString) {
             
-            
             let vc = SFSafariViewController(url: url)
             
             if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
@@ -114,7 +109,6 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             } else {
                 vc.preferredControlTintColor = #colorLiteral(red: 0, green: 0.4624785185, blue: 0.7407966852, alpha: 1)
             }
-            
             
             present(vc, animated: true)
         }
@@ -141,6 +135,7 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        
         present(viewControllerToCommit, animated: true)
     }
     
@@ -176,7 +171,6 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             while self.postDownloader.downloaded == false {
                 // Wait for data to be downloaded
             }
-            
         }
         
         tableView.reloadData()

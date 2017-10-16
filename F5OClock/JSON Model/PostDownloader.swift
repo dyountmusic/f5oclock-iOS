@@ -45,6 +45,7 @@ class PostDownloader {
             do {
                 let downloadedPosts = try JSONDecoder().decode([Post].self, from: data)
                 self.posts = downloadedPosts
+                self.sortPosts()
                 self.downloaded = true
                 
             } catch let jsonError {
