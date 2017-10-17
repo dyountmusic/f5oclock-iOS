@@ -103,7 +103,7 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
             let vc = SFSafariViewController(url: url)
             
             if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
-                vc.preferredControlTintColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
+                vc.preferredControlTintColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 1)
             } else if postDownloader.posts[indexPath.row].upvoteCount >= 50 {
                 vc.preferredControlTintColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 1)
             } else {
