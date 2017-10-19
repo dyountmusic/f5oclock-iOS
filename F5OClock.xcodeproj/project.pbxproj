@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EA02BB071F907523000A8AF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB061F907523000A8AF8 /* AppDelegate.swift */; };
-		EA02BB091F907523000A8AF8 /* TopStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB081F907523000A8AF8 /* TopStoryViewController.swift */; };
-		EA02BB0C1F907523000A8AF8 /* TopStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0A1F907523000A8AF8 /* TopStory.storyboard */; };
+		EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */; };
+		EA02BB0C1F907523000A8AF8 /* F5OClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0A1F907523000A8AF8 /* F5OClock.storyboard */; };
 		EA02BB0E1F907523000A8AF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0D1F907523000A8AF8 /* Assets.xcassets */; };
 		EA02BB111F907523000A8AF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0F1F907523000A8AF8 /* LaunchScreen.storyboard */; };
 		EA02BB1C1F907524000A8AF8 /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB1B1F907524000A8AF8 /* PostTests.swift */; };
@@ -43,8 +43,8 @@
 /* Begin PBXFileReference section */
 		EA02BB031F907523000A8AF8 /* F5OClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F5OClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA02BB061F907523000A8AF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EA02BB081F907523000A8AF8 /* TopStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryViewController.swift; sourceTree = "<group>"; };
-		EA02BB0B1F907523000A8AF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TopStory.storyboard; sourceTree = "<group>"; };
+		EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RisingStoriesViewController.swift; sourceTree = "<group>"; };
+		EA02BB0B1F907523000A8AF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/F5OClock.storyboard; sourceTree = "<group>"; };
 		EA02BB0D1F907523000A8AF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA02BB101F907523000A8AF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA02BB121F907523000A8AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 				EA65E33D1F91C73200B0E33D /* View Controllers */,
 				EA02BB3E1F908E1D000A8AF8 /* Extensions */,
 				EA02BB361F907547000A8AF8 /* JSON Model */,
-				EA02BB0A1F907523000A8AF8 /* TopStory.storyboard */,
+				EA02BB0A1F907523000A8AF8 /* F5OClock.storyboard */,
 				EA02BB0D1F907523000A8AF8 /* Assets.xcassets */,
 				EA02BB0F1F907523000A8AF8 /* LaunchScreen.storyboard */,
 				EA02BB121F907523000A8AF8 /* Info.plist */,
@@ -181,7 +181,7 @@
 		EA65E33D1F91C73200B0E33D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EA02BB081F907523000A8AF8 /* TopStoryViewController.swift */,
+				EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */,
 				EA65E33E1F91C77000B0E33D /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
@@ -296,7 +296,7 @@
 			files = (
 				EA02BB111F907523000A8AF8 /* LaunchScreen.storyboard in Resources */,
 				EA02BB0E1F907523000A8AF8 /* Assets.xcassets in Resources */,
-				EA02BB0C1F907523000A8AF8 /* TopStory.storyboard in Resources */,
+				EA02BB0C1F907523000A8AF8 /* F5OClock.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +325,7 @@
 				EA65E3411F91CEEA00B0E33D /* RealTimeRefreshHandler.swift in Sources */,
 				EA02BB351F907544000A8AF8 /* Post.swift in Sources */,
 				EA65E3431F92AA4600B0E33D /* PostTableViewCell.swift in Sources */,
-				EA02BB091F907523000A8AF8 /* TopStoryViewController.swift in Sources */,
+				EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */,
 				EA02BB071F907523000A8AF8 /* AppDelegate.swift in Sources */,
 				EA02BB3C1F9085B1000A8AF8 /* ImageDownloadExtension.swift in Sources */,
 				EA65E33F1F91C77000B0E33D /* SettingsViewController.swift in Sources */,
@@ -365,12 +365,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EA02BB0A1F907523000A8AF8 /* TopStory.storyboard */ = {
+		EA02BB0A1F907523000A8AF8 /* F5OClock.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EA02BB0B1F907523000A8AF8 /* Base */,
 			);
-			name = TopStory.storyboard;
+			name = F5OClock.storyboard;
 			sourceTree = "<group>";
 		};
 		EA02BB0F1F907523000A8AF8 /* LaunchScreen.storyboard */ = {

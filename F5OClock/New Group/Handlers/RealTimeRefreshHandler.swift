@@ -15,7 +15,7 @@ class RealTimeRefreshHandler {
     weak var timer: Timer?
     var timerDispatchSourceTimer : DispatchSourceTimer?
     
-    func startTimer(viewController: TopStoryViewController) {
+    func startTimer(viewController: RisingStoriesViewController) {
         
         isRealTime = true
         

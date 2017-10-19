@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class TopStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
+class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
     
     //MARK: Interface Builder Properties
     @IBOutlet var tableView: UITableView!
@@ -168,13 +168,18 @@ class TopStoryViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @objc private func refreshPostTableView(_ sender: Any) {
         
+        if self.refreshControl.isRefreshing {
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(0.5), repeats: false, block: {
+                _ in self.refreshControl.endRefreshing()
+            })
+        }
+        
         DispatchQueue.main.async {
             self.updateUI()
             while self.postDownloader.downloaded == false {
                 // Wait for data to be downloaded
             }
             self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
             
         }
     }

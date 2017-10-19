@@ -55,7 +55,7 @@
         <!--📈 Stories-->
         <scene sceneID="tbc-Xd-zlp">
             <objects>
-                <viewController id="69V-d2-L3V" customClass="TopStoryViewController" customModule="F5OClock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="69V-d2-L3V" customClass="RisingStoriesViewController" customModule="F5OClock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jxf-Dw-wO3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
