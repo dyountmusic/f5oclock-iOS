@@ -85,7 +85,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         if postDownloader.posts[indexPath.row].thumbnail == "default" || postDownloader.posts[indexPath.row].thumbnail == "self" {
-            cell.thumbnail.image = #imageLiteral(resourceName: "defaultThumbnail.png")
+            cell.thumbnail.image = UIImage.init(named: "defaultThumbnail")
         }
         
         let thumbnailURL = postDownloader.posts[indexPath.row].thumbnail
