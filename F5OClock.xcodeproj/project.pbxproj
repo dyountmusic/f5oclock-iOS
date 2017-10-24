@@ -113,8 +113,8 @@
 			children = (
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				EA42B9DC1F95698B009D6521 /* TableView Cells */,
-				EA42B9DD1F95698E009D6521 /* Handlers */,
 				EA65E33D1F91C73200B0E33D /* View Controllers */,
+				EA0FDF0E1F9FCD1900C5FB3A /* Handlers */,
 				EA02BB3E1F908E1D000A8AF8 /* Extensions */,
 				EA02BB361F907547000A8AF8 /* JSON Model */,
 				EA02BB0A1F907523000A8AF8 /* F5OClock.storyboard */,
@@ -160,22 +160,21 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		EA0FDF0E1F9FCD1900C5FB3A /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				EA02BB371F907989000A8AF8 /* PostDownloader.swift */,
+				EA65E3401F91CEEA00B0E33D /* RealTimeRefreshHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
 		EA42B9DC1F95698B009D6521 /* TableView Cells */ = {
 			isa = PBXGroup;
 			children = (
 				EA65E3421F92AA4600B0E33D /* PostTableViewCell.swift */,
 			);
 			path = "TableView Cells";
-			sourceTree = "<group>";
-		};
-		EA42B9DD1F95698E009D6521 /* Handlers */ = {
-			isa = PBXGroup;
-			children = (
-				EA02BB371F907989000A8AF8 /* PostDownloader.swift */,
-				EA65E3401F91CEEA00B0E33D /* RealTimeRefreshHandler.swift */,
-			);
-			name = Handlers;
-			path = "New Group/Handlers";
 			sourceTree = "<group>";
 		};
 		EA65E33D1F91C73200B0E33D /* View Controllers */ = {
