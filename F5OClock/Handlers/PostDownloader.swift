@@ -16,7 +16,6 @@ class PostDownloader {
     var posts = [Post]()
     var downloaded = false
     
-    
     // MARK: Functions
     
     func downloadPosts() {
@@ -77,7 +76,6 @@ class PostDownloader {
             }
         }
         
-        //print("Highest upvoted post is \(highestPost.title) with \(highestPost.upvoteCount) upvotes")
         return highestPost
         
     }
