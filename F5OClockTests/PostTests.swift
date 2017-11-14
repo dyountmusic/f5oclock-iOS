@@ -23,9 +23,9 @@ class PostTests: XCTestCase {
     
     func testFindHighestUpvotedPost() {
         // Mocked Post objects
-        let highestPost = Post(id: "", author: "", created: 0, title: "Highest Post", version: 0, domain: "", url: "", commentLink: "", thumbnail: "", upvoteCount: 2, commentCount: 0, fetchedAt: "")
-        let lowestPost =  Post(id: "", author: "", created: 0, title: "Lowest Post", version: 0, domain: "", url: "", commentLink: "", thumbnail: "", upvoteCount: 1, commentCount: 0, fetchedAt: "")
-        let negativePost = Post(id: "", author: "", created: 0, title: "Negative Post", version: 0, domain: "", url: "", commentLink: "", thumbnail: "", upvoteCount: -1, commentCount: 0, fetchedAt: "")
+        let highestPost = Post(id: "", author: "", created: 0, title: "Highest Post", version: 0, domain: "", url: "high.com", commentLink: "", thumbnail: "", upvoteCount: 2, commentCount: 0, fetchedAt: "")
+        let lowestPost =  Post(id: "", author: "", created: 0, title: "Lowest Post", version: 0, domain: "", url: "low.com", commentLink: "", thumbnail: "", upvoteCount: 1, commentCount: 0, fetchedAt: "")
+        let negativePost = Post(id: "", author: "", created: 0, title: "Negative Post", version: 0, domain: "", url: "neg.com", commentLink: "", thumbnail: "", upvoteCount: -1, commentCount: 0, fetchedAt: "")
         
         // Create the post downloader object
         let postDownloader = PostDownloader()
@@ -59,6 +59,29 @@ class PostTests: XCTestCase {
         XCTAssertNotEqual(result3.upvoteCount, 1)
         
     }
+	
+	func testNoPostsDuplicated() {
+		// Mocked Post objects
+		let postA  = Post(id: "", author: "a1", created: 0, title: "Post A", version: 0, domain: "", url: "aaa", commentLink: "", thumbnail: "", upvoteCount: 10, commentCount: 0, fetchedAt: "")
+		let postB  = Post(id: "", author: "b1", created: 0, title: "Post B", version: 0, domain: "", url: "bbb", commentLink: "", thumbnail: "", upvoteCount: 9, commentCount: 0, fetchedAt: "")
+		let postC  = Post(id: "", author: "c1", created: 0, title: "Post C", version: 0, domain: "", url: "ccc", commentLink: "", thumbnail: "", upvoteCount: -1, commentCount: 0, fetchedAt: "")
+		let postB2 = Post(id: "", author: "b2", created: 0, title: "Post B", version: 0, domain: "", url: "bbb", commentLink: "", thumbnail: "", upvoteCount: 3, commentCount: 0, fetchedAt: "")
+
+		// Create the post downloader object
+		let postDownloader = PostDownloader()
+		postDownloader.posts = [postA, postB, postC, postB2]
+		
+		// Calculate expected result
+		postDownloader.sortPosts()
+		postDownloader.removeDuplicates()
+		
+		// Check for expected result
+		XCTAssertTrue(postDownloader.posts.count == 3)
+		XCTAssertTrue(postDownloader.posts[0] == postA)
+		//make sure the higher upvoted post B is chosen (!assuming presorted!)
+		XCTAssertTrue(postDownloader.posts[1] == postB && postDownloader.posts[1].author == "b1")
+		XCTAssertTrue(postDownloader.posts[2] == postC)
+	}
     
     func testJSONPostModelDecode() {
         

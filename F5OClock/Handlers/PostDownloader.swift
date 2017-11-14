@@ -45,6 +45,7 @@ class PostDownloader {
                 let downloadedPosts = try JSONDecoder().decode([Post].self, from: data)
                 self.posts = downloadedPosts
                 self.sortPosts()
+				self.removeDuplicates() //sort posts before this
                 self.downloaded = true
                 
             } catch let jsonError {
@@ -77,6 +78,19 @@ class PostDownloader {
         }
         
         return highestPost
-        
+
     }
+	
+	//removes duplicates, preserves ordering, but is not upvote aware.
+	//Will only preserve highest upvote if the list is pre-sorted from highest to lowest
+	func removeDuplicates() {
+		var uniquePosts = [Post]()
+		for post in posts {
+			if !uniquePosts.contains(post) {
+				uniquePosts.append(post)
+			}
+		}
+		posts = uniquePosts
+	}
+	
 }
