@@ -208,7 +208,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 					}
 				}, completion: { (_) in
 					self.tableView.reloadData()
-					self.refreshControl.endRefreshing()
+					//delay end of refresh animation for maximum satisfaction
+					Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false){ (_) in
+						self.refreshControl.endRefreshing()
+					}
 				})
 			}
 		}
