@@ -21,6 +21,8 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     let realTimeHandler = RealTimeRefreshHandler()
     var isRealTime = true
     let refreshControl = UIRefreshControl()
+	
+	var cellHeights: [IndexPath : CGFloat] = [:]
     
     override func viewDidLoad() {
         
@@ -113,7 +115,16 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             present(vc, animated: true)
         }
     }
-    
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		cellHeights[indexPath] = cell.frame.size.height
+	}
+	
+	func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		guard let height = cellHeights[indexPath] else { return 100.0 }
+		return height
+	}
+	
     // MARK: Peak and Pop Functions
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
