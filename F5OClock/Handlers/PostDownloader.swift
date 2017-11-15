@@ -14,13 +14,20 @@ class PostDownloader {
     
     // These properties are used to store the fetched data for reference
     var posts = [Post]()
-    var downloaded = false
+	var downloaded = false
+	
+	//Stores the hash values of the previous state. Used for animating updates to post list
+	var previousState = [Int]()
+
     
     // MARK: Functions
     
-    func downloadPosts() {
+	func downloadPosts() {
         
         downloaded = false
+		
+		//save the current state before it is overwritten
+		previousState = computeState()
         
         let jsonURLString = "http://www.f5oclock.com/getPosts"
         guard let url = URL(string: jsonURLString) else { return }
@@ -81,8 +88,8 @@ class PostDownloader {
 
     }
 	
-	//removes duplicates, preserves ordering, but is not upvote aware.
-	//Will only preserve highest upvote if the list is pre-sorted from highest to lowest
+	// Removes duplicates, preserves ordering, but is not upvote aware.
+	// Will only preserve highest upvote if the list is pre-sorted from highest to lowest
 	func removeDuplicates() {
 		var uniquePosts = [Post]()
 		for post in posts {
@@ -91,6 +98,15 @@ class PostDownloader {
 			}
 		}
 		posts = uniquePosts
+	}
+	
+	// Computes an array of hashes representing the current state
+	func computeState() -> [Int] {
+		var state = [Int]()
+		for post in posts {
+			state.append(post.hashValue)
+		}
+		return state
 	}
 	
 }
