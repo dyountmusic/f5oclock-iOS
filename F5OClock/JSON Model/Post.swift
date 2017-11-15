@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Post: Codable {
+struct Post: Codable, Hashable {
     
     let id: String
     let author: String
@@ -22,7 +22,9 @@ struct Post: Codable {
     let upvoteCount: Int
     let commentCount: Int
     let fetchedAt: String
-    
+	
+	//MARK: Codable conformance
+	
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case author = "author"
@@ -37,4 +39,14 @@ struct Post: Codable {
         case commentCount = "commentCount"
         case fetchedAt = "fetchedAt"
     }
+	
+	//MARK: Hashable conformance
+	
+	var hashValue: Int {
+		return title.hashValue
+	}
+	
+	static func ==(lhs:Post, rhs:Post) -> Bool {
+		return lhs.title == rhs.title
+	}
 }
