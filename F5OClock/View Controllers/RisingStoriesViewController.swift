@@ -161,7 +161,32 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+			var deletions = [IndexPath]()
+			var insertions = [IndexPath]()
+			
+			//compute deletions
+			for i in 0..<self.postDownloader.previousState.count {
+				let post = self.postDownloader.previousState[i]
+				if !self.postDownloader.posts.contains(where: { (p:Post) -> Bool in p.hashValue == post }) {
+					deletions.append(IndexPath(row: i, section: 0))
+				}
+			}
+			
+			//compute deletions and moves
+			for i in 0..<self.postDownloader.posts.count {
+				let post = self.postDownloader.posts[i]
+				if !self.postDownloader.previousState.contains(where: { (p:Int) -> Bool in p == post.hashValue }) {
+					insertions.append(IndexPath(row: i, section: 0))
+				}
+			}
+			
+			self.tableView.performBatchUpdates({
+				self.tableView.deleteRows(at: deletions, with: .right)
+				self.tableView.insertRows(at: insertions, with: .left)
+			}, completion: { (_) in
+				self.tableView.reloadData()
+			})
+			
         }
         
     }
