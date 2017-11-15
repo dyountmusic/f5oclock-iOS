@@ -163,6 +163,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         DispatchQueue.main.async {
 			var deletions = [IndexPath]()
 			var insertions = [IndexPath]()
+			var moves = [(from:IndexPath, to:IndexPath)]()
 			
 			//compute deletions
 			for i in 0..<self.postDownloader.previousState.count {
@@ -177,12 +178,20 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 				let post = self.postDownloader.posts[i]
 				if !self.postDownloader.previousState.contains(where: { (p:Int) -> Bool in p == post.hashValue }) {
 					insertions.append(IndexPath(row: i, section: 0))
+				} else {
+					let from = self.postDownloader.previousState.index(of: post.hashValue)!
+					if i > from { //only move posts up, so only one animation is created per cell
+						moves.append((from: IndexPath(row: from, section: 0), to: IndexPath(row: i, section: 0)))
+					}
 				}
 			}
 			
 			self.tableView.performBatchUpdates({
 				self.tableView.deleteRows(at: deletions, with: .right)
 				self.tableView.insertRows(at: insertions, with: .left)
+				for move in moves {
+					self.tableView.moveRow(at: move.from, to: move.to)
+				}
 			}, completion: { (_) in
 				self.tableView.reloadData()
 			})
