@@ -18,7 +18,7 @@ class PostDownloader {
     
     // MARK: Functions
     
-    func downloadPosts() {
+	func downloadPosts(completion: @escaping () -> (Void)) {
         
         downloaded = false
         
@@ -46,7 +46,7 @@ class PostDownloader {
                 self.posts = downloadedPosts
                 self.sortPosts()
                 self.downloaded = true
-                
+                completion()
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError)")
             }

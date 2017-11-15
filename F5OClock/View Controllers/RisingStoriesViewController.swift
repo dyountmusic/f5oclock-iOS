@@ -21,6 +21,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     let realTimeHandler = RealTimeRefreshHandler()
     var isRealTime = true
     let refreshControl = UIRefreshControl()
+	var imageCache = WebImageCache()
     
     override func viewDidLoad() {
         
@@ -83,13 +84,15 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
             cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
         }
-        
-        if postDownloader.posts[indexPath.row].thumbnail == "default" || postDownloader.posts[indexPath.row].thumbnail == "self" {
-            cell.thumbnail.image = UIImage.init(named: "defaultThumbnail")
-        }
-        
-        let thumbnailURL = postDownloader.posts[indexPath.row].thumbnail
-        cell.thumbnail.downloadedFrom(link: thumbnailURL)
+
+		// Load in images asyncronously
+		let thumbnailURL = URL(string:postDownloader.posts[indexPath.row].thumbnail)!
+		imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
+			DispatchQueue.main.async() {
+				cell.thumbnail.image = image
+			}
+		}
+
         
         return cell
     }
@@ -153,16 +156,13 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             realTimeHandler.startTimer(viewController: self)
             isRealTime = true
         }
-        
-        postDownloader.downloadPosts()
-        
-        while postDownloader.downloaded == false {
-            // Waiting until the data is downloaded to execute the next line
-        }
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+		
+		// Reload table view data after all posts have been downloaded without blocking thread
+		postDownloader.downloadPosts() {
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
         
     }
     
@@ -173,15 +173,8 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
                 _ in self.refreshControl.endRefreshing()
             })
         }
-        
-        DispatchQueue.main.async {
-            self.updateUI()
-            while self.postDownloader.downloaded == false {
-                // Wait for data to be downloaded
-            }
-            self.tableView.reloadData()
-            
-        }
+		
+		self.updateUI()
     }
     
 }
