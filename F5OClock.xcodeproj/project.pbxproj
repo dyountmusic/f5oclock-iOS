@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BFB39E1E1FBBE0A100B4AB09 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */; };
+		BFF5762E1FBCE64C006CA25D /* TableViewRowAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */; };
 		EA02BB071F907523000A8AF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB061F907523000A8AF8 /* AppDelegate.swift */; };
 		EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */; };
 		EA02BB0C1F907523000A8AF8 /* F5OClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0A1F907523000A8AF8 /* F5OClock.storyboard */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCache.swift; sourceTree = "<group>"; };
+		BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRowAnimator.swift; sourceTree = "<group>"; };
 		EA02BB031F907523000A8AF8 /* F5OClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F5OClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA02BB061F907523000A8AF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RisingStoriesViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */,
+				BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */,
 				EA0FDF0E1F9FCD1900C5FB3A /* Handlers */,
 				EA02BB361F907547000A8AF8 /* JSON Model */,
 				EA42B9DC1F95698B009D6521 /* TableView Cells */,
@@ -317,6 +320,7 @@
 				EA02BB351F907544000A8AF8 /* Post.swift in Sources */,
 				EA65E3431F92AA4600B0E33D /* PostTableViewCell.swift in Sources */,
 				EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */,
+				BFF5762E1FBCE64C006CA25D /* TableViewRowAnimator.swift in Sources */,
 				BFB39E1E1FBBE0A100B4AB09 /* WebImageCache.swift in Sources */,
 				EA02BB071F907523000A8AF8 /* AppDelegate.swift in Sources */,
 				EA65E33F1F91C77000B0E33D /* SettingsViewController.swift in Sources */,
