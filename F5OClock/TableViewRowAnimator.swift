@@ -22,25 +22,36 @@ class TableViewRowAnimator {
 		self.computeAnimation()
 	}
 	func computeAnimation() {
-		//compute deletions
-		for i in 0..<self.origin.count {
-			let post = self.origin[i]
-			if !self.target.contains(where: { (p:Post) -> Bool in p.hashValue == post }) {
+		// Convert target [Post] to hashValue [Int] to match origin (performance)
+		var goal = target.map { (post) -> Int in
+			return post.hashValue
+		}
+		
+		// Compute deletions
+		for i in 0..<origin.count {
+			if !goal.contains(origin[i]) {
 				deletions.append(IndexPath(row: i, section: 0))
 			}
 		}
 		
-		//compute deletions and moves
-		for i in 0..<self.target.count {
-			let post = self.target[i]
-			if !self.origin.contains(where: { (p:Int) -> Bool in p == post.hashValue }) {
+		// Compute insertions
+		for i in 0..<goal.count {
+			if !origin.contains(goal[i]) {
 				insertions.append(IndexPath(row: i, section: 0))
-			} else {
-				let from = self.origin.index(of: post.hashValue)!
-				if i > from { //only move posts up, so only one animation is created per cell
+			}
+		}
+		
+		// Compute moves
+		for i in 0..<goal.count {
+			let post = goal[i]
+			if origin.contains(post) {
+				let from = origin.index(of: post)!
+				if from - i > 0 {
 					moves.append((from: IndexPath(row: from, section: 0), to: IndexPath(row: i, section: 0)))
 				}
 			}
 		}
+		
 	}
+	
 }
