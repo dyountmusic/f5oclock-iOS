@@ -43,10 +43,10 @@ struct Post: Codable, Hashable {
 	//MARK: Hashable conformance
 	
 	var hashValue: Int {
-		return url.hashValue
+		return title.hashValue
 	}
 	
 	static func ==(lhs:Post, rhs:Post) -> Bool {
-		return lhs.url == rhs.url
+		return lhs.title == rhs.title
 	}
 }

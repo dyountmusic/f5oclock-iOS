@@ -62,25 +62,31 @@ class PostTests: XCTestCase {
 	
 	func testNoPostsDuplicated() {
 		// Mocked Post objects
-		let postA  = Post(id: "", author: "a1", created: 0, title: "Post A", version: 0, domain: "", url: "aaa", commentLink: "", thumbnail: "", upvoteCount: 10, commentCount: 0, fetchedAt: "")
-		let postB  = Post(id: "", author: "b1", created: 0, title: "Post B", version: 0, domain: "", url: "bbb", commentLink: "", thumbnail: "", upvoteCount: 9, commentCount: 0, fetchedAt: "")
-		let postC  = Post(id: "", author: "c1", created: 0, title: "Post C", version: 0, domain: "", url: "ccc", commentLink: "", thumbnail: "", upvoteCount: -1, commentCount: 0, fetchedAt: "")
-		let postB2 = Post(id: "", author: "b2", created: 0, title: "Post B", version: 0, domain: "", url: "bbb", commentLink: "", thumbnail: "", upvoteCount: 3, commentCount: 0, fetchedAt: "")
+		let postA  = Post(id: "", author: "a1", created: 0, title: "Post A", version: 0, domain: "", url: "http://www.aaa.com/a/", commentLink: "", thumbnail: "", upvoteCount: 10, commentCount: 0, fetchedAt: "")
+		let postB  = Post(id: "", author: "b1", created: 0, title: "Post B", version: 0, domain: "", url: "bbb.com/", commentLink: "", thumbnail: "", upvoteCount: 9, commentCount: 0, fetchedAt: "")
+		let postB2 = Post(id: "", author: "b2", created: 0, title: "Post B", version: 0, domain: "", url: "bbb.com/", commentLink: "", thumbnail: "", upvoteCount: 3, commentCount: 0, fetchedAt: "")
+		let postC  = Post(id: "", author: "c1", created: 0, title: "Post C", version: 0, domain: "", url: "ccc.com/", commentLink: "", thumbnail: "", upvoteCount: -1, commentCount: 0, fetchedAt: "")
+		let postC2 = Post(id: "", author: "c2", created: 0, title: "Post C", version: 0, domain: "", url: "ccc.com/?something=v", commentLink: "", thumbnail: "", upvoteCount: 7, commentCount: 0, fetchedAt: "")
 
 		// Create the post downloader object
 		let postDownloader = PostDownloader()
-		postDownloader.posts = [postA, postB, postC, postB2]
+		postDownloader.posts = [postA, postB, postB2, postC, postC2]
 		
 		// Calculate expected result
 		postDownloader.sortPosts()
 		postDownloader.removeDuplicates()
 		
-		// Check for expected result
+		// Test Equatable (Hashable) extension
+		XCTAssertEqual(postB, postB2)
+		XCTAssertEqual(postC, postC2)
+		
+		// Make sure there are only 3 posts after removing duplicates
 		XCTAssertTrue(postDownloader.posts.count == 3)
 		XCTAssertTrue(postDownloader.posts[0] == postA)
-		//make sure the higher upvoted post B is chosen (!assuming presorted!)
+		// Make sure the higher upvoted post B is chosen (!assuming presorted!)
 		XCTAssertTrue(postDownloader.posts[1] == postB && postDownloader.posts[1].author == "b1")
-		XCTAssertTrue(postDownloader.posts[2] == postC)
+		// Make sure the higher upvoted post C is chosen
+		XCTAssertTrue(postDownloader.posts[2] == postC2)
 	}
     
     func testJSONPostModelDecode() {
