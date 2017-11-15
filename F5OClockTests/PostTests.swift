@@ -129,15 +129,10 @@ class PostTests: XCTestCase {
         
         let postDownloader = PostDownloader()
         
-        postDownloader.downloadPosts()
-        
-        while postDownloader.downloaded == false {
-            
-        }
-        
-        XCTAssertNotNil(postDownloader)
-        XCTAssertNotNil(postDownloader.posts[0].title)
-        
+		postDownloader.downloadPosts() {
+			XCTAssertNotNil(postDownloader)
+			XCTAssertNotNil(postDownloader.posts[0].title)
+		}
         
     }
     

@@ -21,7 +21,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     let realTimeHandler = RealTimeRefreshHandler()
     var isRealTime = true
     let refreshControl = UIRefreshControl()
-	
+	var imageCache = WebImageCache()
 	var cellHeights: [IndexPath : CGFloat] = [:]
     
     override func viewDidLoad() {
@@ -85,13 +85,15 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
             cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
         }
-        
-        if postDownloader.posts[indexPath.row].thumbnail == "default" || postDownloader.posts[indexPath.row].thumbnail == "self" {
-            cell.thumbnail.image = UIImage.init(named: "defaultThumbnail")
-        }
-        
-        let thumbnailURL = postDownloader.posts[indexPath.row].thumbnail
-        cell.thumbnail.downloadedFrom(link: thumbnailURL)
+
+		// Load in images asyncronously
+		let thumbnailURL = URL(string:postDownloader.posts[indexPath.row].thumbnail)!
+		imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
+			DispatchQueue.main.async() {
+				cell.thumbnail.image = image
+			}
+		}
+
         
         return cell
     }
@@ -154,7 +156,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Functions
     
     func updateUI() {
-        
+		if self.refreshControl.isRefreshing {
+			return
+		}
+		
         if userDefaults.bool(forKey: "RealTimeEnabled") == false {
             realTimeHandler.stopTimer()
             isRealTime = false
@@ -164,69 +169,58 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             realTimeHandler.startTimer(viewController: self)
             isRealTime = true
         }
-        
-        postDownloader.downloadPosts()
-        
-        while postDownloader.downloaded == false {
-            // Waiting until the data is downloaded to execute the next line
-        }
-        
-        DispatchQueue.main.async {
-			var deletions = [IndexPath]()
-			var insertions = [IndexPath]()
-			var moves = [(from:IndexPath, to:IndexPath)]()
-			
-			//compute deletions
-			for i in 0..<self.postDownloader.previousState.count {
-				let post = self.postDownloader.previousState[i]
-				if !self.postDownloader.posts.contains(where: { (p:Post) -> Bool in p.hashValue == post }) {
-					deletions.append(IndexPath(row: i, section: 0))
-				}
-			}
-			
-			//compute deletions and moves
-			for i in 0..<self.postDownloader.posts.count {
-				let post = self.postDownloader.posts[i]
-				if !self.postDownloader.previousState.contains(where: { (p:Int) -> Bool in p == post.hashValue }) {
-					insertions.append(IndexPath(row: i, section: 0))
-				} else {
-					let from = self.postDownloader.previousState.index(of: post.hashValue)!
-					if i > from { //only move posts up, so only one animation is created per cell
-						moves.append((from: IndexPath(row: from, section: 0), to: IndexPath(row: i, section: 0)))
+
+		
+		// Reload table view data after all posts have been downloaded without blocking thread
+		self.refreshControl.beginRefreshing()
+		postDownloader.downloadPosts() {
+			DispatchQueue.main.sync {
+				var deletions = [IndexPath]()
+				var insertions = [IndexPath]()
+				var moves = [(from:IndexPath, to:IndexPath)]()
+				
+				//compute deletions
+				for i in 0..<self.postDownloader.previousState.count {
+					let post = self.postDownloader.previousState[i]
+					if !self.postDownloader.posts.contains(where: { (p:Post) -> Bool in p.hashValue == post }) {
+						deletions.append(IndexPath(row: i, section: 0))
 					}
 				}
-			}
-			
-			self.tableView.performBatchUpdates({
-				self.tableView.deleteRows(at: deletions, with: .right)
-				self.tableView.insertRows(at: insertions, with: .left)
-				for move in moves {
-					self.tableView.moveRow(at: move.from, to: move.to)
+				
+				//compute deletions and moves
+				for i in 0..<self.postDownloader.posts.count {
+					let post = self.postDownloader.posts[i]
+					if !self.postDownloader.previousState.contains(where: { (p:Int) -> Bool in p == post.hashValue }) {
+						insertions.append(IndexPath(row: i, section: 0))
+					} else {
+						let from = self.postDownloader.previousState.index(of: post.hashValue)!
+						if i > from { //only move posts up, so only one animation is created per cell
+							moves.append((from: IndexPath(row: from, section: 0), to: IndexPath(row: i, section: 0)))
+						}
+					}
 				}
-			}, completion: { (_) in
-				self.tableView.reloadData()
-			})
-			
-        }
-        
-    }
+				
+				self.tableView.performBatchUpdates({
+					self.tableView.deleteRows(at: deletions, with: .right)
+					self.tableView.insertRows(at: insertions, with: .left)
+					for move in moves {
+						self.tableView.moveRow(at: move.from, to: move.to)
+					}
+				}, completion: { (_) in
+					self.tableView.reloadData()
+					//delay end of refresh animation for maximum satisfaction
+					Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false){ (_) in
+						self.refreshControl.endRefreshing()
+					}
+				})
+			}
+		}
+		
+	}
     
     @objc private func refreshPostTableView(_ sender: Any) {
-        
-        if self.refreshControl.isRefreshing {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(0.5), repeats: false, block: {
-                _ in self.refreshControl.endRefreshing()
-            })
-        }
-        
-        DispatchQueue.main.async {
-            self.updateUI()
-            while self.postDownloader.downloaded == false {
-                // Wait for data to be downloaded
-            }
-            self.tableView.reloadData()
-            
-        }
+		self.refreshControl.endRefreshing()
+		updateUI()
     }
     
 }

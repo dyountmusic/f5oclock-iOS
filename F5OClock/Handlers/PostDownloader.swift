@@ -22,7 +22,8 @@ class PostDownloader {
     
     // MARK: Functions
     
-	func downloadPosts() {
+	func downloadPosts(completion: @escaping () -> (Void)) {
+
         
         downloaded = false
 		
@@ -54,7 +55,7 @@ class PostDownloader {
                 self.sortPosts()
 				self.removeDuplicates() //sort posts before this
                 self.downloaded = true
-                
+                completion()
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError)")
             }
