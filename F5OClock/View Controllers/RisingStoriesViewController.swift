@@ -158,23 +158,21 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         }
 		
 		// Reload table view data after all posts have been downloaded without blocking thread
+		self.refreshControl.beginRefreshing()
 		postDownloader.downloadPosts() {
 			DispatchQueue.main.async {
 				self.tableView.reloadData()
+				//delay end of refresh animation
+				Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
+					self.refreshControl.endRefreshing()
+				})
 			}
 		}
         
     }
     
     @objc private func refreshPostTableView(_ sender: Any) {
-        
-        if self.refreshControl.isRefreshing {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(0.5), repeats: false, block: {
-                _ in self.refreshControl.endRefreshing()
-            })
-        }
-		
-		self.updateUI()
+		updateUI()
     }
     
 }
