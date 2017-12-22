@@ -21,6 +21,8 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     let realTimeHandler = RealTimeRefreshHandler()
     var isRealTime = true
     let refreshControl = UIRefreshControl()
+	var imageCache = WebImageCache()
+	var cellHeights: [IndexPath : CGFloat] = [:]
     
     override func viewDidLoad() {
         
@@ -83,13 +85,15 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
             cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
         }
-        
-        if postDownloader.posts[indexPath.row].thumbnail == "default" || postDownloader.posts[indexPath.row].thumbnail == "self" {
-            cell.thumbnail.image = UIImage.init(named: "defaultThumbnail")
-        }
-        
-        let thumbnailURL = postDownloader.posts[indexPath.row].thumbnail
-        cell.thumbnail.downloadedFrom(link: thumbnailURL)
+
+		// Load in images asyncronously
+		let thumbnailURL = URL(string:postDownloader.posts[indexPath.row].thumbnail)!
+		imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
+			DispatchQueue.main.async() {
+				cell.thumbnail.image = image
+			}
+		}
+
         
         return cell
     }
@@ -113,7 +117,16 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             present(vc, animated: true)
         }
     }
-    
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		cellHeights[indexPath] = cell.frame.size.height
+	}
+	
+	func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		guard let height = cellHeights[indexPath] else { return 100.0 }
+		return height
+	}
+	
     // MARK: Peak and Pop Functions
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -143,7 +156,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Functions
     
     func updateUI() {
-        
+		if self.refreshControl.isRefreshing {
+			return
+		}
+		
         if userDefaults.bool(forKey: "RealTimeEnabled") == false {
             realTimeHandler.stopTimer()
             isRealTime = false
@@ -153,35 +169,34 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             realTimeHandler.startTimer(viewController: self)
             isRealTime = true
         }
-        
-        postDownloader.downloadPosts()
-        
-        while postDownloader.downloaded == false {
-            // Waiting until the data is downloaded to execute the next line
-        }
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        
-    }
+
+		
+		// Reload table view data after all posts have been downloaded without blocking thread
+		self.refreshControl.beginRefreshing()
+		postDownloader.downloadPosts() {
+			DispatchQueue.main.sync {
+				let animator = TableViewRowAnimator(originState: self.postDownloader.previousState, targetState: self.postDownloader.posts)
+				self.tableView.performBatchUpdates({
+					self.tableView.deleteRows(at: animator.deletions, with: .right)
+					self.tableView.insertRows(at: animator.insertions, with: .left)
+					for move in animator.moves {
+						self.tableView.moveRow(at: move.from, to: move.to)
+					}
+				}, completion: { (_) in
+					self.tableView.reloadData()
+					//delay end of refresh animation for maximum satisfaction
+					Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false){ (_) in
+						self.refreshControl.endRefreshing()
+					}
+				})
+			}
+		}
+		
+	}
     
     @objc private func refreshPostTableView(_ sender: Any) {
-        
-        if self.refreshControl.isRefreshing {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(0.5), repeats: false, block: {
-                _ in self.refreshControl.endRefreshing()
-            })
-        }
-        
-        DispatchQueue.main.async {
-            self.updateUI()
-            while self.postDownloader.downloaded == false {
-                // Wait for data to be downloaded
-            }
-            self.tableView.reloadData()
-            
-        }
+		self.refreshControl.endRefreshing()
+		updateUI()
     }
     
 }
