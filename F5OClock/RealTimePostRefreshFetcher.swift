@@ -8,10 +8,9 @@
 
 import Foundation
 
-class RealTimeRefreshHandler {
+class RealTimePostRefreshFetcher {
     
     var isRealTime = false
-    
     weak var timer: Timer?
     var timerDispatchSourceTimer : DispatchSourceTimer?
     

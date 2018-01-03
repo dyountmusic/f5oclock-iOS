@@ -18,7 +18,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     
     var postDownloader = PostDownloader()
     let userDefaults = UserDefaults()
-    let realTimeHandler = RealTimeRefreshHandler()
+    let realTimeHandler = RealTimePostRefreshFetcher()
     var isRealTime = true
     let refreshControl = UIRefreshControl()
 	var imageCache = WebImageCache()

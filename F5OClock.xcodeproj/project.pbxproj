@@ -20,7 +20,7 @@
 		EA02BB381F907989000A8AF8 /* PostDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB371F907989000A8AF8 /* PostDownloader.swift */; };
 		EA65E33C1F919DA500B0E33D /* JSONMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E33B1F919DA500B0E33D /* JSONMock.swift */; };
 		EA65E33F1F91C77000B0E33D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E33E1F91C77000B0E33D /* SettingsViewController.swift */; };
-		EA65E3411F91CEEA00B0E33D /* RealTimeRefreshHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E3401F91CEEA00B0E33D /* RealTimeRefreshHandler.swift */; };
+		EA65E3411F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */; };
 		EA65E3431F92AA4600B0E33D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E3421F92AA4600B0E33D /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +61,7 @@
 		EA02BB371F907989000A8AF8 /* PostDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDownloader.swift; sourceTree = "<group>"; };
 		EA65E33B1F919DA500B0E33D /* JSONMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMock.swift; sourceTree = "<group>"; };
 		EA65E33E1F91C77000B0E33D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		EA65E3401F91CEEA00B0E33D /* RealTimeRefreshHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeRefreshHandler.swift; sourceTree = "<group>"; };
+		EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimePostRefreshFetcher.swift; sourceTree = "<group>"; };
 		EA65E3421F92AA4600B0E33D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = "F5OClock/TableView Cells/PostTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -116,7 +116,8 @@
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */,
 				BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */,
-				EA0FDF0E1F9FCD1900C5FB3A /* Handlers */,
+				EA02BB371F907989000A8AF8 /* PostDownloader.swift */,
+				EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */,
 				EA02BB361F907547000A8AF8 /* JSON Model */,
 				EA42B9DC1F95698B009D6521 /* TableView Cells */,
 				EA65E33D1F91C73200B0E33D /* View Controllers */,
@@ -153,15 +154,6 @@
 				EA02BB341F907544000A8AF8 /* Post.swift */,
 			);
 			path = "JSON Model";
-			sourceTree = "<group>";
-		};
-		EA0FDF0E1F9FCD1900C5FB3A /* Handlers */ = {
-			isa = PBXGroup;
-			children = (
-				EA02BB371F907989000A8AF8 /* PostDownloader.swift */,
-				EA65E3401F91CEEA00B0E33D /* RealTimeRefreshHandler.swift */,
-			);
-			path = Handlers;
 			sourceTree = "<group>";
 		};
 		EA42B9DC1F95698B009D6521 /* TableView Cells */ = {
@@ -316,7 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA02BB381F907989000A8AF8 /* PostDownloader.swift in Sources */,
-				EA65E3411F91CEEA00B0E33D /* RealTimeRefreshHandler.swift in Sources */,
+				EA65E3411F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift in Sources */,
 				EA02BB351F907544000A8AF8 /* Post.swift in Sources */,
 				EA65E3431F92AA4600B0E33D /* PostTableViewCell.swift in Sources */,
 				EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */,
@@ -492,7 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EP72E6TUG;
+				DEVELOPMENT_TEAM = 93KKH99Z5P;
 				INFOPLIST_FILE = F5OClock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -510,7 +502,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EP72E6TUG;
+				DEVELOPMENT_TEAM = 93KKH99Z5P;
 				INFOPLIST_FILE = F5OClock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -528,7 +520,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EP72E6TUG;
+				DEVELOPMENT_TEAM = 93KKH99Z5P;
 				INFOPLIST_FILE = F5OClockTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -546,7 +538,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EP72E6TUG;
+				DEVELOPMENT_TEAM = 93KKH99Z5P;
 				INFOPLIST_FILE = F5OClockTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
