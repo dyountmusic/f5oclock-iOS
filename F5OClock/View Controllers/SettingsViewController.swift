@@ -124,7 +124,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             alert.message = "Please enter the name of a valid subreddit."
             
             showDetailViewController(alert, sender: nil)
-            
             return false
         } else {
             return true
