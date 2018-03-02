@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell {
     @IBAction func sharePost(_ sender: Any) {
         print("Sharing!")
 
-        let url = link
+        let url = URL(string: link)
         
         let shareItem: [AnyObject] = [url as AnyObject]
         let avc = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)

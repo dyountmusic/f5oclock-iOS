@@ -106,10 +106,11 @@
         <scene sceneID="tbc-Xd-zlp">
             <objects>
                 <viewController id="69V-d2-L3V" customClass="RisingStoriesViewController" customModule="F5OClock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jxf-Dw-wO3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jxf-Dw-wO3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="120" id="Zo5-rC-ZHx" customClass="PostTableViewCell" customModule="F5OClock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="120"/>
@@ -149,9 +150,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJA-AO-rrE">
-                                            <rect key="frame" x="364" y="81" width="30" height="33"/>
+                                            <rect key="frame" x="368" y="84" width="26" height="28"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="TU0-dY-Uw5"/>
+                                                <constraint firstAttribute="width" constant="26" id="TU0-dY-Uw5"/>
                                             </constraints>
                                             <state key="normal" image="share">
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -165,18 +166,18 @@
                                     <constraints>
                                         <constraint firstItem="4Rl-qj-LhP" firstAttribute="bottom" secondItem="Gcs-yb-R8Z" secondAttribute="bottomMargin" id="16a-0C-bB7"/>
                                         <constraint firstItem="pEg-xe-Phy" firstAttribute="top" secondItem="GrM-dr-XIz" secondAttribute="bottom" constant="2" id="5ev-U4-zyW"/>
-                                        <constraint firstItem="W0C-yb-x9o" firstAttribute="top" secondItem="bJA-AO-rrE" secondAttribute="top" constant="7" id="5fs-vx-6t2"/>
+                                        <constraint firstItem="W0C-yb-x9o" firstAttribute="top" secondItem="bJA-AO-rrE" secondAttribute="top" constant="4" id="5fs-vx-6t2"/>
                                         <constraint firstItem="4Rl-qj-LhP" firstAttribute="leading" secondItem="Gcs-yb-R8Z" secondAttribute="leadingMargin" constant="4" id="7cx-gg-SJU"/>
                                         <constraint firstItem="4Rl-qj-LhP" firstAttribute="top" secondItem="GrM-dr-XIz" secondAttribute="top" id="Iyu-7e-zar"/>
                                         <constraint firstItem="W0C-yb-x9o" firstAttribute="leading" secondItem="pEg-xe-Phy" secondAttribute="trailing" constant="8" symbolic="YES" id="LUF-cS-c14"/>
                                         <constraint firstItem="GrM-dr-XIz" firstAttribute="leading" secondItem="pEg-xe-Phy" secondAttribute="leading" id="Lb0-eD-5tr"/>
-                                        <constraint firstItem="bJA-AO-rrE" firstAttribute="leading" secondItem="W0C-yb-x9o" secondAttribute="trailing" constant="13" id="PeN-nn-6G4"/>
+                                        <constraint firstItem="bJA-AO-rrE" firstAttribute="leading" secondItem="W0C-yb-x9o" secondAttribute="trailing" constant="17" id="PeN-nn-6G4"/>
                                         <constraint firstItem="GrM-dr-XIz" firstAttribute="trailing" secondItem="bJA-AO-rrE" secondAttribute="trailing" id="Rf8-qK-EDg"/>
                                         <constraint firstItem="4Rl-qj-LhP" firstAttribute="bottom" secondItem="pEg-xe-Phy" secondAttribute="bottom" id="Vc7-WL-Ryv"/>
                                         <constraint firstItem="GrM-dr-XIz" firstAttribute="leading" secondItem="4Rl-qj-LhP" secondAttribute="trailing" constant="8" symbolic="YES" id="bnc-T7-DTG"/>
                                         <constraint firstItem="GrM-dr-XIz" firstAttribute="trailing" secondItem="Gcs-yb-R8Z" secondAttribute="trailingMargin" id="l9U-h4-lbf"/>
                                         <constraint firstItem="pEg-xe-Phy" firstAttribute="firstBaseline" secondItem="W0C-yb-x9o" secondAttribute="firstBaseline" id="qBv-L6-6Jc"/>
-                                        <constraint firstItem="W0C-yb-x9o" firstAttribute="bottom" secondItem="bJA-AO-rrE" secondAttribute="bottom" constant="-5" id="qnt-Sz-9wl"/>
+                                        <constraint firstItem="W0C-yb-x9o" firstAttribute="bottom" secondItem="bJA-AO-rrE" secondAttribute="bottom" constant="-3" id="qnt-Sz-9wl"/>
                                         <constraint firstItem="pEg-xe-Phy" firstAttribute="baseline" secondItem="W0C-yb-x9o" secondAttribute="baseline" id="t0c-0q-491"/>
                                         <constraint firstItem="4Rl-qj-LhP" firstAttribute="top" secondItem="Gcs-yb-R8Z" secondAttribute="topMargin" id="til-zg-YA9"/>
                                     </constraints>

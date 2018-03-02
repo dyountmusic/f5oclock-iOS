@@ -25,7 +25,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 	var imageCache = WebImageCache()
 	var cellHeights: [IndexPath : CGFloat] = [:]
     
-    
     // MARK: ViewController Functions
     
     override func viewDidLoad() {
