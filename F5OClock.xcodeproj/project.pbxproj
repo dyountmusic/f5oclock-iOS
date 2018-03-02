@@ -92,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA01EDAA2048FA5900C433E9 /* Downloaders */ = {
+			isa = PBXGroup;
+			children = (
+				EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */,
+			);
+			path = Downloaders;
+			sourceTree = "<group>";
+		};
 		EA02BAFA1F907523000A8AF8 = {
 			isa = PBXGroup;
 			children = (
@@ -118,8 +126,8 @@
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */,
 				BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */,
-				EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */,
 				EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */,
+				EA01EDAA2048FA5900C433E9 /* Downloaders */,
 				EA02BB361F907547000A8AF8 /* JSON Models */,
 				EA42B9DC1F95698B009D6521 /* TableView Cells */,
 				EA65E33D1F91C73200B0E33D /* View Controllers */,
