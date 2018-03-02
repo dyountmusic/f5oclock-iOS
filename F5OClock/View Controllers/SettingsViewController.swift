@@ -24,7 +24,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         super.viewDidLoad()
         
         subredditTextField.returnKeyType = .done
+        subredditTextField.clearButtonMode = .whileEditing
         subredditTextField.delegate = self
+        subredditTextField.text = RedditModel().subredditName
         
         if realTimeEnabled {
             realTimeSwitch.isOn = true
@@ -32,7 +34,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             realTimeSwitch.isOn = false
         }
         
-        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName)"
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
         
         navigationController?.navigationBar.prefersLargeTitles = true
                 
@@ -44,6 +46,11 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     
+    @IBAction func resetSettings(_ sender: Any) {
+        RedditModel().resetRedditURL()
+        subredditTextField.text = RedditModel().subredditName.capitalized
+        viewDidLoad()
+    }
     
     @IBAction func sendFeedback(_ sender: Any) {
         let mailComposeViewController = configuredMailComposeViewController()
@@ -93,11 +100,35 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         }
         
         RedditModel().subredditName = enteredText
-        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName)"
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
         
         subredditTextField.resignFirstResponder()
+        
         self.view.endEditing(true)
         return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        // Do all string validation here!
+        guard let enteredText = subredditTextField.text else {
+            return false
+        }
+        
+        if enteredText == "" || enteredText == " " {
+            let alert = UIAlertController.init()
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                UIAlertAction in
+            }
+            alert.addAction(okAction)
+            alert.message = "Please enter the name of a valid subreddit."
+            
+            showDetailViewController(alert, sender: nil)
+            
+            return false
+        } else {
+            return true
+        }
     }
     
 }
