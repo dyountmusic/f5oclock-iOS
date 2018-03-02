@@ -48,6 +48,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshPostTableView(_ :)), for: .valueChanged)
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -190,6 +191,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 		}
 		
 	}
+    
     
     @objc private func refreshPostTableView(_ sender: Any) {
 		self.refreshControl.endRefreshing()

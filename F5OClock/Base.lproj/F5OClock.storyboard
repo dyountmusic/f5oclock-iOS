@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rfv-8e-WD8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14101" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rfv-8e-WD8">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -156,13 +156,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tC-NT-QSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationBar contentMode="scaleToFill" largeTitles="YES" id="k6k-Fz-3yA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <items>
-                        <navigationItem title="Top Story" id="qrn-BZ-8DK"/>
-                    </items>
-                </navigationBar>
             </objects>
             <point key="canvasLocation" x="3028" y="18"/>
         </scene>

@@ -11,18 +11,19 @@ import MessageUI
 
 class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
-    let userDefaults = UserDefaults()
+    var realTimeEnabled: Bool {
+        get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "RealTimeEnabled") }
+    }
     
     @IBOutlet weak var realTimeSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if userDefaults.bool(forKey: "RealTimeEnabled") == true {
+        if realTimeEnabled {
             realTimeSwitch.isOn = true
-        }
-        
-        if userDefaults.bool(forKey: "RealTimeEnabled") == false {
+        } else {
             realTimeSwitch.isOn = false
         }
         
@@ -48,10 +49,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     @IBAction func realTimeSwitchToggled(_ sender: Any) {
         if realTimeSwitch.isOn {
-            userDefaults.set(true, forKey: "RealTimeEnabled")
-            
+            realTimeEnabled = true
         } else {
-            userDefaults.set(false, forKey: "RealTimeEnabled")
+            realTimeEnabled = false
         }
     }
     
