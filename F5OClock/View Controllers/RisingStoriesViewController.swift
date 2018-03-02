@@ -158,6 +158,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         present(viewControllerToCommit, animated: true)
     }
     
+    
     // MARK: Functions
     
     func updateUI() {
