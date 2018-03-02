@@ -8,6 +8,18 @@
 
 import Foundation
 
+struct RedditData {
+    
+    let children: [RedditChildren]
+    
+}
+
+struct RedditChildren {
+    
+    let data: [RedditPost]
+    
+}
+
 struct RedditPost {
     
     let title: String
