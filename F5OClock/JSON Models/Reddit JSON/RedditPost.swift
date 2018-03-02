@@ -37,6 +37,7 @@ struct RedditPost: Codable, Hashable {
     let upvotes: Int
     let url: String
     let thumbnail: String
+    let commentCount: Int
     
     
     enum CodingKeys: String, CodingKey {
@@ -44,6 +45,7 @@ struct RedditPost: Codable, Hashable {
         case upvotes = "ups"
         case url = "url"
         case thumbnail = "thumbnail"
+        case commentCount = "num_comments"
     }
     
     var hashValue: Int {

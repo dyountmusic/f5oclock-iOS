@@ -81,13 +81,17 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         
         cell.titleLabel.text = redditPostDownloader.posts[indexPath.row].title
         cell.upvoteCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].upvotes) 🔥"
-        cell.commentCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].upvotes) 💬"
+        cell.commentCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].commentCount) 💬"
         
-        if redditPostDownloader.posts[indexPath.row].upvotes >= 50 {
+        if redditPostDownloader.posts[indexPath.row].upvotes >= 100 {
             cell.backgroundColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 0.3379999995)
         }
         
-        if redditPostDownloader.posts[indexPath.row].upvotes >= 200 {
+        if redditPostDownloader.posts[indexPath.row].upvotes >= 250 {
+            cell.backgroundColor = #colorLiteral(red: 1, green: 0.3659999967, blue: 0.2240000069, alpha: 0.3140000105)
+        }
+        
+        if redditPostDownloader.posts[indexPath.row].upvotes >= 500 {
             cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
         }
 
@@ -112,14 +116,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         if let url = URL(string: urlString) {
             
             let vc = SFSafariViewController(url: url)
-            
-            if redditPostDownloader.posts[indexPath.row].upvotes >= 200 {
-                vc.preferredControlTintColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 1)
-            } else if redditPostDownloader.posts[indexPath.row].upvotes >= 50 {
-                vc.preferredControlTintColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 1)
-            } else {
-                vc.preferredControlTintColor = #colorLiteral(red: 0, green: 0.4624785185, blue: 0.7407966852, alpha: 1)
-            }
             
             present(vc, animated: true)
         }
