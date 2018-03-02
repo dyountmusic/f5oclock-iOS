@@ -48,10 +48,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshPostTableView(_ :)), for: .valueChanged)
         
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.title = "📈 \(RedditModel().subredditName.capitalized)"
         updateUI()
     }
     
@@ -85,7 +85,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         }
 
 		// Load in images asyncronously
-		let thumbnailURL = URL(string:redditPostDownloader.posts[indexPath.row].thumbnail)!
+        guard let thumbnailURL = URL(string:redditPostDownloader.posts[indexPath.row].thumbnail) else {
+            return cell
+        }
+        
 		imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
 			DispatchQueue.main.async() {
 				cell.thumbnail.image = image

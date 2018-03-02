@@ -9,23 +9,30 @@
 import UIKit
 import MessageUI
 
-class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var redditSourceLabel: UILabel!
+    @IBOutlet weak var realTimeSwitch: UISwitch!
+    @IBOutlet weak var subredditTextField: UITextField!
+    
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
         set { UserDefaults.standard.set(newValue, forKey: "RealTimeEnabled") }
     }
     
-    @IBOutlet weak var realTimeSwitch: UISwitch!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        subredditTextField.returnKeyType = .done
+        subredditTextField.delegate = self
         
         if realTimeEnabled {
             realTimeSwitch.isOn = true
         } else {
             realTimeSwitch.isOn = false
         }
+        
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName)"
         
         navigationController?.navigationBar.prefersLargeTitles = true
                 
@@ -77,5 +84,20 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard let enteredText = subredditTextField.text else {
+            subredditTextField.text = "Please enter a valid subreddit"
+            return false
+        }
+        
+        RedditModel().subredditName = enteredText
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName)"
+        
+        subredditTextField.resignFirstResponder()
+        self.view.endEditing(true)
+        return true
+    }
+    
 }

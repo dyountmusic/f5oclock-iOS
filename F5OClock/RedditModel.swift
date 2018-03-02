@@ -8,19 +8,23 @@
 
 import Foundation
 
-struct RedditURLModel {
+class RedditModel {
+    
+    public var subredditName: String {
+        get { return UserDefaults.standard.string(forKey: "SubredditName") ?? "Politics" }
+        set { UserDefaults.standard.set(newValue, forKey: "SubredditName")
+            redditURL = "https://www.reddit.com/r/\(newValue)/rising.json?sort=new"
+        }
+    }
     
     public var redditURL: String {
         get { return UserDefaults.standard.string(forKey: "RedditURL") ?? "https://www.reddit.com/r/politics/rising.json?sort=new" }
         set { UserDefaults.standard.set(newValue, forKey: "RedditURL") }
     }
     
-    mutating func generateNewRedditURL(withSubredditName: String) {
-        redditURL = "https://www.reddit.com/r/\(withSubredditName)/rising.json?sort=new"
-    }
-    
-    mutating func resetRedditURL() {
+    func resetRedditURL() {
         redditURL = "https://www.reddit.com/r/politics/rising.json?sort=new"
+        subredditName = "Politics"
     }
     
 }

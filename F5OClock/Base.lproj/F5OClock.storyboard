@@ -25,23 +25,35 @@
                                     <action selector="realTimeSwitchToggled:" destination="Tip-4P-faa" eventType="valueChanged" id="JlF-uH-JG9"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 🕐 Real Time Refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-3Y-IHi">
-                                <rect key="frame" x="20" y="92" width="170" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🕐 Real Time Refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-3Y-IHi">
+                                <rect key="frame" x="20" y="92" width="166" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts fetched from www.f5oclock.com API created by Dadsquatch. www.dadsquatch.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL0-GR-AvY">
-                                <rect key="frame" x="20" y="652" width="374" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="📥 Currently Pulling From: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRq-zZ-ffo">
+                                <rect key="frame" x="20" y="131" width="374" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="LBz-GL-53o"/>
+                                    <constraint firstAttribute="height" constant="60" id="7lg-jW-H2a"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8jO-dD-2OF">
+                                <rect key="frame" x="20" y="367" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set New Subreddit:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWr-PV-vAc">
+                                <rect key="frame" x="20" y="341" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sc-uc-l0w">
-                                <rect key="frame" x="20" y="614" width="374" height="30"/>
+                                <rect key="frame" x="154" y="657" width="107" height="30"/>
                                 <state key="normal" title="Send Feedback"/>
                                 <connections>
                                     <action selector="sendFeedback:" destination="Tip-4P-faa" eventType="touchUpInside" id="o6q-S1-07T"/>
@@ -50,17 +62,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dL0-GR-AvY" firstAttribute="bottom" secondItem="4wF-Nd-FaS" secondAttribute="bottom" constant="-6" id="6ig-Fp-MeV"/>
+                            <constraint firstItem="NRq-zZ-ffo" firstAttribute="leading" secondItem="cUJ-3Y-IHi" secondAttribute="leading" id="23B-pO-bSp"/>
+                            <constraint firstItem="GWr-PV-vAc" firstAttribute="top" secondItem="EaF-jP-IOO" secondAttribute="top" constant="341" id="6QN-Sk-hhb"/>
+                            <constraint firstItem="8jO-dD-2OF" firstAttribute="leading" secondItem="4wF-Nd-FaS" secondAttribute="leading" constant="20" id="91z-MF-46Y"/>
+                            <constraint firstItem="GWr-PV-vAc" firstAttribute="leading" secondItem="4wF-Nd-FaS" secondAttribute="leading" constant="20" id="Bfa-3b-tNA"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="bottom" secondItem="bpl-N1-4O4" secondAttribute="bottom" id="DLH-uV-paC"/>
-                            <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="7Sc-uc-l0w" secondAttribute="leading" id="Doc-Ow-pmg"/>
-                            <constraint firstItem="dL0-GR-AvY" firstAttribute="top" secondItem="7Sc-uc-l0w" secondAttribute="bottom" constant="8" symbolic="YES" id="J3N-90-sTj"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="4wF-Nd-FaS" secondAttribute="top" constant="28" id="Lqz-6W-73O"/>
-                            <constraint firstItem="7Sc-uc-l0w" firstAttribute="leading" secondItem="dL0-GR-AvY" secondAttribute="leading" id="TQN-eD-nyH"/>
-                            <constraint firstItem="dL0-GR-AvY" firstAttribute="trailing" secondItem="bpl-N1-4O4" secondAttribute="trailing" id="Vi3-J3-L7i"/>
+                            <constraint firstItem="8jO-dD-2OF" firstAttribute="top" secondItem="GWr-PV-vAc" secondAttribute="bottom" constant="2" id="Qbj-Dl-XC3"/>
+                            <constraint firstItem="NRq-zZ-ffo" firstAttribute="trailing" secondItem="bpl-N1-4O4" secondAttribute="trailing" id="VVb-1g-5wn"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="bpl-N1-4O4" secondAttribute="top" id="WkU-dc-GRM"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="EaF-jP-IOO" secondAttribute="leadingMargin" id="clV-n2-RhP"/>
-                            <constraint firstItem="7Sc-uc-l0w" firstAttribute="trailing" secondItem="dL0-GR-AvY" secondAttribute="trailing" id="fc3-ci-Yc6"/>
+                            <constraint firstItem="NRq-zZ-ffo" firstAttribute="top" secondItem="cUJ-3Y-IHi" secondAttribute="bottom" constant="8" symbolic="YES" id="ee3-NI-uU2"/>
                             <constraint firstItem="4wF-Nd-FaS" firstAttribute="trailing" secondItem="bpl-N1-4O4" secondAttribute="trailing" constant="20" id="jSQ-W7-DFH"/>
+                            <constraint firstItem="7Sc-uc-l0w" firstAttribute="centerX" secondItem="8jO-dD-2OF" secondAttribute="centerX" id="oa9-xX-cmO"/>
+                            <constraint firstItem="GWr-PV-vAc" firstAttribute="centerX" secondItem="8jO-dD-2OF" secondAttribute="centerX" id="tlg-GQ-hB4"/>
+                            <constraint firstItem="7Sc-uc-l0w" firstAttribute="bottom" secondItem="4wF-Nd-FaS" secondAttribute="bottom" id="wUZ-gW-V79"/>
+                            <constraint firstItem="GWr-PV-vAc" firstAttribute="centerX" secondItem="NRq-zZ-ffo" secondAttribute="centerX" id="zuV-HW-qIe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4wF-Nd-FaS"/>
                     </view>
@@ -68,6 +85,8 @@
                     <connections>
                         <outlet property="RealTimeSwitch" destination="bpl-N1-4O4" id="mEw-Em-Hh5"/>
                         <outlet property="realTimeSwitch" destination="bpl-N1-4O4" id="04y-Xe-7kq"/>
+                        <outlet property="redditSourceLabel" destination="NRq-zZ-ffo" id="Kp6-dj-MsX"/>
+                        <outlet property="subredditTextField" destination="8jO-dD-2OF" id="xBb-9z-rIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8a-Id-SpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
