@@ -12,6 +12,7 @@ import SafariServices
 class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
     
     //MARK: Interface Builder Properties
+    
     @IBOutlet var tableView: UITableView!
     
     // MARK: Properties
@@ -23,6 +24,9 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     let refreshControl = UIRefreshControl()
 	var imageCache = WebImageCache()
 	var cellHeights: [IndexPath : CGFloat] = [:]
+    
+    
+    // MARK: ViewController Functions
     
     override func viewDidLoad() {
         
@@ -51,7 +55,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         if redditPostDownloader.posts.isEmpty {
             title = "No Posts To Fetch"
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +70,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: TableView Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return redditPostDownloader.posts.count
     }
     
@@ -135,10 +137,9 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Peak and Pop Functions
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        
         guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
-        
         let urlString = redditPostDownloader.posts[indexPath.row].url
         
         guard let url = URL(string: urlString) else {
@@ -176,7 +177,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             isRealTime = true
         }
 
-		
 		// Reload table view data after all posts have been downloaded without blocking thread
 		self.refreshControl.beginRefreshing()
 		redditPostDownloader.downloadPosts() {
@@ -197,13 +197,12 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 				})
 			}
 		}
-		
 	}
     
     
     @objc private func refreshPostTableView(_ sender: Any) {
-		self.refreshControl.endRefreshing()
-		updateUI()
+        self.refreshControl.endRefreshing()
+        updateUI()
     }
     
 }
