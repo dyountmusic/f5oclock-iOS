@@ -21,6 +21,7 @@ class TableViewRowAnimator {
 		self.target = target
 		self.computeAnimation()
 	}
+    
 	func computeAnimation() {
 		// Convert target [Post] to hashValue [Int] to match origin (performance)
 		var goal = target.map { (post) -> Int in

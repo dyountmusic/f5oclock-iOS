@@ -9,6 +9,7 @@
 import UIKit
 
 class WebImageCache : NSObject {
+    
 	var cachedImages:Dictionary<URL, UIImage> = Dictionary()
 	var defaultImage = #imageLiteral(resourceName: "defaultThumbnail")
 	
@@ -32,7 +33,6 @@ class WebImageCache : NSObject {
 					completion(self.defaultImage)
 					return
 			}
-			
 			self.cachedImages[url] = image
 			completion(image)
 		}.resume()

@@ -7,9 +7,10 @@
 //
 
 import Foundation
+
 struct RedditURLModel {
     
-    var redditURL: String {
+    public var redditURL: String {
         get { return UserDefaults.standard.string(forKey: "RedditURL") ?? "https://www.reddit.com/r/politics/rising.json?sort=new" }
         set { UserDefaults.standard.set(newValue, forKey: "RedditURL") }
     }

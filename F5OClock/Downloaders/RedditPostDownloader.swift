@@ -28,7 +28,7 @@ class RedditPostDownloader {
         
         downloaded = false
         
-        let jsonURLString = "https://www.reddit.com/r/politics/rising.json?sort=new"
+        let jsonURLString = RedditURLModel().redditURL
         guard let url = URL(string: jsonURLString) else { return }
     
         URLSession.shared.dataTask(with: url) { (data, response, error) in
