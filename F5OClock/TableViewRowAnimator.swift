@@ -11,12 +11,12 @@ import UIKit
 class TableViewRowAnimator {
 	
 	var origin:[Int]
-	var target:[Post]
+	var target:[RedditPost]
 	var deletions = [IndexPath]()
 	var insertions = [IndexPath]()
 	var moves = [(from:IndexPath, to:IndexPath)]()
 	
-	required init(originState origin:[Int], targetState target:[Post]) {
+	required init(originState origin:[Int], targetState target:[RedditPost]) {
 		self.origin = origin
 		self.target = target
 		self.computeAnimation()

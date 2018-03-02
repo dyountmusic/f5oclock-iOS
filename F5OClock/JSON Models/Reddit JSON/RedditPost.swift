@@ -31,7 +31,7 @@ struct RedditPosts: Codable {
     let data: RedditPost
 }
 
-struct RedditPost: Codable {
+struct RedditPost: Codable, Hashable {
     
     let title: String
     let upvotes: Int
@@ -44,6 +44,14 @@ struct RedditPost: Codable {
         case upvotes = "ups"
         case url = "url"
         case thumbnail = "thumbnail"
+    }
+    
+    var hashValue: Int {
+        return title.hashValue
+    }
+    
+    static func ==(lhs: RedditPost, rhs: RedditPost) -> Bool {
+        return lhs.title == rhs.title
     }
     
 }

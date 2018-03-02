@@ -10,10 +10,21 @@ import Foundation
 
 class RedditPostDownloader {
     
+    // MARK: Properties
+    
+    // These properties are used to store the fetched data for reference
     var posts = [RedditPost]()
     var downloaded = false
     
+    //Stores the hash values of the previous state. Used for animating updates to post list
+    var previousState = [Int]()
+    
+    // MARK: Functions
+    
     func downloadPosts(completion: @escaping () -> (Void)) {
+        
+        //save the current state before it is overwritten
+        previousState = computeState()
         
         downloaded = false
         
@@ -37,21 +48,45 @@ class RedditPostDownloader {
             guard let data = data else { return }
             
             do {
-                
                 let redditData = try JSONDecoder().decode(RedditDataWrapper.self, from: data)
                 for p in redditData.data.posts {
                     self.posts.append(p.data)
                 }
                 
-                print("Posts follow: ")
-                print(self.posts)
-                
+                self.sortPosts()
+                self.removeDuplicates()
                 self.downloaded = true
                 completion()
+                
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError)")
             }
         }.resume()
+    }
+    
+    func sortPosts() {
+        
+        let sortedPosts = posts.sorted(by: { $0.upvotes > $1.upvotes })
+        posts = sortedPosts
+        
+    }
+    
+    func removeDuplicates() {
+        var uniquePosts = [RedditPost]()
+        for post in posts {
+            if !uniquePosts.contains(post) {
+                uniquePosts.append(post)
+            }
+        }
+        posts = uniquePosts
+    }
+    
+    func computeState() -> [Int] {
+        var state = [Int]()
+        for post in posts {
+            state.append(post.hashValue)
+        }
+        return state
     }
     
 }
