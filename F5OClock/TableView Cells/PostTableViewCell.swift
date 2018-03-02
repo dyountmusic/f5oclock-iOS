@@ -15,6 +15,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var upvoteCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     
+    var link = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,6 +26,23 @@ class PostTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func sharePost(_ sender: Any) {
+        print("Sharing!")
+
+        let url = link
+        
+        let shareItem: [AnyObject] = [url as AnyObject]
+        let avc = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
+        
+        var topVC = UIApplication.shared.keyWindow?.rootViewController
+        while((topVC!.presentedViewController) != nil) {
+            topVC = topVC!.presentedViewController
+        }
+        topVC?.present(avc, animated: true, completion: {
+            
+        })
     }
 
 }

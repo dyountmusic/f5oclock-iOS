@@ -82,6 +82,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         cell.titleLabel.text = redditPostDownloader.posts[indexPath.row].title
         cell.upvoteCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].upvotes) 🔥"
         cell.commentCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].commentCount) 💬"
+        cell.link = redditPostDownloader.posts[indexPath.row].url
         
         if redditPostDownloader.posts[indexPath.row].upvotes >= 100 {
             cell.backgroundColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 0.3379999995)
