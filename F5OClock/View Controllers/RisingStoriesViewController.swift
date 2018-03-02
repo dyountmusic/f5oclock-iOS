@@ -48,6 +48,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshPostTableView(_ :)), for: .valueChanged)
         
+        if redditPostDownloader.posts.isEmpty {
+            title = "No Posts To Fetch"
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +67,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: TableView Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return redditPostDownloader.posts.count
     }
     
