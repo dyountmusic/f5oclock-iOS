@@ -8,19 +8,26 @@
 
 import Foundation
 
-struct RedditData {
+struct RedditDataWrapper: Codable {
+    
+    let kind: String
+    let data: RedditData
+    
+}
+
+struct RedditData: Codable {
     
     let children: [RedditChildren]
     
 }
 
-struct RedditChildren {
+struct RedditChildren: Codable {
     
-    let data: [RedditPost]
+    let data: RedditPost
     
 }
 
-struct RedditPost {
+struct RedditPost: Codable {
     
     let title: String
     let upvotes: Int

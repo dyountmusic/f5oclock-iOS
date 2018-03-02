@@ -17,6 +17,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Properties
     
     var postDownloader = PostDownloader()
+    var redditPostDownloader = RedditPostDownloader()
     let userDefaults = UserDefaults()
     let realTimeHandler = RealTimePostRefreshFetcher()
     var isRealTime = true
@@ -33,6 +34,12 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             registerForPreviewing(with: self, sourceView: view)
         }
         
+        redditPostDownloader.downloadPosts {
+            
+        }
+        
+        
+        
         // Perform regular UI update for data
         updateUI()
         
@@ -48,7 +55,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         // Configure Refresh Control
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshPostTableView(_ :)), for: .valueChanged)
-        refreshControl.tintColor = #colorLiteral(red: 0, green: 0.4624785185, blue: 0.7407966852, alpha: 1)
         
     }
     
