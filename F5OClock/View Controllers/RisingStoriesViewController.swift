@@ -35,7 +35,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         redditPostDownloader.downloadPosts {
-            
+            print("First reddit post title \(self.redditPostDownloader.posts[0].title)")
         }
         
         
@@ -50,7 +50,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         
         // Configure Navigation Bar
         navigationController?.navigationBar.prefersLargeTitles = true
-        
         
         // Configure Refresh Control
         tableView.refreshControl = refreshControl
@@ -70,7 +69,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: TableView Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return postDownloader.posts.count
     }
     
@@ -100,7 +98,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 			}
 		}
 
-        
         return cell
     }
     
@@ -162,6 +159,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Functions
     
     func updateUI() {
+        
 		if self.refreshControl.isRefreshing {
 			return
 		}

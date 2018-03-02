@@ -17,14 +17,18 @@ struct RedditDataWrapper: Codable {
 
 struct RedditData: Codable {
     
-    let children: [RedditChildren]
+    let numOfPosts: Int
+    let posts: [RedditPosts]
+    
+    enum CodingKeys: String, CodingKey {
+        case numOfPosts = "dist"
+        case posts = "children"
+    }
     
 }
 
-struct RedditChildren: Codable {
-    
+struct RedditPosts: Codable {
     let data: RedditPost
-    
 }
 
 struct RedditPost: Codable {

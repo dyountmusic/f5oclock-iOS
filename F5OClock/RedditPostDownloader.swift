@@ -37,8 +37,17 @@ class RedditPostDownloader {
             guard let data = data else { return }
             
             do {
-                let redditData = try JSONDecoder().decode(RedditDataWrapper.self, from: data)
                 
+                let redditData = try JSONDecoder().decode(RedditDataWrapper.self, from: data)
+                for p in redditData.data.posts {
+                    self.posts.append(p.data)
+                }
+                
+                print("Posts follow: ")
+                print(self.posts)
+                
+                self.downloaded = true
+                completion()
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError)")
             }
