@@ -33,13 +33,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             registerForPreviewing(with: self, sourceView: view)
         }
         
-//
-//        redditPostDownloader.downloadPosts {
-//            print("First reddit post title \(self.redditPostDownloader.posts[0].title)")
-//        }
-        
-        
-        
         // Perform regular UI update for data
         updateUI()
         
