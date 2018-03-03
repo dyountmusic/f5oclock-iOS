@@ -11,11 +11,8 @@ import Foundation
 class RedditModel {
     
     public var subredditName: String {
-        get {
-            return UserDefaults.init(suiteName: "group.TopStoriesExtensionSharingDefaults")?.string(forKey: "SubredditName") ?? "Politics"
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "SubredditName")
+        get { return UserDefaults.init(suiteName: "group.TopStoriesExtensionSharingDefaults")?.string(forKey: "SubredditName") ?? "Politics" }
+        set { UserDefaults.standard.set(newValue, forKey: "SubredditName")
             UserDefaults.init(suiteName: "group.TopStoriesExtensionSharingDefaults")?.set(newValue, forKey: "SubredditName")
             redditURL = "https://www.reddit.com/r/\(newValue)/rising.json?sort=new"
         }
@@ -23,7 +20,9 @@ class RedditModel {
     
     public var redditURL: String {
         get { return UserDefaults.init(suiteName: "group.TopStoriesExtensionSharingDefaults")?.string(forKey: "RedditURL") ?? "https://www.reddit.com/r/politics/rising.json?sort=new" }
-        set { UserDefaults.init(suiteName: "group.TopStoriesExtensionSharingDefaults")?.set(newValue, forKey: "RedditURL") }
+        set { UserDefaults.init(suiteName: "group.TopStoriesExtensionSharingDefaults")?.set(newValue, forKey: "RedditURL")
+            print("Setting redditURL to: \(newValue)")
+        }
     }
     
     func resetRedditURL() {
