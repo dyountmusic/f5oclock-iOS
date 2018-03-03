@@ -27,6 +27,8 @@ class RedditPostDownloader {
         //save the current state before it is overwritten
         previousState = computeState()
         
+        posts = [RedditPost]()
+        
         downloaded = false
         
         if lastFetchedSubreddit != RedditModel().subredditName {
