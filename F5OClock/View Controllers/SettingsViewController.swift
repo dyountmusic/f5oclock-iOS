@@ -9,23 +9,40 @@
 import UIKit
 import MessageUI
 
-class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
 
-    let userDefaults = UserDefaults()
-    
+    @IBOutlet weak var redditSourceLabel: UILabel!
     @IBOutlet weak var realTimeSwitch: UISwitch!
+    @IBOutlet weak var subredditTextField: UITextField!
+    @IBOutlet weak var setNewSubredditLabel: UILabel!
+    @IBOutlet weak var resetButton: UIButton!
+    
+    var realTimeEnabled: Bool {
+        get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "RealTimeEnabled") }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if userDefaults.bool(forKey: "RealTimeEnabled") == true {
-            realTimeSwitch.isOn = true
-        }
+        subredditTextField.returnKeyType = .done
+        subredditTextField.clearButtonMode = .whileEditing
+        subredditTextField.delegate = self
+        subredditTextField.text = RedditModel().subredditName
         
-        if userDefaults.bool(forKey: "RealTimeEnabled") == false {
+        if realTimeEnabled {
+            realTimeSwitch.isOn = true
+        } else {
             realTimeSwitch.isOn = false
         }
         
+        // TODO: Remove when we want to enable this feature
+        // feature - changing subreddits
+        subredditTextField.isHidden = true
+        setNewSubredditLabel.isHidden = true
+        resetButton.isHidden = true
+        
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
         navigationController?.navigationBar.prefersLargeTitles = true
                 
     }
@@ -36,6 +53,11 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     
+    @IBAction func resetSettings(_ sender: Any) {
+        RedditModel().resetRedditURL()
+        subredditTextField.text = RedditModel().subredditName.capitalized
+        viewDidLoad()
+    }
     
     @IBAction func sendFeedback(_ sender: Any) {
         let mailComposeViewController = configuredMailComposeViewController()
@@ -48,10 +70,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     @IBAction func realTimeSwitchToggled(_ sender: Any) {
         if realTimeSwitch.isOn {
-            userDefaults.set(true, forKey: "RealTimeEnabled")
-            
+            realTimeEnabled = true
         } else {
-            userDefaults.set(false, forKey: "RealTimeEnabled")
+            realTimeEnabled = false
         }
     }
     
@@ -77,5 +98,43 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard let enteredText = subredditTextField.text else {
+            subredditTextField.text = "Please enter a valid subreddit"
+            return false
+        }
+        
+        RedditModel().subredditName = enteredText
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
+        
+        subredditTextField.resignFirstResponder()
+        
+        self.view.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        // Do all string validation here!
+        guard let enteredText = subredditTextField.text else {
+            return false
+        }
+        
+        if enteredText == "" || enteredText == " " {
+            let alert = UIAlertController.init()
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                UIAlertAction in
+            }
+            alert.addAction(okAction)
+            alert.message = "Please enter the name of a valid subreddit."
+            
+            showDetailViewController(alert, sender: nil)
+            return false
+        } else {
+            return true
+        }
+    }
+    
 }

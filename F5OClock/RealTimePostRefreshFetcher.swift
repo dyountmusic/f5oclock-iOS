@@ -22,7 +22,7 @@ class RealTimePostRefreshFetcher {
             timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
                 // do something here
                 self?.isRealTime = true
-                viewController.updateUI()
+                viewController.updateUIWithoutRefreshControl()
                 
             }
             
@@ -33,7 +33,7 @@ class RealTimePostRefreshFetcher {
             timerDispatchSourceTimer?.setEventHandler{
                 // do something here
                 
-                viewController.updateUI()
+                viewController.updateUIWithoutRefreshControl()
             }
             timerDispatchSourceTimer?.resume()
         }

@@ -12,17 +12,30 @@ import SafariServices
 class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
     
     //MARK: Interface Builder Properties
+    
     @IBOutlet var tableView: UITableView!
     
     // MARK: Properties
     
-    var postDownloader = PostDownloader()
-    let userDefaults = UserDefaults()
+    let redditPostDownloader = RedditPostDownloader()
     let realTimeHandler = RealTimePostRefreshFetcher()
-    var isRealTime = true
+    let imageCache = WebImageCache()
+    
+    var isRealTime: Bool {
+        get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "RealTimeEnabled") }
+    }
+    
+    var isFirstLaunch: Bool {
+        get { return UserDefaults.standard.bool(forKey: "IsFirstLaunch") }
+        set { UserDefaults.standard.set(newValue, forKey: "IsFirstLaunch") }
+    }
+    
     let refreshControl = UIRefreshControl()
-	var imageCache = WebImageCache()
+
 	var cellHeights: [IndexPath : CGFloat] = [:]
+    
+    // MARK: ViewController Functions
     
     override func viewDidLoad() {
         
@@ -37,22 +50,26 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         updateUI()
         
         // Look for user settings for real time feature
-        if userDefaults.bool(forKey: "RealTimeEnabled") == true {
+        if isRealTime || isFirstLaunch {
             realTimeHandler.startTimer(viewController: self)
         }
         
         // Configure Navigation Bar
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        
         // Configure Refresh Control
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshPostTableView(_ :)), for: .valueChanged)
-        refreshControl.tintColor = #colorLiteral(red: 0, green: 0.4624785185, blue: 0.7407966852, alpha: 1)
         
+        if redditPostDownloader.posts.isEmpty {
+            title = "No Posts To Fetch"
+        }
+        
+        isFirstLaunch = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.title = "📈 \(RedditModel().subredditName.capitalized)"
         updateUI()
     }
     
@@ -64,8 +81,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: TableView Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return postDownloader.posts.count
+        return redditPostDownloader.posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,46 +90,43 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 
         cell.backgroundColor = UIColor.white
         
-        cell.titleLabel.text = postDownloader.posts[indexPath.row].title
-        cell.upvoteCountLabel.text = "\(postDownloader.posts[indexPath.row].upvoteCount) 🔥"
-        cell.commentCountLabel.text = "\(postDownloader.posts[indexPath.row].commentCount) 💬"
+        cell.titleLabel.text = redditPostDownloader.posts[indexPath.row].title
+        cell.upvoteCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].upvotes) 🔥"
+        cell.commentCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].commentCount) 💬"
+        cell.link = redditPostDownloader.posts[indexPath.row].url
         
-        if postDownloader.posts[indexPath.row].upvoteCount >= 50 {
+        if redditPostDownloader.posts[indexPath.row].upvotes >= 100 {
             cell.backgroundColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 0.3379999995)
         }
         
-        if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
+        if redditPostDownloader.posts[indexPath.row].upvotes >= 250 {
+            cell.backgroundColor = #colorLiteral(red: 1, green: 0.3659999967, blue: 0.2240000069, alpha: 0.3140000105)
+        }
+        
+        if redditPostDownloader.posts[indexPath.row].upvotes >= 500 {
             cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
         }
 
 		// Load in images asyncronously
-		let thumbnailURL = URL(string:postDownloader.posts[indexPath.row].thumbnail)!
+        guard let thumbnailURL = URL(string:redditPostDownloader.posts[indexPath.row].thumbnail) else {
+            return cell
+        }
+        
 		imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
 			DispatchQueue.main.async() {
 				cell.thumbnail.image = image
 			}
 		}
 
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let urlString = postDownloader.posts[indexPath.row].url
+        let urlString = redditPostDownloader.posts[indexPath.row].url
         
         if let url = URL(string: urlString) {
-            
             let vc = SFSafariViewController(url: url)
-            
-            if postDownloader.posts[indexPath.row].upvoteCount >= 200 {
-                vc.preferredControlTintColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 1)
-            } else if postDownloader.posts[indexPath.row].upvoteCount >= 50 {
-                vc.preferredControlTintColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 1)
-            } else {
-                vc.preferredControlTintColor = #colorLiteral(red: 0, green: 0.4624785185, blue: 0.7407966852, alpha: 1)
-            }
-            
             present(vc, animated: true)
         }
     }
@@ -130,11 +143,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Peak and Pop Functions
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        
         guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
-        
-        let urlString = postDownloader.posts[indexPath.row].url
+        let urlString = redditPostDownloader.posts[indexPath.row].url
         
         guard let url = URL(string: urlString) else {
             return nil
@@ -156,26 +168,24 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Functions
     
     func updateUI() {
+        
 		if self.refreshControl.isRefreshing {
 			return
 		}
 		
-        if userDefaults.bool(forKey: "RealTimeEnabled") == false {
+        if !isRealTime {
             realTimeHandler.stopTimer()
-            isRealTime = false
         }
         
-        if userDefaults.bool(forKey: "RealTimeEnabled") == true && isRealTime == false {
+        if isRealTime {
             realTimeHandler.startTimer(viewController: self)
-            isRealTime = true
         }
 
-		
 		// Reload table view data after all posts have been downloaded without blocking thread
 		self.refreshControl.beginRefreshing()
-		postDownloader.downloadPosts() {
+		redditPostDownloader.downloadPosts() {
 			DispatchQueue.main.sync {
-				let animator = TableViewRowAnimator(originState: self.postDownloader.previousState, targetState: self.postDownloader.posts)
+                let animator = TableViewRowAnimator(originState: self.redditPostDownloader.previousState, targetState: self.redditPostDownloader.posts)
 				self.tableView.performBatchUpdates({
 					self.tableView.deleteRows(at: animator.deletions, with: .right)
 					self.tableView.insertRows(at: animator.insertions, with: .left)
@@ -191,12 +201,29 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 				})
 			}
 		}
-		
 	}
     
+    func updateUIWithoutRefreshControl() {
+        
+        redditPostDownloader.downloadPosts() {
+            DispatchQueue.main.sync {
+                let animator = TableViewRowAnimator(originState: self.redditPostDownloader.previousState, targetState: self.redditPostDownloader.posts)
+                self.tableView.performBatchUpdates({
+                    self.tableView.deleteRows(at: animator.deletions, with: .right)
+                    self.tableView.insertRows(at: animator.insertions, with: .left)
+                    for move in animator.moves {
+                        self.tableView.moveRow(at: move.from, to: move.to)
+                    }
+                })
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
     @objc private func refreshPostTableView(_ sender: Any) {
-		self.refreshControl.endRefreshing()
-		updateUI()
+        self.refreshControl.endRefreshing()
+        updateUI()
     }
     
 }
