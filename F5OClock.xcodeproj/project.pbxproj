@@ -29,6 +29,7 @@
 		EA743992204A30CF005A3B14 /* RedditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743991204A30CF005A3B14 /* RedditPost.swift */; };
 		EA743994204A3135005A3B14 /* RedditTopStoryDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743993204A3135005A3B14 /* RedditTopStoryDownloader.swift */; };
 		EA743996204A3151005A3B14 /* RedditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743995204A3151005A3B14 /* RedditModel.swift */; };
+		EA743998204A34C6005A3B14 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743997204A34C6005A3B14 /* WebImageCache.swift */; };
 		EAFDB3A02048DF2300E4D215 /* RedditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB39F2048DF2300E4D215 /* RedditPost.swift */; };
 		EAFDB3A72048E31600E4D215 /* RedditPostDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		EA743991204A30CF005A3B14 /* RedditPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPost.swift; sourceTree = "<group>"; };
 		EA743993204A3135005A3B14 /* RedditTopStoryDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditTopStoryDownloader.swift; sourceTree = "<group>"; };
 		EA743995204A3151005A3B14 /* RedditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditModel.swift; sourceTree = "<group>"; };
+		EA743997204A34C6005A3B14 /* WebImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCache.swift; sourceTree = "<group>"; };
 		EAFDB39F2048DF2300E4D215 /* RedditPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPost.swift; sourceTree = "<group>"; };
 		EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				EA743984204A2F22005A3B14 /* TodayViewController.swift */,
+				EA743997204A34C6005A3B14 /* WebImageCache.swift */,
 				EA743995204A3151005A3B14 /* RedditModel.swift */,
 				EA743991204A30CF005A3B14 /* RedditPost.swift */,
 				EA743993204A3135005A3B14 /* RedditTopStoryDownloader.swift */,
@@ -464,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA743998204A34C6005A3B14 /* WebImageCache.swift in Sources */,
 				EA743985204A2F22005A3B14 /* TodayViewController.swift in Sources */,
 				EA743996204A3151005A3B14 /* RedditModel.swift in Sources */,
 				EA743992204A30CF005A3B14 /* RedditPost.swift in Sources */,

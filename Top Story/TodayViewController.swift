@@ -18,7 +18,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var thumbnail: UIImageView!
     
     var redditPostDownloader = RedditPostDownloader()
-    
+    var imageCache = WebImageCache()
     
     
     override func viewDidLoad() {
@@ -26,11 +26,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
         redditPostDownloader.downloadPosts {
             
-            self.redditPostDownloader.sortPosts()
-            self.titleLabel.text = self.redditPostDownloader.posts.first?.title
-            self.commentLabel.text = "💬 \(self.redditPostDownloader.posts.first?.commentCount ?? 0)"
-            self.upvoteLabel.text = "🔥 \(self.redditPostDownloader.posts.first?.upvotes ?? 0)"
-            
+            DispatchQueue.main.sync {
+                self.redditPostDownloader.sortPosts()
+                self.titleLabel.text = self.redditPostDownloader.posts.first?.title
+                self.commentLabel.text = "💬 \(self.redditPostDownloader.posts.first?.commentCount ?? 0)"
+                self.upvoteLabel.text = "🔥 \(self.redditPostDownloader.posts.first?.upvotes ?? 0)"
+            }
         }
         
         
@@ -50,12 +51,23 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's an update, use NCUpdateResult.NewData
         
         redditPostDownloader.downloadPosts {
-            
-            self.redditPostDownloader.sortPosts()
-            self.titleLabel.text = self.redditPostDownloader.posts.first?.title
-            self.commentLabel.text = "💬 \(self.redditPostDownloader.posts.first?.commentCount ?? 0)"
-            self.upvoteLabel.text = "🔥 \(self.redditPostDownloader.posts.first?.upvotes ?? 0)"
-            
+
+            DispatchQueue.main.sync {
+                self.redditPostDownloader.sortPosts()
+                self.titleLabel.text = self.redditPostDownloader.posts.first?.title
+                self.commentLabel.text = "💬 \(self.redditPostDownloader.posts.first?.commentCount ?? 0)"
+                self.upvoteLabel.text = "🔥 \(self.redditPostDownloader.posts.first?.upvotes ?? 0)"
+                
+                guard let thumbnailURL = URL(string:(self.redditPostDownloader.posts.first?.thumbnail)!) else {
+                    return
+                }
+                
+                self.imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
+                    DispatchQueue.main.async() {
+                        self.thumbnail.image = image
+                    }
+                }
+            }
         }
         
         completionHandler(NCUpdateResult.newData)
