@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sc-uc-l0w">
-                                <rect key="frame" x="154" y="642" width="107" height="30"/>
+                                <rect key="frame" x="154" y="620" width="107" height="30"/>
                                 <state key="normal" title="Send Feedback"/>
                                 <connections>
                                     <action selector="sendFeedback:" destination="Tip-4P-faa" eventType="touchUpInside" id="o6q-S1-07T"/>
@@ -66,6 +66,12 @@
                                     <action selector="resetSettings:" destination="Tip-4P-faa" eventType="touchUpInside" id="F1v-wX-zn5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app was inspired from f5oclock.com by Dadsquach." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcN-mK-ph1">
+                                <rect key="frame" x="20" y="658" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -78,14 +84,18 @@
                             <constraint firstItem="8jO-dD-2OF" firstAttribute="centerX" secondItem="2Ln-sQ-QZW" secondAttribute="centerX" id="JQW-DO-dXW"/>
                             <constraint firstItem="GWr-PV-vAc" firstAttribute="leading" secondItem="8jO-dD-2OF" secondAttribute="leading" id="N5T-WS-pba"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="top" secondItem="cUJ-3Y-IHi" secondAttribute="bottom" constant="8" symbolic="YES" id="P7z-dl-I5M"/>
+                            <constraint firstItem="4wF-Nd-FaS" firstAttribute="bottom" secondItem="FcN-mK-ph1" secondAttribute="bottom" constant="8" id="Pjr-2y-xVk"/>
                             <constraint firstItem="bpl-N1-4O4" firstAttribute="trailing" secondItem="NRq-zZ-ffo" secondAttribute="trailing" id="QVm-mg-2Id"/>
+                            <constraint firstItem="FcN-mK-ph1" firstAttribute="trailing" secondItem="8jO-dD-2OF" secondAttribute="trailing" id="XSO-t5-eNW"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="NRq-zZ-ffo" secondAttribute="leading" id="aRM-r9-s4P"/>
                             <constraint firstItem="2Ln-sQ-QZW" firstAttribute="top" secondItem="8jO-dD-2OF" secondAttribute="bottom" constant="8" symbolic="YES" id="aoG-6d-z6J"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="leading" secondItem="GWr-PV-vAc" secondAttribute="leading" id="fti-Pn-WaG"/>
                             <constraint firstItem="GWr-PV-vAc" firstAttribute="top" secondItem="NRq-zZ-ffo" secondAttribute="bottom" constant="60" id="g50-GU-HpT"/>
                             <constraint firstItem="GWr-PV-vAc" firstAttribute="trailing" secondItem="8jO-dD-2OF" secondAttribute="trailing" id="kVN-IR-DEh"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="EaF-jP-IOO" secondAttribute="leadingMargin" id="myc-w9-rJc"/>
-                            <constraint firstItem="4wF-Nd-FaS" firstAttribute="bottom" secondItem="7Sc-uc-l0w" secondAttribute="bottom" constant="15" id="yfK-c2-UpL"/>
+                            <constraint firstItem="FcN-mK-ph1" firstAttribute="leading" secondItem="8jO-dD-2OF" secondAttribute="leading" id="rIE-J6-eVW"/>
+                            <constraint firstItem="4wF-Nd-FaS" firstAttribute="bottom" secondItem="7Sc-uc-l0w" secondAttribute="bottom" constant="37" id="yfK-c2-UpL"/>
+                            <constraint firstItem="FcN-mK-ph1" firstAttribute="top" secondItem="7Sc-uc-l0w" secondAttribute="bottom" constant="8" symbolic="YES" id="zDp-w2-jLW"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="top" secondItem="bpl-N1-4O4" secondAttribute="bottom" constant="8" symbolic="YES" id="zvO-qF-3H1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4wF-Nd-FaS"/>
