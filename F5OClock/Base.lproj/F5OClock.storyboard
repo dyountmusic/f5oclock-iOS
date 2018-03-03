@@ -95,6 +95,8 @@
                         <outlet property="RealTimeSwitch" destination="bpl-N1-4O4" id="mEw-Em-Hh5"/>
                         <outlet property="realTimeSwitch" destination="bpl-N1-4O4" id="04y-Xe-7kq"/>
                         <outlet property="redditSourceLabel" destination="NRq-zZ-ffo" id="Kp6-dj-MsX"/>
+                        <outlet property="resetButton" destination="2Ln-sQ-QZW" id="PVP-dL-NYN"/>
+                        <outlet property="setNewSubredditLabel" destination="GWr-PV-vAc" id="qLK-K2-3ZU"/>
                         <outlet property="subredditTextField" destination="8jO-dD-2OF" id="xBb-9z-rIY"/>
                     </connections>
                 </viewController>

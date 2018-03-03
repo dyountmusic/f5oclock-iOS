@@ -14,6 +14,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var redditSourceLabel: UILabel!
     @IBOutlet weak var realTimeSwitch: UISwitch!
     @IBOutlet weak var subredditTextField: UITextField!
+    @IBOutlet weak var setNewSubredditLabel: UILabel!
+    @IBOutlet weak var resetButton: UIButton!
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
@@ -34,8 +36,13 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
             realTimeSwitch.isOn = false
         }
         
-        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
+        // TODO: Remove when we want to enable this feature
+        // feature - changing subreddits
+//        subredditTextField.isHidden = true
+//        setNewSubredditLabel.isHidden = true
+//        resetButton.isHidden = true
         
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
         navigationController?.navigationBar.prefersLargeTitles = true
                 
     }
