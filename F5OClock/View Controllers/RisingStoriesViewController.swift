@@ -17,12 +17,22 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: Properties
     
-    var redditPostDownloader = RedditPostDownloader()
-    let userDefaults = UserDefaults()
+    let redditPostDownloader = RedditPostDownloader()
     let realTimeHandler = RealTimePostRefreshFetcher()
-    var isRealTime = true
+    let imageCache = WebImageCache()
+    
+    var isRealTime: Bool {
+        get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
+        set { UserDefaults.standard.set(newValue, forKey: "RealTimeEnabled") }
+    }
+    
+    var isFirstLaunch: Bool {
+        get { return UserDefaults.standard.bool(forKey: "IsFirstLaunch") }
+        set { UserDefaults.standard.set(newValue, forKey: "IsFirstLaunch") }
+    }
+    
     let refreshControl = UIRefreshControl()
-	var imageCache = WebImageCache()
+
 	var cellHeights: [IndexPath : CGFloat] = [:]
     
     // MARK: ViewController Functions
@@ -40,7 +50,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         updateUI()
         
         // Look for user settings for real time feature
-        if userDefaults.bool(forKey: "RealTimeEnabled") == true {
+        if isRealTime || isFirstLaunch {
             realTimeHandler.startTimer(viewController: self)
         }
         
@@ -54,6 +64,8 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         if redditPostDownloader.posts.isEmpty {
             title = "No Posts To Fetch"
         }
+        
+        isFirstLaunch = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,9 +126,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         let urlString = redditPostDownloader.posts[indexPath.row].url
         
         if let url = URL(string: urlString) {
-            
             let vc = SFSafariViewController(url: url)
-            
             present(vc, animated: true)
         }
     }
@@ -163,14 +173,12 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 			return
 		}
 		
-        if userDefaults.bool(forKey: "RealTimeEnabled") == false {
+        if !isRealTime {
             realTimeHandler.stopTimer()
-            isRealTime = false
         }
         
-        if userDefaults.bool(forKey: "RealTimeEnabled") == true && isRealTime == false {
+        if isRealTime {
             realTimeHandler.startTimer(viewController: self)
-            isRealTime = true
         }
 
 		// Reload table view data after all posts have been downloaded without blocking thread
@@ -196,6 +204,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 	}
     
     func updateUIWithoutRefreshControl() {
+        
         redditPostDownloader.downloadPosts() {
             DispatchQueue.main.sync {
                 let animator = TableViewRowAnimator(originState: self.redditPostDownloader.previousState, targetState: self.redditPostDownloader.posts)

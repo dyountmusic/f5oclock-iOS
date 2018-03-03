@@ -12,9 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var isFirstLaunch: Bool {
+        get { return UserDefaults.standard.bool(forKey: "IsFirstLaunch") }
+        set { UserDefaults.standard.set(newValue, forKey: "IsFirstLaunch") }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        isFirstLaunch = true
+        
         return true
     }
 

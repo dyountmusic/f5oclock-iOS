@@ -34,8 +34,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         }
         
-        
-        
     }
     
     override func didReceiveMemoryWarning() {

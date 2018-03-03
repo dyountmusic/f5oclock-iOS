@@ -10,45 +10,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Top Story/TodayViewController.swift"
-            timestampString = "541739753.577706"
+            timestampString = "541748821.851782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "widgetPerformUpdate(completionHandler:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Top_Story.TodayViewController.widgetPerformUpdate(completionHandler: (__C.NCUpdateResult) -&gt; ()) -&gt; ()"
-                  moduleName = "Top Story"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danielyount/f5oclock-iOS/Top%20Story/TodayViewController.swift"
-                  timestampString = "541733887.84505"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in Top_Story.TodayViewController.widgetPerformUpdate(completionHandler: (__C.NCUpdateResult) -&gt; ()) -&gt; ()"
-                  moduleName = "Top Story"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danielyount/f5oclock-iOS/Top%20Story/TodayViewController.swift"
-                  timestampString = "541733887.848585"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Story/RedditTopStoryDownloader.swift"
+            timestampString = "541748629.260978"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "downloadPosts(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Top Story/TodayViewController.swift"
+            timestampString = "541748821.851868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
