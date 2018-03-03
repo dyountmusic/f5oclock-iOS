@@ -38,9 +38,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         
         // TODO: Remove when we want to enable this feature
         // feature - changing subreddits
-//        subredditTextField.isHidden = true
-//        setNewSubredditLabel.isHidden = true
-//        resetButton.isHidden = true
+        subredditTextField.isHidden = true
+        setNewSubredditLabel.isHidden = true
+        resetButton.isHidden = true
         
         redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
         navigationController?.navigationBar.prefersLargeTitles = true
