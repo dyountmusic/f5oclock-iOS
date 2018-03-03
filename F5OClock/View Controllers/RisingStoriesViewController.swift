@@ -195,6 +195,22 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 		}
 	}
     
+    func updateUIWithoutRefreshControl() {
+        redditPostDownloader.downloadPosts() {
+            DispatchQueue.main.sync {
+                let animator = TableViewRowAnimator(originState: self.redditPostDownloader.previousState, targetState: self.redditPostDownloader.posts)
+                self.tableView.performBatchUpdates({
+                    self.tableView.deleteRows(at: animator.deletions, with: .right)
+                    self.tableView.insertRows(at: animator.insertions, with: .left)
+                    for move in animator.moves {
+                        self.tableView.moveRow(at: move.from, to: move.to)
+                    }
+                })
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     
     @objc private func refreshPostTableView(_ sender: Any) {
         self.refreshControl.endRefreshing()
