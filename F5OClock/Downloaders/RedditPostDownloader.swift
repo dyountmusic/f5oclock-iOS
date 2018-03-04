@@ -14,7 +14,7 @@ class RedditPostDownloader {
     
     // These properties are used to store the fetched data for reference
     var posts = [RedditPost]()
-    var downloaded = false
+	
     var lastFetchedSubreddit = RedditModel().subredditName
     
     //Stores the hash values of the previous state. Used for animating updates to post list
@@ -26,15 +26,7 @@ class RedditPostDownloader {
         
         //save the current state before it is overwritten
         previousState = computeState()
-        
-        posts = [RedditPost]()
-        
-        downloaded = false
-        
-        if lastFetchedSubreddit != RedditModel().subredditName {
-            clearPosts()
-        }
-            
+		
         let jsonURLString = RedditModel().redditURL
         guard let url = URL(string: jsonURLString) else { return }
     
@@ -56,13 +48,14 @@ class RedditPostDownloader {
             
             do {
                 let redditData = try JSONDecoder().decode(RedditDataWrapper.self, from: data)
-                for p in redditData.data.posts {
+				self.posts = [RedditPost]()
+				for p in redditData.data.posts {
                     self.posts.append(p.data)
                 }
                 
                 self.sortPosts()
                 self.removeDuplicates()
-                self.downloaded = true
+				
                 completion()
                 
             } catch let jsonError {
@@ -77,11 +70,7 @@ class RedditPostDownloader {
         posts = sortedPosts
         
     }
-    
-    func clearPosts() {
-        posts.removeAll()
-    }
-    
+	
     func removeDuplicates() {
         var uniquePosts = [RedditPost]()
         for post in posts {
