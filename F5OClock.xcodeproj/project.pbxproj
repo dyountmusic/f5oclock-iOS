@@ -16,6 +16,7 @@
 		EA02BB111F907523000A8AF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0F1F907523000A8AF8 /* LaunchScreen.storyboard */; };
 		EA02BB1C1F907524000A8AF8 /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB1B1F907524000A8AF8 /* PostTests.swift */; };
 		EA02BB271F907524000A8AF8 /* F5OClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB261F907524000A8AF8 /* F5OClockUITests.swift */; };
+		EA25398E204BC3D500A5C503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0D1F907523000A8AF8 /* Assets.xcassets */; };
 		EA658A282049069300C948BF /* RedditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA658A272049069300C948BF /* RedditModel.swift */; };
 		EA65E33C1F919DA500B0E33D /* JSONMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E33B1F919DA500B0E33D /* JSONMock.swift */; };
 		EA65E33F1F91C77000B0E33D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E33E1F91C77000B0E33D /* SettingsViewController.swift */; };
@@ -432,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA25398E204BC3D500A5C503 /* Assets.xcassets in Resources */,
 				EA743988204A2F22005A3B14 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
