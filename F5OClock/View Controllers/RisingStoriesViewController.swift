@@ -69,7 +69,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.title = "📈 \(RedditModel().subredditName.capitalized)"
+        self.title = "\(RedditModel().subredditName.capitalized)"
         updateUI()
     }
     
