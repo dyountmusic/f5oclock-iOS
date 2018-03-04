@@ -16,7 +16,7 @@ class RealTimePostRefreshFetcher {
     
     func startTimer(viewController: RisingStoriesViewController) {
         
-        isRealTime = true
+        if isRealTime { return }
         
         if #available(iOS 10.0, *) {
             timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
@@ -37,6 +37,7 @@ class RealTimePostRefreshFetcher {
             }
             timerDispatchSourceTimer?.resume()
         }
+        isRealTime = true
     }
     
     func stopTimer() {

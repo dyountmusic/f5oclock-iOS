@@ -69,7 +69,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.title = "📈 \(RedditModel().subredditName.capitalized)"
+        self.title = "\(RedditModel().subredditName.capitalized)"
         updateUI()
     }
     
@@ -91,8 +91,8 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         cell.backgroundColor = UIColor.white
         
         cell.titleLabel.text = redditPostDownloader.posts[indexPath.row].title
-        cell.upvoteCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].upvotes) 🔥"
-        cell.commentCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].commentCount) 💬"
+        cell.upvoteCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].upvotes)"
+        cell.commentCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].commentCount)"
         cell.link = redditPostDownloader.posts[indexPath.row].url
         
         if redditPostDownloader.posts[indexPath.row].upvotes >= 100 {
