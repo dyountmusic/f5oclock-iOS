@@ -53,6 +53,9 @@ class TableViewRowAnimator {
 			}
 		}
 		
+		if origin.count + insertions.count - deletions.count != target.count {
+			print("Insertion/deletions don't add up :(")
+		}
 	}
 	
 }

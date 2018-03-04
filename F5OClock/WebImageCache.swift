@@ -39,4 +39,9 @@ class WebImageCache : NSObject {
 		
 	}
 	
+	//flush the image cache
+	func flush() {
+		cachedImages.removeAll()
+	}
+	
 }
