@@ -125,8 +125,11 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         
         let urlString = redditPostDownloader.posts[indexPath.row].url
         
+        let config = SFSafariViewController.Configuration.init()
+        config.entersReaderIfAvailable = true
+        
         if let url = URL(string: urlString) {
-            let vc = SFSafariViewController(url: url)
+            let vc = SFSafariViewController(url: url, configuration: config)
             present(vc, animated: true)
         }
     }
@@ -152,7 +155,10 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             return nil
         }
         
-        let vc = SFSafariViewController(url: url)
+        let config = SFSafariViewController.Configuration.init()
+        config.entersReaderIfAvailable = true
+        
+        let vc = SFSafariViewController(url: url, configuration: config)
         vc.preferredContentSize = CGSize(width: 0.0, height: 600)
         previewingContext.sourceRect = cell.frame
         return vc
