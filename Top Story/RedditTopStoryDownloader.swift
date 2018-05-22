@@ -66,7 +66,7 @@ class RedditPostDownloader {
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError)")
             }
-            }.resume()
+        }.resume()
     }
     
     func sortPosts() {

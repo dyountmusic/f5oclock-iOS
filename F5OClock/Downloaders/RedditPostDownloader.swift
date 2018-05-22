@@ -14,7 +14,6 @@ class RedditPostDownloader {
     
     // These properties are used to store the fetched data for reference
     var posts = [RedditPost]()
-	
     var lastFetchedSubreddit = RedditModel().subredditName
     
     //Stores the hash values of the previous state. Used for animating updates to post list
