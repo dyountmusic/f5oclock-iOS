@@ -1,6 +1,6 @@
 //
-//  F5OClockTests.swift
-//  F5OClockTests
+//  RedditPostTests.swift
+//  F5OClock
 //
 //  Created by Daniel Yount on 10/13/17.
 //  Copyright © 2017 Daniel Yount. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import F5OClock
 
-class PostTests: XCTestCase {
+class RedditPostTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -89,7 +89,9 @@ class PostTests: XCTestCase {
 		postDownloader.sortPosts()
 		postDownloader.removeDuplicates()
 		
-		// Test Equatable (Hashable) extension
+        XCTAssertNotEqual(postA, postB)
+        XCTAssertNotEqual(postB, postC)
+        XCTAssertNotEqual(postC, postA)
 		XCTAssertEqual(postB, postB2)
 		XCTAssertEqual(postC, postC2)
 		
