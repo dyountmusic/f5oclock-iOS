@@ -99,7 +99,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4wF-Nd-FaS"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="Ige-YP-fzE"/>
+                    <navigationItem key="navigationItem" title="Settings" id="hPm-nU-XuJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ssY-m7-0Vi">
+                            <connections>
+                                <action selector="dismiss:" destination="Tip-4P-faa" id="dYt-nL-8Pw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="RealTimeSwitch" destination="bpl-N1-4O4" id="mEw-Em-Hh5"/>
                         <outlet property="realTimeSwitch" destination="bpl-N1-4O4" id="04y-Xe-7kq"/>
@@ -111,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8a-Id-SpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4783" y="16"/>
+            <point key="canvasLocation" x="5724" y="15.517241379310345"/>
         </scene>
         <!--Politics-->
         <scene sceneID="tbc-Xd-zlp">
@@ -209,17 +216,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Politics" id="6Tg-Hf-Yb0">
-                        <barButtonItem key="rightBarButtonItem" image="settingsUnselected" style="done" id="Ara-xs-Clv">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NMP-tI-TYT">
-                                <rect key="frame" x="333" y="9" width="26" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="settingsUnselected"/>
-                                <connections>
-                                    <segue destination="Tip-4P-faa" kind="show" id="nzC-Dj-Puj"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="settingsUnselected" id="qxj-zc-okz">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="moveToSettingsView:" destination="69V-d2-L3V" id="0qu-od-Nx1"/>
+                                <segue destination="PSl-pO-UNz" kind="presentation" id="KJ1-t3-KGN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -248,6 +248,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CrA-Au-Jzm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3023.1999999999998" y="16.256157635467982"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DXD-Ad-eAd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PSl-pO-UNz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="egm-a1-s5o">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tip-4P-faa" kind="relationship" relationship="rootViewController" id="Ejr-ch-H10"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lf9-AK-IsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4781.6000000000004" y="15.517241379310345"/>
         </scene>
     </scenes>
     <resources>

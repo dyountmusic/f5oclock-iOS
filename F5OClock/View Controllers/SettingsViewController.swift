@@ -137,4 +137,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         }
     }
     
+    @IBAction func dismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
