@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14101" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rfv-8e-WD8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ec1-uG-w2z">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sc-uc-l0w">
-                                <rect key="frame" x="134.66666666666666" y="662" width="107" height="30"/>
+                                <rect key="frame" x="134" y="745" width="107" height="30"/>
                                 <state key="normal" title="Send Feedback"/>
                                 <connections>
                                     <action selector="sendFeedback:" destination="Tip-4P-faa" eventType="touchUpInside" id="o6q-S1-07T"/>
@@ -60,14 +59,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ln-sQ-QZW">
-                                <rect key="frame" x="168.66666666666666" y="339" width="39" height="30"/>
+                                <rect key="frame" x="168" y="339" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="resetSettings:" destination="Tip-4P-faa" eventType="touchUpInside" id="F1v-wX-zn5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app was inspired from f5oclock.com by Dadsquach." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcN-mK-ph1">
-                                <rect key="frame" x="16" y="700" width="343" height="21"/>
+                                <rect key="frame" x="16" y="783" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -112,9 +111,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8a-Id-SpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3031.884057971015" y="685.59782608695662"/>
+            <point key="canvasLocation" x="4783" y="16"/>
         </scene>
-        <!--📈 Stories-->
+        <!--Politics-->
         <scene sceneID="tbc-Xd-zlp">
             <objects>
                 <viewController id="69V-d2-L3V" customClass="RisingStoriesViewController" customModule="F5OClock" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,78 +208,51 @@
                             <outlet property="delegate" destination="69V-d2-L3V" id="PS5-jC-m28"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="📈 Stories" id="6Tg-Hf-Yb0"/>
+                    <navigationItem key="navigationItem" title="Politics" id="6Tg-Hf-Yb0">
+                        <barButtonItem key="rightBarButtonItem" image="settingsUnselected" style="done" id="Ara-xs-Clv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NMP-tI-TYT">
+                                <rect key="frame" x="333" y="9" width="26" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="settingsUnselected"/>
+                                <connections>
+                                    <segue destination="Tip-4P-faa" kind="show" id="nzC-Dj-Puj"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="moveToSettingsView:" destination="69V-d2-L3V" id="0qu-od-Nx1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jxf-Dw-wO3" id="0IB-57-kzj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tC-NT-QSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3024.4604316546765" y="16.726618705035971"/>
+            <point key="canvasLocation" x="3965.5999999999999" y="16.256157635467982"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="15K-gu-17G">
+        <!--Navigation Controller-->
+        <scene sceneID="yZd-zb-MQH">
             <objects>
-                <tabBarController id="rfv-8e-WD8" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9jf-G3-2MJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="m1t-TW-YVE" kind="relationship" relationship="viewControllers" id="KCb-Js-2bt"/>
-                        <segue destination="IuH-Mf-WgP" kind="relationship" relationship="viewControllers" id="ETa-fU-Did"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uIm-Wd-wUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1172" y="353"/>
-        </scene>
-        <!--Rising Stories-->
-        <scene sceneID="Z4e-0W-Lad">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m1t-TW-YVE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Rising Stories" image="topStoryUnselected" selectedImage="topStorySelected" id="ljZ-Ry-OXE"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ec1-uG-w2z" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6bM-pO-cCT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XWi-QS-mcY">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="69V-d2-L3V" kind="relationship" relationship="rootViewController" id="8PS-LJ-PO3"/>
+                        <segue destination="69V-d2-L3V" kind="relationship" relationship="rootViewController" id="Hnp-FV-twg"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7nB-wK-tKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CrA-Au-Jzm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123.1884057971015" y="20.380434782608699"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="fpj-Uo-0Q7">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IuH-Mf-WgP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="settingsUnselected" selectedImage="settingsSelected" id="74A-aK-UMV"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="70i-8u-kfe">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Tip-4P-faa" kind="relationship" relationship="rootViewController" id="Rz7-2y-SF9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S7t-xr-zkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2123.1884057971015" y="687.22826086956525"/>
+            <point key="canvasLocation" x="3023.1999999999998" y="16.256157635467982"/>
         </scene>
     </scenes>
     <resources>
         <image name="commentsIcon" width="57" height="49"/>
         <image name="hotnessIcon" width="35" height="50"/>
-        <image name="settingsSelected" width="26" height="26"/>
         <image name="settingsUnselected" width="26" height="26"/>
-        <image name="topStorySelected" width="30" height="26"/>
-        <image name="topStoryUnselected" width="30" height="26"/>
     </resources>
 </document>
