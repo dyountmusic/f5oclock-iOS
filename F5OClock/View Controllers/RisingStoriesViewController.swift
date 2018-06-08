@@ -225,8 +225,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             }
         }
     }
-    
-    
+        
     @objc private func refreshPostTableView(_ sender: Any) {
         self.refreshControl.endRefreshing()
         updateUI()
