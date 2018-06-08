@@ -47,15 +47,13 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         // Perform regular UI update for data
+        navigationController?.navigationBar.prefersLargeTitles = true
         updateUI()
         
         // Look for user settings for real time feature
         if isRealTime || isFirstLaunch {
             realTimeHandler.startTimer(viewController: self)
         }
-        
-        // Configure Navigation Bar
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         // Configure Refresh Control
         tableView.refreshControl = refreshControl
@@ -225,6 +223,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             }
         }
     }
+
         
     @objc private func refreshPostTableView(_ sender: Any) {
         self.refreshControl.endRefreshing()
