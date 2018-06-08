@@ -1,4 +1,4 @@
-# f5oclock-iOS
-A native iOS client for www.f5oclock.com
+# F5 o'clock for iOS
+The breaking political news that you care about, delivered before you see it on TV.
 
-![Screenshot of Top Post Screen](https://i.imgur.com/MwaYzal.png)
+[Wiki and FAQ](https://github.com/dyountmusic/f5oclock-iOS/wiki)
