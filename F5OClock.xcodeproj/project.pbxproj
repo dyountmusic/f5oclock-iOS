@@ -17,6 +17,10 @@
 		EA02BB1C1F907524000A8AF8 /* RedditPostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB1B1F907524000A8AF8 /* RedditPostTests.swift */; };
 		EA02BB271F907524000A8AF8 /* F5OClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB261F907524000A8AF8 /* F5OClockUITests.swift */; };
 		EA25398E204BC3D500A5C503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0D1F907523000A8AF8 /* Assets.xcassets */; };
+		EA53D9FA20CA10BB00FB0F48 /* RedditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA658A272049069300C948BF /* RedditModel.swift */; };
+		EA53D9FB20CA110E00FB0F48 /* RedditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB39F2048DF2300E4D215 /* RedditPost.swift */; };
+		EA53D9FC20CA112B00FB0F48 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */; };
+		EA53D9FD20CA115100FB0F48 /* RedditPostDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */; };
 		EA658A282049069300C948BF /* RedditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA658A272049069300C948BF /* RedditModel.swift */; };
 		EA65E33F1F91C77000B0E33D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E33E1F91C77000B0E33D /* SettingsViewController.swift */; };
 		EA65E3411F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */; };
@@ -25,10 +29,6 @@
 		EA743985204A2F22005A3B14 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743984204A2F22005A3B14 /* TodayViewController.swift */; };
 		EA743988204A2F22005A3B14 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA743986204A2F22005A3B14 /* MainInterface.storyboard */; };
 		EA74398C204A2F22005A3B14 /* Top Story.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA74397F204A2F22005A3B14 /* Top Story.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		EA743992204A30CF005A3B14 /* RedditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743991204A30CF005A3B14 /* RedditPost.swift */; };
-		EA743994204A3135005A3B14 /* RedditTopStoryDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743993204A3135005A3B14 /* RedditTopStoryDownloader.swift */; };
-		EA743996204A3151005A3B14 /* RedditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743995204A3151005A3B14 /* RedditModel.swift */; };
-		EA743998204A34C6005A3B14 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743997204A34C6005A3B14 /* WebImageCache.swift */; };
 		EAFDB3A02048DF2300E4D215 /* RedditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB39F2048DF2300E4D215 /* RedditPost.swift */; };
 		EAFDB3A72048E31600E4D215 /* RedditPostDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */; };
 /* End PBXBuildFile section */
@@ -97,10 +97,6 @@
 		EA743984204A2F22005A3B14 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		EA743987204A2F22005A3B14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EA743989204A2F22005A3B14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA743991204A30CF005A3B14 /* RedditPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPost.swift; sourceTree = "<group>"; };
-		EA743993204A3135005A3B14 /* RedditTopStoryDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditTopStoryDownloader.swift; sourceTree = "<group>"; };
-		EA743995204A3151005A3B14 /* RedditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditModel.swift; sourceTree = "<group>"; };
-		EA743997204A34C6005A3B14 /* WebImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCache.swift; sourceTree = "<group>"; };
 		EAC48332204A6892000165CA /* F5OClock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = F5OClock.entitlements; sourceTree = "<group>"; };
 		EAFDB39F2048DF2300E4D215 /* RedditPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPost.swift; sourceTree = "<group>"; };
 		EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostDownloader.swift; sourceTree = "<group>"; };
@@ -247,10 +243,6 @@
 			children = (
 				EA668121204A6B020008E4DA /* Top Story.entitlements */,
 				EA743984204A2F22005A3B14 /* TodayViewController.swift */,
-				EA743997204A34C6005A3B14 /* WebImageCache.swift */,
-				EA743995204A3151005A3B14 /* RedditModel.swift */,
-				EA743991204A30CF005A3B14 /* RedditPost.swift */,
-				EA743993204A3135005A3B14 /* RedditTopStoryDownloader.swift */,
 				EA743986204A2F22005A3B14 /* MainInterface.storyboard */,
 				EA743989204A2F22005A3B14 /* Info.plist */,
 			);
@@ -475,11 +467,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA743998204A34C6005A3B14 /* WebImageCache.swift in Sources */,
+				EA53D9FA20CA10BB00FB0F48 /* RedditModel.swift in Sources */,
 				EA743985204A2F22005A3B14 /* TodayViewController.swift in Sources */,
-				EA743996204A3151005A3B14 /* RedditModel.swift in Sources */,
-				EA743992204A30CF005A3B14 /* RedditPost.swift in Sources */,
-				EA743994204A3135005A3B14 /* RedditTopStoryDownloader.swift in Sources */,
+				EA53D9FB20CA110E00FB0F48 /* RedditPost.swift in Sources */,
+				EA53D9FC20CA112B00FB0F48 /* WebImageCache.swift in Sources */,
+				EA53D9FD20CA115100FB0F48 /* RedditPostDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
