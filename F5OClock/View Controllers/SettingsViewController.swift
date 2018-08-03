@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
 
     @IBOutlet weak var redditSourceLabel: UILabel!
     @IBOutlet weak var realTimeSwitch: UISwitch!
+    @IBOutlet weak var itentityLabel: UILabel!
     
     var oauthAuthorizer: OAuthSwift?
     
@@ -83,24 +84,29 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     @IBAction func logIntoReddit(_ sender: Any) {
         handleAuth()
-        
     }
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBOutlet var identityLabel: UIView!
-    
-    
     @IBAction func whoAmI(_ sender: Any) {
         retrieveIdentity()
     }
     
     func retrieveIdentity() {
-        print(AuthorizationStrings.baseURL.rawValue + "/api/v1/me")
         oauthAuthorizer?.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
             print(response.dataString()!)
+            
+            do {
+                let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
+                self.itentityLabel.text = "Logged in as: \(redditUser.name)"
+                
+            } catch let jsonError {
+                print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
+            }
+            
+            
         }, failure: { (error) in
             print("ERROR: \(error)")
         })

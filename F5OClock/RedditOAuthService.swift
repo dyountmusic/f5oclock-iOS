@@ -28,12 +28,23 @@ extension SettingsViewController {
                     responseType: "token"
         )
         
+        oauthswift.accessTokenBasicAuthentification = true
         oauthAuthorizer = oauthswift
         
         let state = generateState(withLength: 20)
-
-        let _ = oauthswift.authorize(withCallbackURL: URL(string: "f5oclock://callback"), scope: "vote identity mysubreddits", state: state, success: { (credential, response, parameters) in
+        let parameters = [
+            "client_id" : AuthorizationStrings.clientID.rawValue,
+            "response_type" : "code",
+            "state" : state,
+            "redirect_uri" : "f5oclock://callback",
+            "duration" : "permanent",
+            "scope" : "vote identity mysubreddits"
+        ]
+        
+        let _ = oauthswift.authorize(withCallbackURL: "f5oclock://callback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
+            // Success
             print("Success")
+            
         }) { (error) in
             print("Authentication Error: \(error.description)")
         }
