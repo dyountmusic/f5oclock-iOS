@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ec1-uG-w2z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ec1-uG-w2z">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sc-uc-l0w">
-                                <rect key="frame" x="134" y="745" width="107" height="30"/>
+                                <rect key="frame" x="132" y="711" width="111" height="30"/>
                                 <state key="normal" title="Send Feedback"/>
                                 <connections>
                                     <action selector="sendFeedback:" destination="Tip-4P-faa" eventType="touchUpInside" id="o6q-S1-07T"/>
@@ -46,53 +46,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8jO-dD-2OF">
-                                <rect key="frame" x="16" y="301" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set New Subreddit:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWr-PV-vAc">
-                                <rect key="frame" x="16" y="275" width="343" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ln-sQ-QZW">
-                                <rect key="frame" x="168" y="339" width="39" height="30"/>
-                                <state key="normal" title="Reset"/>
-                                <connections>
-                                    <action selector="resetSettings:" destination="Tip-4P-faa" eventType="touchUpInside" id="F1v-wX-zn5"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app was inspired from f5oclock.com by Dadsquach." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcN-mK-ph1">
-                                <rect key="frame" x="16" y="783" width="343" height="21"/>
+                                <rect key="frame" x="51" y="749" width="273" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STI-wv-ok9">
+                                <rect key="frame" x="133" y="223" width="108" height="30"/>
+                                <state key="normal" title="Log in to Reddit"/>
+                                <connections>
+                                    <action selector="logIntoReddit:" destination="Tip-4P-faa" eventType="touchUpInside" id="rU1-2e-8db"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2Ln-sQ-QZW" firstAttribute="centerX" secondItem="7Sc-uc-l0w" secondAttribute="centerX" id="0un-Nw-kez"/>
-                            <constraint firstItem="8jO-dD-2OF" firstAttribute="top" secondItem="GWr-PV-vAc" secondAttribute="bottom" constant="2" id="8V5-p4-UYu"/>
+                            <constraint firstItem="STI-wv-ok9" firstAttribute="trailing" secondItem="7Sc-uc-l0w" secondAttribute="trailing" constant="-1" id="9vV-zd-UdW"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="bpl-N1-4O4" secondAttribute="top" id="9zH-3c-Meg"/>
                             <constraint firstItem="bpl-N1-4O4" firstAttribute="trailing" secondItem="EaF-jP-IOO" secondAttribute="trailingMargin" id="BGT-20-vCc"/>
-                            <constraint firstItem="NRq-zZ-ffo" firstAttribute="trailing" secondItem="GWr-PV-vAc" secondAttribute="trailing" id="DrS-D0-yUm"/>
+                            <constraint firstItem="STI-wv-ok9" firstAttribute="centerX" secondItem="7Sc-uc-l0w" secondAttribute="centerX" id="GEp-fY-fj6"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="4wF-Nd-FaS" secondAttribute="top" constant="28" id="HuJ-EJ-rxf"/>
-                            <constraint firstItem="8jO-dD-2OF" firstAttribute="centerX" secondItem="2Ln-sQ-QZW" secondAttribute="centerX" id="JQW-DO-dXW"/>
-                            <constraint firstItem="GWr-PV-vAc" firstAttribute="leading" secondItem="8jO-dD-2OF" secondAttribute="leading" id="N5T-WS-pba"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="top" secondItem="cUJ-3Y-IHi" secondAttribute="bottom" constant="8" symbolic="YES" id="P7z-dl-I5M"/>
                             <constraint firstItem="4wF-Nd-FaS" firstAttribute="bottom" secondItem="FcN-mK-ph1" secondAttribute="bottom" constant="8" id="Pjr-2y-xVk"/>
                             <constraint firstItem="bpl-N1-4O4" firstAttribute="trailing" secondItem="NRq-zZ-ffo" secondAttribute="trailing" id="QVm-mg-2Id"/>
-                            <constraint firstItem="FcN-mK-ph1" firstAttribute="trailing" secondItem="8jO-dD-2OF" secondAttribute="trailing" id="XSO-t5-eNW"/>
+                            <constraint firstItem="STI-wv-ok9" firstAttribute="top" secondItem="NRq-zZ-ffo" secondAttribute="bottom" constant="8" symbolic="YES" id="U0s-VU-Bij"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="NRq-zZ-ffo" secondAttribute="leading" id="aRM-r9-s4P"/>
-                            <constraint firstItem="2Ln-sQ-QZW" firstAttribute="top" secondItem="8jO-dD-2OF" secondAttribute="bottom" constant="8" symbolic="YES" id="aoG-6d-z6J"/>
-                            <constraint firstItem="NRq-zZ-ffo" firstAttribute="leading" secondItem="GWr-PV-vAc" secondAttribute="leading" id="fti-Pn-WaG"/>
-                            <constraint firstItem="GWr-PV-vAc" firstAttribute="top" secondItem="NRq-zZ-ffo" secondAttribute="bottom" constant="60" id="g50-GU-HpT"/>
-                            <constraint firstItem="GWr-PV-vAc" firstAttribute="trailing" secondItem="8jO-dD-2OF" secondAttribute="trailing" id="kVN-IR-DEh"/>
+                            <constraint firstItem="STI-wv-ok9" firstAttribute="centerX" secondItem="FcN-mK-ph1" secondAttribute="centerX" id="aRV-4A-wei"/>
+                            <constraint firstItem="STI-wv-ok9" firstAttribute="leading" secondItem="4wF-Nd-FaS" secondAttribute="leading" constant="133" id="cJy-gR-cK2"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="EaF-jP-IOO" secondAttribute="leadingMargin" id="myc-w9-rJc"/>
-                            <constraint firstItem="FcN-mK-ph1" firstAttribute="leading" secondItem="8jO-dD-2OF" secondAttribute="leading" id="rIE-J6-eVW"/>
+                            <constraint firstItem="STI-wv-ok9" firstAttribute="centerX" secondItem="NRq-zZ-ffo" secondAttribute="centerX" id="qQM-MB-11F"/>
                             <constraint firstItem="4wF-Nd-FaS" firstAttribute="bottom" secondItem="7Sc-uc-l0w" secondAttribute="bottom" constant="37" id="yfK-c2-UpL"/>
                             <constraint firstItem="FcN-mK-ph1" firstAttribute="top" secondItem="7Sc-uc-l0w" secondAttribute="bottom" constant="8" symbolic="YES" id="zDp-w2-jLW"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="top" secondItem="bpl-N1-4O4" secondAttribute="bottom" constant="8" symbolic="YES" id="zvO-qF-3H1"/>
@@ -108,12 +91,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="RealTimeSwitch" destination="bpl-N1-4O4" id="mEw-Em-Hh5"/>
                         <outlet property="realTimeSwitch" destination="bpl-N1-4O4" id="04y-Xe-7kq"/>
                         <outlet property="redditSourceLabel" destination="NRq-zZ-ffo" id="Kp6-dj-MsX"/>
-                        <outlet property="resetButton" destination="2Ln-sQ-QZW" id="PVP-dL-NYN"/>
-                        <outlet property="setNewSubredditLabel" destination="GWr-PV-vAc" id="qLK-K2-3ZU"/>
-                        <outlet property="subredditTextField" destination="8jO-dD-2OF" id="xBb-9z-rIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8a-Id-SpF" userLabel="First Responder" sceneMemberID="firstResponder"/>

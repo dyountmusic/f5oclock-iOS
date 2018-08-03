@@ -33,6 +33,7 @@
 		EA743985204A2F22005A3B14 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743984204A2F22005A3B14 /* TodayViewController.swift */; };
 		EA743988204A2F22005A3B14 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA743986204A2F22005A3B14 /* MainInterface.storyboard */; };
 		EA74398C204A2F22005A3B14 /* Top Story.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA74397F204A2F22005A3B14 /* Top Story.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EA86B28121141653005B473E /* RedditOAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA86B28021141653005B473E /* RedditOAuthService.swift */; };
 		EAFDB3A02048DF2300E4D215 /* RedditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB39F2048DF2300E4D215 /* RedditPost.swift */; };
 		EAFDB3A72048E31600E4D215 /* RedditPostDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,7 @@
 		EA743984204A2F22005A3B14 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		EA743987204A2F22005A3B14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EA743989204A2F22005A3B14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA86B28021141653005B473E /* RedditOAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditOAuthService.swift; sourceTree = "<group>"; };
 		EAC48332204A6892000165CA /* F5OClock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = F5OClock.entitlements; sourceTree = "<group>"; };
 		EAFDB39F2048DF2300E4D215 /* RedditPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPost.swift; sourceTree = "<group>"; };
 		EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostDownloader.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */,
 				BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */,
 				EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */,
+				EA86B28021141653005B473E /* RedditOAuthService.swift */,
 				EA01EDAA2048FA5900C433E9 /* Downloaders */,
 				EA02BB361F907547000A8AF8 /* Models */,
 				EA42B9DC1F95698B009D6521 /* TableView Cells */,
@@ -576,6 +579,7 @@
 				EA65E3431F92AA4600B0E33D /* PostTableViewCell.swift in Sources */,
 				EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */,
 				BFF5762E1FBCE64C006CA25D /* TableViewRowAnimator.swift in Sources */,
+				EA86B28121141653005B473E /* RedditOAuthService.swift in Sources */,
 				EAFDB3A02048DF2300E4D215 /* RedditPost.swift in Sources */,
 				BFB39E1E1FBBE0A100B4AB09 /* WebImageCache.swift in Sources */,
 				EAFDB3A72048E31600E4D215 /* RedditPostDownloader.swift in Sources */,
@@ -772,7 +776,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 848CCD77C0A86E308BFAFD41 /* Pods-F5OClock.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = F5OClock/F5OClock.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -793,7 +796,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 68B5E702BF79CA78FE5E4A63 /* Pods-F5OClock.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = F5OClock/F5OClock.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

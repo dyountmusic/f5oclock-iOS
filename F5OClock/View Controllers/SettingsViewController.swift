@@ -8,14 +8,14 @@
 
 import UIKit
 import MessageUI
+import OAuthSwift
 
 class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var redditSourceLabel: UILabel!
     @IBOutlet weak var realTimeSwitch: UISwitch!
-    @IBOutlet weak var subredditTextField: UITextField!
-    @IBOutlet weak var setNewSubredditLabel: UILabel!
-    @IBOutlet weak var resetButton: UIButton!
+    
+    var oauthAuthorizer: OAuthSwift?
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
@@ -25,22 +25,11 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subredditTextField.returnKeyType = .done
-        subredditTextField.clearButtonMode = .whileEditing
-        subredditTextField.delegate = self
-        subredditTextField.text = RedditModel().subredditName
-        
         if realTimeEnabled {
             realTimeSwitch.isOn = true
         } else {
             realTimeSwitch.isOn = false
         }
-        
-        // TODO: Remove when we want to enable this feature
-        // feature - changing subreddits
-        subredditTextField.isHidden = true
-        setNewSubredditLabel.isHidden = true
-        resetButton.isHidden = true
         
         redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -50,13 +39,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    
-    @IBAction func resetSettings(_ sender: Any) {
-        RedditModel().resetRedditURL()
-        subredditTextField.text = RedditModel().subredditName.capitalized
-        viewDidLoad()
     }
     
     @IBAction func sendFeedback(_ sender: Any) {
@@ -99,42 +81,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         controller.dismiss(animated: true, completion: nil)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    @IBAction func logIntoReddit(_ sender: Any) {
+        let authorizer = RedditOAuthService()
+        authorizer.handleAuth()
         
-        guard let enteredText = subredditTextField.text else {
-            subredditTextField.text = "Please enter a valid subreddit"
-            return false
-        }
-        
-        RedditModel().subredditName = enteredText
-        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
-        
-        subredditTextField.resignFirstResponder()
-        
-        self.view.endEditing(true)
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
-        // Do all string validation here!
-        guard let enteredText = subredditTextField.text else {
-            return false
-        }
-        
-        if enteredText == "" || enteredText == " " {
-            let alert = UIAlertController.init()
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-                UIAlertAction in
-            }
-            alert.addAction(okAction)
-            alert.message = "Please enter the name of a valid subreddit."
-            
-            showDetailViewController(alert, sender: nil)
-            return false
-        } else {
-            return true
-        }
     }
     
     @IBAction func dismiss(_ sender: Any) {
