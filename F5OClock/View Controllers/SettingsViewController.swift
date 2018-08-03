@@ -82,12 +82,27 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     @IBAction func logIntoReddit(_ sender: Any) {
-        let authorizer = RedditOAuthService()
-        authorizer.handleAuth()
+        handleAuth()
         
     }
     
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBOutlet var identityLabel: UIView!
+    
+    
+    @IBAction func whoAmI(_ sender: Any) {
+        retrieveIdentity()
+    }
+    
+    func retrieveIdentity() {
+        print(AuthorizationStrings.baseURL.rawValue + "/api/v1/me")
+        oauthAuthorizer?.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
+            print(response.dataString()!)
+        }, failure: { (error) in
+            print("ERROR: \(error)")
+        })
     }
 }

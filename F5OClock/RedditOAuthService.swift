@@ -10,16 +10,14 @@ import Foundation
 import OAuthSwift
 
 enum AuthorizationStrings: String {
-    case baseURL = "https://www.reddit.com"
+    case baseURL = "https://oauth.reddit.com"
     case authURL = "https://www.reddit.com/api/v1/authorize.compact?"
     case accessTokenURL = "https://www.reddit.com/api/v1/access_token"
     case clientID = "1dz4paXlzSx97w"
 }
 
 
-class RedditOAuthService {
-    
-    var authorizer: OAuthSwift?
+extension SettingsViewController {
     
     func handleAuth() {
         
@@ -30,15 +28,17 @@ class RedditOAuthService {
                     responseType: "token"
         )
         
-        authorizer = oauthswift
+        oauthAuthorizer = oauthswift
+        
         let state = generateState(withLength: 20)
 
-        let _ = oauthswift.authorize(withCallbackURL: URL(string: "f5oclock://callback"), scope: "vote", state: state, success: { (credential, response, parameters) in
+        let _ = oauthswift.authorize(withCallbackURL: URL(string: "f5oclock://callback"), scope: "vote identity mysubreddits", state: state, success: { (credential, response, parameters) in
             print("Success")
         }) { (error) in
             print("Authentication Error: \(error.description)")
         }
-        
     }
+    
+    
     
 }
