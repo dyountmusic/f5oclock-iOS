@@ -14,9 +14,18 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
 
     @IBOutlet weak var redditSourceLabel: UILabel!
     @IBOutlet weak var realTimeSwitch: UISwitch!
-    @IBOutlet weak var itentityLabel: UILabel!
+    @IBOutlet weak var identityLabel: UILabel!
+    @IBOutlet weak var authenticateButton: UIButton!
     
     var oauthAuthorizer: OAuthSwift?
+    
+    var redditUser: RedditUser? {
+        didSet {
+            guard let name = redditUser?.name else { return }
+            identityLabel.text = "Logged in as: \(name)"
+            authenticateButton.titleLabel?.text = "Log out."
+        }
+    }
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
@@ -25,21 +34,26 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    fileprivate func checkForRealTime() {
         if realTimeEnabled {
             realTimeSwitch.isOn = true
         } else {
             realTimeSwitch.isOn = false
         }
-        
-        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
-        navigationController?.navigationBar.prefersLargeTitles = true
-                
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
+        if oauthAuthorizer != nil {
+            retrieveIdentity()
+        } else {
+            identityLabel.text = ""
+        }
+        checkForRealTime()
+        super.viewWillAppear(true)
     }
     
     @IBAction func sendFeedback(_ sender: Any) {
@@ -63,16 +77,13 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        
+        mailComposerVC.mailComposeDelegate = self
         mailComposerVC.setToRecipients(["yountdaniel@gmail.com"])
         mailComposerVC.setSubject("F5 o'Clock App Feedback")
-        
         return mailComposerVC
     }
     
     func showSendMailErrorAlert() {
-        
         let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail. Please check e-mail configuration in settings and try again.", preferredStyle: .alert)
         self.show(sendMailErrorAlert, sender: nil)
     }
@@ -90,20 +101,25 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func whoAmI(_ sender: Any) {
-        retrieveIdentity()
-    }
-    
     func retrieveIdentity() {
-        oauthAuthorizer?.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
+        guard let authorizer = oauthAuthorizer else { return }
+        print("running... RUNNING!!!!!!! 🚨")
+        authorizer.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
-                self.itentityLabel.text = "Logged in as: \(redditUser.name)"
+                self.redditUser = redditUser
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
             }
         }, failure: { (error) in
+            
+            if error.underlyingError?.localizedDescription.contains("403") ?? false {
+                print("got a 403 error")
+                self.retrieveIdentity()
+            }
+            
             print("Error retriving identity from reddit: \(error)")
+            
         })
     }
 }

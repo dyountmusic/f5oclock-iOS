@@ -16,7 +16,6 @@ enum AuthorizationStrings: String {
     case clientID = "1dz4paXlzSx97w"
 }
 
-
 extension SettingsViewController {
     
     func handleAuth() {
@@ -30,6 +29,7 @@ extension SettingsViewController {
         
         oauthswift.accessTokenBasicAuthentification = true
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauthswift)
+        
         oauthAuthorizer = oauthswift
         
         let state = generateState(withLength: 20)
@@ -44,8 +44,6 @@ extension SettingsViewController {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://callback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
-            print("Success")
-            
         }) { (error) in
             print("Authentication Error: \(error.description)")
         }
