@@ -96,19 +96,14 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     func retrieveIdentity() {
         oauthAuthorizer?.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
-            print(response.dataString()!)
-            
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                 self.itentityLabel.text = "Logged in as: \(redditUser.name)"
-                
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
             }
-            
-            
         }, failure: { (error) in
-            print("ERROR: \(error)")
+            print("Error retriving identity from reddit: \(error)")
         })
     }
 }
