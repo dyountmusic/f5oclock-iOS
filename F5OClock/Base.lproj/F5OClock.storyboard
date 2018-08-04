@@ -105,8 +105,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="authenticateButton" destination="STI-wv-ok9" id="nXi-Yc-iCf"/>
                         <outlet property="identityLabel" destination="BGb-T9-FQK" id="IOA-WU-wyf"/>
+                        <outlet property="logInButton" destination="STI-wv-ok9" id="nXi-Yc-iCf"/>
                         <outlet property="realTimeSwitch" destination="bpl-N1-4O4" id="04y-Xe-7kq"/>
                         <outlet property="redditSourceLabel" destination="NRq-zZ-ffo" id="Kp6-dj-MsX"/>
                     </connections>

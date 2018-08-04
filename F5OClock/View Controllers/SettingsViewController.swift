@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var redditSourceLabel: UILabel!
     @IBOutlet weak var realTimeSwitch: UISwitch!
     @IBOutlet weak var identityLabel: UILabel!
-    @IBOutlet weak var authenticateButton: UIButton!
+    @IBOutlet weak var logInButton: UIButton!
     
     var oauthAuthorizer: OAuthSwift?
     
@@ -23,7 +23,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         didSet {
             guard let name = redditUser?.name else { return }
             identityLabel.text = "Logged in as: \(name)"
-            authenticateButton.titleLabel?.text = "Log out."
         }
     }
     
@@ -103,7 +102,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     func retrieveIdentity() {
         guard let authorizer = oauthAuthorizer else { return }
-        print("running... RUNNING!!!!!!! 🚨")
         authorizer.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
@@ -112,12 +110,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
                 print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
             }
         }, failure: { (error) in
-            
-            if error.underlyingError?.localizedDescription.contains("403") ?? false {
-                print("got a 403 error")
-                self.retrieveIdentity()
-            }
-            
             print("Error retriving identity from reddit: \(error)")
             
         })
