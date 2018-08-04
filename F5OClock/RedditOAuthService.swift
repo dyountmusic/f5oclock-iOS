@@ -29,6 +29,7 @@ extension SettingsViewController {
         )
         
         oauthswift.accessTokenBasicAuthentification = true
+        oauthswift.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauthswift)
         oauthAuthorizer = oauthswift
         
         let state = generateState(withLength: 20)

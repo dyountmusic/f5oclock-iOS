@@ -110,11 +110,11 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             return cell
         }
         
-		imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
-			DispatchQueue.main.async() {
-				cell.thumbnail.image = image
-			}
-		}
+        imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
+            DispatchQueue.main.async() {
+                cell.thumbnail.image = image
+            }
+        }
 
         return cell
     }
