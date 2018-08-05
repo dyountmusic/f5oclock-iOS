@@ -29,7 +29,7 @@ class RedditPostTests: XCTestCase {
         let negativePost = RedditPost(title: "", upvotes: -1, url: "", thumbnail: "", commentCount: 0)
         
         // Create the post downloader object
-        let postDownloader = RedditPostDownloader()
+        let postDownloader = RedditPostDownloadService()
         postDownloader.posts = [highestPost, lowestPost]
         
         // Calculate expected result
@@ -82,7 +82,7 @@ class RedditPostTests: XCTestCase {
         let postC2 = RedditPost(title: "Post C", upvotes: 7, url: "ccc.com/?something=v", thumbnail: "", commentCount: 0)
 
 		// Create the post downloader object
-		let postDownloader = RedditPostDownloader()
+		let postDownloader = RedditPostDownloadService()
 		postDownloader.posts = [postA, postB, postB2, postC, postC2]
 		
 		// Calculate expected result
@@ -107,7 +107,7 @@ class RedditPostTests: XCTestCase {
     
     func testResponseFromServer() {
         
-        let postDownloader = RedditPostDownloader()
+        let postDownloader = RedditPostDownloadService()
         
 		postDownloader.downloadPosts() {
 			XCTAssertNotNil(postDownloader)
