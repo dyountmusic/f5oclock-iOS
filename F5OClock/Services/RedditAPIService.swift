@@ -19,10 +19,9 @@ class RedditAPIService {
         
         guard let client = self.authService.getAuthorizedClient(vc) else { return }
         
-        let result = client.get(url + path, success: { (response) in
+        _ = client.get(url + path, success: { (response) in
             // Success
-            print("Got response!")
-            print(response.dataString())
+            print("Got user info response!")
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                 completionHandler(redditUser, nil)
