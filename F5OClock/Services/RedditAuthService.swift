@@ -8,6 +8,7 @@
 
 import Foundation
 import OAuthSwift
+import KeychainSwift
 
 enum RedditAuthorizationStrings: String {
     case baseURL = "https://oauth.reddit.com"
@@ -46,6 +47,7 @@ class RedditAuthService : AuthService {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://oauthcallback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
+            self.storeTokenToKeychain(cred: credential)
             self.appContext.identity = Identity(credential: credential, user: RedditUser())
             self.initializeIdentity(success)
         }) { (error) in
@@ -71,6 +73,23 @@ class RedditAuthService : AuthService {
                 
             })
         }
+    }
+    
+    private func checkKeychainForToken() {
+        let keychain = KeychainSwift()
+        guard let accessToken = keychain.get("access-token") else { return }
+        guard let accessTokenSecret = keychain.get("access-token-secret") else { return }
+    }
+    
+    private func storeTokenToKeychain(cred: OAuthSwiftCredential) {
+        let keychain = KeychainSwift()
+        keychain.synchronizable = true
+        print("This is the client token: \(cred.consumerKey)")
+        print("This is the client token secret: \(cred.consumerSecret)")
+        print("Setting access token: \(cred.oauthToken)")
+        print("Setting access token secret: \(cred.oauthTokenSecret)")
+        keychain.set(cred.oauthToken, forKey: "access-token")
+        keychain.set(cred.oauthTokenSecret, forKey: "access-token-secret")
     }
     
     func getAuthorizedClient() -> OAuthSwiftClient? {
