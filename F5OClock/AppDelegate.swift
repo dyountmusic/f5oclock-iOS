@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let appContext = r.resolve(AppContext.self)!
             return RedditAuthService(appContext: appContext)
         }
+        container.register(RedditAPIService.self) { r in
+            let authService = r.resolve(AuthService.self)!
+            return RedditAPIService(authService: authService)
+        }
         
         // MARK: Register Storyboards
         container.storyboardInitCompleted(RisingStoriesViewController.self) { (r, c) in
@@ -33,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.storyboardInitCompleted(SettingsViewController.self) { (r, c) in
             c.appContext = r.resolve(AppContext.self)
             c.authService = r.resolve(AuthService.self)
+            c.redditAPIService = r.resolve(RedditAPIService.self)
         }
         
         return container

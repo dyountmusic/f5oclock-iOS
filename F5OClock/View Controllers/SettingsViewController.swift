@@ -17,17 +17,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var identityLabel: UILabel!
     @IBOutlet weak var logInButton: UIButton!
     
-    var apiService = RedditAPIService()
-    
     public var appContext: AppContext?
     public var authService: AuthService?
-    
-    var redditUser: RedditUser? {
-        didSet {
-            guard let name = redditUser?.name else { return }
-            identityLabel.text = "Logged in as: \(name)"
-        }
-    }
+    public var redditAPIService: RedditAPIService?
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
@@ -49,10 +41,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
-        if let authService = self.authService {
-            authService.initializeIdentity() {
-                self.setIdentityLabel()
-            }
+        if self.appContext?.identity != nil {
+            self.setIdentityLabel()
         } else {
             identityLabel.text = ""
         }
