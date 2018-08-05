@@ -32,6 +32,8 @@ class RedditAuthService : AuthService {
         oauthswift.accessTokenBasicAuthentification = true
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: initiatingViewController, oauthSwift: oauthswift)
         
+        self.oauthSwift = oauthswift
+        
         let state = generateState(withLength: 20)
         let parameters = [
             "client_id" : RedditAuthorizationStrings.clientID.rawValue,
@@ -44,23 +46,20 @@ class RedditAuthService : AuthService {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://oauthcallback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
-            self.oauthSwift = oauthswift
-            self.appContext.identity = Identity(credential: credential, name: "")
-            self.initializeIdentity(success)
+            self.initializeIdentity(credential: credential, success)
         }) { (error) in
             print("Authentication Error: \(error.description)")
         }
     }
     
-    func initializeIdentity(_ success: @escaping() -> ()) {
+    func initializeIdentity(credential: OAuthSwiftCredential, _ success: @escaping() -> ()) {
         guard let oauthSwift = self.oauthSwift else { return }
         
         DispatchQueue.global(qos: .userInitiated).async {
             oauthSwift.client.request(RedditAuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
                 do {
                     let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
-                    let identity = self.appContext.identity
-                    self.appContext.identity = Identity(credential: identity!.credential, name: redditUser.name)
+                    self.appContext.identity = Identity(credential: credential, user: redditUser)
                     success()
                 } catch let jsonError {
                     print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
