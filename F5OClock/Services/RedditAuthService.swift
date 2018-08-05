@@ -46,6 +46,7 @@ class RedditAuthService : AuthService {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://oauthcallback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
+            self.appContext.identity = Identity(credential: credential, user: RedditUser())
             self.initializeIdentity(success)
         }) { (error) in
             print("Authentication Error: \(error.description)")

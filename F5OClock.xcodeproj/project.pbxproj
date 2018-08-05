@@ -220,8 +220,7 @@
 			children = (
 				EAC48332204A6892000165CA /* F5OClock.entitlements */,
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
-				EA025FE121149D0D00787D80 /* AppContext.swift */,
-				2774BCA321167F250019BD1D /* Identity.swift */,
+				EA38DF322116D36100B39480 /* User State */,
 				BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */,
 				BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */,
 				EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */,
@@ -262,6 +261,15 @@
 				EAFDB3A52048E1BA00E4D215 /* Reddit JSON */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EA38DF322116D36100B39480 /* User State */ = {
+			isa = PBXGroup;
+			children = (
+				EA025FE121149D0D00787D80 /* AppContext.swift */,
+				2774BCA321167F250019BD1D /* Identity.swift */,
+			);
+			path = "User State";
 			sourceTree = "<group>";
 		};
 		EA42B9DC1F95698B009D6521 /* TableView Cells */ = {
