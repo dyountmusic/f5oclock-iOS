@@ -7,9 +7,30 @@
 //
 
 import Foundation
+import OAuthSwift
+
+struct RedditRequestModel {
+    var url: String
+    var method: OAuthSwiftHTTPRequest.Method
+    var path: String
+}
+
 
 class RedditAPIService {
     
     var networkServiceModel: NetworkingSerivceModel?
+    
+    func getUserInfo() {
+        
+    }
+    
+    func upvotePost() {
+        
+    }
+    
+    func downVotePost() {
+        
+    }
+    
     
 }
