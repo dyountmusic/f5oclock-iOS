@@ -18,8 +18,8 @@ enum RedditAuthorizationStrings: String {
 
 class RedditAuthService : AuthService {
     
-    let appContext: AppContext
-    var oauthSwift: OAuth2Swift?
+    private let appContext: AppContext
+    private var oauthSwift: OAuth2Swift?
     
     func authorizeUser(initiatingViewController: UIViewController, _ success: @escaping () -> ()) {
         let oauthswift = OAuth2Swift(consumerKey: RedditAuthorizationStrings.clientID.rawValue,

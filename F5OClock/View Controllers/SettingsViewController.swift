@@ -19,7 +19,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     public var appContext: AppContext?
     public var authService: AuthService?
-    public var redditAPIService: RedditAPIService?
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }

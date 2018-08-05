@@ -11,7 +11,7 @@ import OAuthSwift
 
 class RedditAPIService {
     
-    let authService: AuthService
+    private let authService: AuthService
     
     func getUserInfo(completionHandler: @escaping (RedditUser?, Error?) -> Void) {
         let url = RedditAuthorizationStrings.baseURL.rawValue

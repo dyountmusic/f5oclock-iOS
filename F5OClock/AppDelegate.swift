@@ -32,12 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: Register Storyboards
         container.storyboardInitCompleted(RisingStoriesViewController.self) { (r, c) in
-            c.appContext = r.resolve(AppContext.self)
+            c.redditAPIService = r.resolve(RedditAPIService.self)
         }
         container.storyboardInitCompleted(SettingsViewController.self) { (r, c) in
             c.appContext = r.resolve(AppContext.self)
             c.authService = r.resolve(AuthService.self)
-            c.redditAPIService = r.resolve(RedditAPIService.self)
         }
         
         return container
