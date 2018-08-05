@@ -87,7 +87,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     private func setIdentityLabel() {
-        let name = self.appContext?.identity?.name ?? ""
+        let name = self.appContext?.identity?.redditUser.name ?? ""
         identityLabel.text = "Logged in as: \(name)"
     }
     
@@ -95,6 +95,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         self.authService?.authorizeUser(initiatingViewController: self) {
             self.setIdentityLabel()
         }
+        
     }
     
     @IBAction func dismiss(_ sender: Any) {

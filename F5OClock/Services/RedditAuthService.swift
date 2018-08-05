@@ -46,7 +46,6 @@ class RedditAuthService : AuthService {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://oauthcallback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
-            self.appContext.identity = Identity(credential: credential, name: "")
             self.initializeIdentity(success)
         }) { (error) in
             print("Authentication Error: \(error.description)")
@@ -61,7 +60,7 @@ class RedditAuthService : AuthService {
                 do {
                     let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                     let identity = self.appContext.identity
-                    self.appContext.identity = Identity(credential: identity!.credential, name: redditUser.name)
+                    self.appContext.identity = Identity(credential: identity!.credential, user: redditUser)
                     success()
                 } catch let jsonError {
                     print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
