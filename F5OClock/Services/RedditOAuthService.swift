@@ -36,12 +36,12 @@ extension SettingsViewController {
             "client_id" : RedditAuthorizationStrings.clientID.rawValue,
             "response_type" : "code",
             "state" : state,
-            "redirect_uri" : "f5oclock://callback",
+            "redirect_uri" : "f5oclock://oauthcallback",
             "duration" : "permanent",
             "scope" : "vote identity mysubreddits"
         ]
         
-        let _ = oauthswift.authorize(withCallbackURL: "f5oclock://callback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
+        let _ = oauthswift.authorize(withCallbackURL: "f5oclock://oauthcallback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
             self.retrieveIdentity()
         }) { (error) in
