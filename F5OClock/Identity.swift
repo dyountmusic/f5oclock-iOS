@@ -7,16 +7,15 @@
 //
 
 import Foundation
+import OAuthSwift
 
 class Identity {
     
-    let accessToken: String
-    let refreshToken: String
+    let credential: OAuthSwiftCredential
     let name: String
     
-    init (accessToken: String, refreshToken: String, name: String) {
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
+    init (credential: OAuthSwiftCredential, name: String) {
+        self.credential = credential
         self.name = name
     }
     
