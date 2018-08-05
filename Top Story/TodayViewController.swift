@@ -16,7 +16,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
     
-    var redditPostDownloader = RedditPostDownloader()
+    var redditPostDownloader = RedditPostDownloadService()
     var imageCache = WebImageCache()
 
     override func viewDidLoad() {

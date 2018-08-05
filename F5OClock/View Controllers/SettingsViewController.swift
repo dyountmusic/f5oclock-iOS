@@ -17,7 +17,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var identityLabel: UILabel!
     @IBOutlet weak var logInButton: UIButton!
     
-    var oauthAuthorizer: OAuthSwift?
+    var apiService = RedditAPIService()
+    
+    public var appContext: AppContext?
     
     var redditUser: RedditUser? {
         didSet {
@@ -46,7 +48,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
-        if oauthAuthorizer != nil {
+        if apiService.networkServiceModel.oauthAuthorizer != nil {
             retrieveIdentity()
         } else {
             identityLabel.text = ""

@@ -17,7 +17,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: Properties
     
-    let redditPostDownloader = RedditPostDownloader()
+    let redditPostDownloader = RedditPostDownloadService()
     let realTimeHandler = RealTimePostRefreshFetcher()
     let imageCache = WebImageCache()
     

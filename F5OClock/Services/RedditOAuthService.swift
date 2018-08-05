@@ -9,7 +9,7 @@
 import Foundation
 import OAuthSwift
 
-enum AuthorizationStrings: String {
+enum RedditAuthorizationStrings: String {
     case baseURL = "https://oauth.reddit.com"
     case authURL = "https://www.reddit.com/api/v1/authorize.compact?"
     case accessTokenURL = "https://www.reddit.com/api/v1/access_token"
@@ -19,21 +19,21 @@ enum AuthorizationStrings: String {
 extension SettingsViewController {
     
     func handleAuth() {
-        let oauthswift = OAuth2Swift(consumerKey: AuthorizationStrings.clientID.rawValue,
+        let oauthswift = OAuth2Swift(consumerKey: RedditAuthorizationStrings.clientID.rawValue,
                     consumerSecret: "",
-                    authorizeUrl: AuthorizationStrings.authURL.rawValue,
-                    accessTokenUrl: AuthorizationStrings.accessTokenURL.rawValue,
+                    authorizeUrl: RedditAuthorizationStrings.authURL.rawValue,
+                    accessTokenUrl: RedditAuthorizationStrings.accessTokenURL.rawValue,
                     responseType: "token"
         )
         
         oauthswift.accessTokenBasicAuthentification = true
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauthswift)
         
-        oauthAuthorizer = oauthswift
+        apiService.networkServiceModel.oauthAuthorizer = oauthswift
         
         let state = generateState(withLength: 20)
         let parameters = [
-            "client_id" : AuthorizationStrings.clientID.rawValue,
+            "client_id" : RedditAuthorizationStrings.clientID.rawValue,
             "response_type" : "code",
             "state" : state,
             "redirect_uri" : "f5oclock://callback",
@@ -51,8 +51,8 @@ extension SettingsViewController {
     }
     
     func retrieveIdentity() {
-        guard let authorizer = oauthAuthorizer else { return }
-        authorizer.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
+        guard let authorizer = apiService.networkServiceModel.oauthAuthorizer else { return }
+        authorizer.client.request(RedditAuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                 let identity = self.appContext?.identity
