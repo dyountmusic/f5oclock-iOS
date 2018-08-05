@@ -29,7 +29,7 @@ extension SettingsViewController {
         oauthswift.accessTokenBasicAuthentification = true
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauthswift)
         
-        apiService.networkServiceModel?.oauthAuthorizer = oauthswift
+        apiService.networkServiceModel.oauthAuthorizer = oauthswift
         
         let state = generateState(withLength: 20)
         let parameters = [
@@ -50,7 +50,7 @@ extension SettingsViewController {
     }
     
     func retrieveIdentity() {
-        guard let authorizer = apiService.networkServiceModel?.oauthAuthorizer else { return }
+        guard let authorizer = apiService.networkServiceModel.oauthAuthorizer else { return }
         authorizer.client.request(RedditAuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)

@@ -11,12 +11,12 @@ import OAuthSwift
 
 class RedditAPIService {
     
-    var networkServiceModel: NetworkingSerivceModel?
+    var networkServiceModel = NetworkingSerivceModel()
     
     func getUserInfo(completionHandler: @escaping (RedditUser?, Error?) -> Void) {
         let url = RedditAuthorizationStrings.baseURL.rawValue
         let path = "/api/v1/me"
-        let result = networkServiceModel?.oauthAuthorizer?.client.get(url + path, success: { (response) in
+        let result = networkServiceModel.oauthAuthorizer?.client.get(url + path, success: { (response) in
             // Success
             print("Got response!")
             print(response.dataString())

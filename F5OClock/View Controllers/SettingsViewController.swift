@@ -46,7 +46,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
-        if apiService.networkServiceModel?.oauthAuthorizer != nil {
+        if apiService.networkServiceModel.oauthAuthorizer != nil {
             retrieveIdentity()
         } else {
             identityLabel.text = ""
