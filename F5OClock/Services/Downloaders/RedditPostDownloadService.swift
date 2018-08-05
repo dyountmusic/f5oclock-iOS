@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RedditPostDownloader {
+class RedditPostDownloadService {
     
     // MARK: Properties
     
