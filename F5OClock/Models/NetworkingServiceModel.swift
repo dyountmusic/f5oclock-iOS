@@ -11,7 +11,12 @@ import OAuthSwift
 
 class NetworkingSerivceModel {
     
-    var oauthAuthorizer: OAuthSwift?
+    var oauthAuthorizer: OAuthSwift? {
+        didSet {
+            print("Set the oauth auth model obj!")
+        }
+    }
+    
     var redditUser: RedditUser?
     
 }
