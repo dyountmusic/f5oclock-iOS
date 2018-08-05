@@ -19,7 +19,6 @@ enum AuthorizationStrings: String {
 extension SettingsViewController {
     
     func handleAuth() {
-        
         let oauthswift = OAuth2Swift(consumerKey: AuthorizationStrings.clientID.rawValue,
                     consumerSecret: "",
                     authorizeUrl: AuthorizationStrings.authURL.rawValue,
@@ -44,9 +43,25 @@ extension SettingsViewController {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://callback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
+            self.retrieveIdentity()
         }) { (error) in
             print("Authentication Error: \(error.description)")
         }
+    }
+    
+    func retrieveIdentity() {
+        guard let authorizer = oauthAuthorizer else { return }
+        authorizer.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
+            do {
+                let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
+                self.redditUser = redditUser
+            } catch let jsonError {
+                print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
+            }
+        }, failure: { (error) in
+            print("Error retriving identity from reddit: \(error)")
+            
+        })
     }
     
     
