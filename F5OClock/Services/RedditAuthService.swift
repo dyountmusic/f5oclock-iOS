@@ -23,6 +23,7 @@ class RedditAuthService : AuthService {
     private var oauthSwift: OAuth2Swift?
     
     func authorizeUser(initiatingViewController: UIViewController, _ success: @escaping () -> ()) {
+        
         let oauthswift = OAuth2Swift(consumerKey: RedditAuthorizationStrings.clientID.rawValue,
                     consumerSecret: "",
                     authorizeUrl: RedditAuthorizationStrings.authURL.rawValue,
@@ -47,7 +48,7 @@ class RedditAuthService : AuthService {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://oauthcallback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
-            self.storeTokenToKeychain(cred: credential)
+            self.storeTokensToDisk(cred: credential)
             self.initializeIdentity(credential: credential, success)
         }) { (error) in
             print("Authentication Error: \(error.description)")
@@ -73,21 +74,33 @@ class RedditAuthService : AuthService {
         }
     }
     
-    private func checkKeychainForToken() {
-        let keychain = KeychainSwift()
-        guard let accessToken = keychain.get("access-token") else { return }
-        guard let accessTokenSecret = keychain.get("access-token-secret") else { return }
+    private func storeTokensToDisk(cred: OAuthSwiftCredential) {
+        let userDefaults = UserDefaults()
+        userDefaults.set(cred.oauthToken, forKey: "oauth-token")
+        userDefaults.set(cred.oauthTokenSecret, forKey: "oauth-token-secret")
+        userDefaults.set(cred.oauthRefreshToken, forKey: "oauth-refresh-token")
     }
     
-    private func storeTokenToKeychain(cred: OAuthSwiftCredential) {
-        let keychain = KeychainSwift()
-        keychain.synchronizable = true
-        print("This is the client token: \(cred.consumerKey)")
-        print("This is the client token secret: \(cred.consumerSecret)")
-        print("Setting access token: \(cred.oauthToken)")
-        print("Setting access token secret: \(cred.oauthTokenSecret)")
-        keychain.set(cred.oauthToken, forKey: "access-token")
-        keychain.set(cred.oauthTokenSecret, forKey: "access-token-secret")
+    internal func restoreAuthorizedUser() {
+        print("Attempting restore")
+        let restoreableOauthSwift = OAuth2Swift(consumerKey: RedditAuthorizationStrings.clientID.rawValue,
+                                    consumerSecret: "",
+                                    authorizeUrl: RedditAuthorizationStrings.authURL.rawValue,
+                                    accessTokenUrl: RedditAuthorizationStrings.accessTokenURL.rawValue,
+                                    responseType: "token"
+        )
+        
+        let userDefaults = UserDefaults()
+        guard let token = userDefaults.string(forKey: "oauth-token") else { print("Oauth Token Not found"); return }
+        guard let tokenSecret = userDefaults.string(forKey: "oauth-token-secret") else { print("Oauth Token Secret Not found"); return }
+        guard let refreshToken = userDefaults.string(forKey: "oauth-refresh-token") else { print("Refresh Token Not found"); return }
+        
+        restoreableOauthSwift.client.credential.oauthToken = token
+        restoreableOauthSwift.client.credential.oauthRefreshToken = refreshToken
+        restoreableOauthSwift.client.credential.oauthTokenSecret = tokenSecret
+        
+        self.oauthSwift = restoreableOauthSwift
+        print("restore successful...")
     }
     
     func getAuthorizedClient(_ vc: UIViewController) -> OAuthSwiftClient? {

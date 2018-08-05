@@ -37,6 +37,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         } else {
             realTimeSwitch.isOn = false
         }
+        
+        authService?.restoreAuthorizedUser()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
