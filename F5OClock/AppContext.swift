@@ -10,6 +10,6 @@ import Foundation
 
 class AppContext {
     
-    
+    var identity: Identity?
     
 }

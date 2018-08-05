@@ -21,6 +21,8 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     let realTimeHandler = RealTimePostRefreshFetcher()
     let imageCache = WebImageCache()
     
+    public var appContext: AppContext?
+    
     var isRealTime: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
         set { UserDefaults.standard.set(newValue, forKey: "RealTimeEnabled") }
