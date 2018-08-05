@@ -8,11 +8,30 @@
 
 import UIKit
 import OAuthSwift
+import Swinject
+import SwinjectStoryboard
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var container: Container {
+        let container = Container()
+        Container.loggingFunction = nil
+        
+        // MARK: Register Services
+        container.register(AppContext.self) { _ in AppContext() }.inObjectScope(.container)
+        
+        // MARK: Register Storyboards
+        container.storyboardInitCompleted(RisingStoriesViewController.self) { (r, c) in
+            c.appContext = r.resolve(AppContext.self)
+        }
+        container.storyboardInitCompleted(SettingsViewController.self) { (r, c) in
+            c.appContext = r.resolve(AppContext.self)
+        }
+        
+        return container
+    }
     
     var isFirstLaunch: Bool {
         get { return UserDefaults.standard.bool(forKey: "IsFirstLaunch") }
@@ -21,6 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let storyboard = SwinjectStoryboard.create(name: "F5OClock", bundle: nil, container: container)
+        self.window?.rootViewController = storyboard.instantiateInitialViewController()
         
         isFirstLaunch = true
         

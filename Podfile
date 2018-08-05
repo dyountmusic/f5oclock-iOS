@@ -8,6 +8,8 @@ target 'F5OClock' do
 
   # Pods for F5OClock
   pod 'OAuthSwift', '~> 1.2.0'
+  pod 'Swinject', '~> 2.4.1'
+  pod 'SwinjectStoryboard', '~> 2.0.2'
 
   target 'F5OClockTests' do
     inherit! :search_paths

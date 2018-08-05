@@ -43,6 +43,7 @@ extension SettingsViewController {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://callback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
+            self.appContext?.identity = Identity(accessToken: credential.oauthToken, refreshToken: credential.oauthRefreshToken, name: "")
             self.retrieveIdentity()
         }) { (error) in
             print("Authentication Error: \(error.description)")
@@ -54,6 +55,8 @@ extension SettingsViewController {
         authorizer.client.request(AuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
+                let identity = self.appContext?.identity
+                self.appContext?.identity = Identity(accessToken: identity!.accessToken, refreshToken: identity!.refreshToken, name: redditUser.name)
                 self.redditUser = redditUser
             } catch let jsonError {
                 print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
