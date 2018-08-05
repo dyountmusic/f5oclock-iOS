@@ -29,6 +29,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        authService?.restoreAuthorizedUser()
+        print("I am: \(appContext?.identity?.redditUser.name)")
     }
     
     fileprivate func checkForRealTime() {
@@ -37,9 +39,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         } else {
             realTimeSwitch.isOn = false
         }
-        
-        authService?.restoreAuthorizedUser()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

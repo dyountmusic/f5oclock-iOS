@@ -63,6 +63,7 @@ class RedditAuthService : AuthService {
                 do {
                     let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                     self.appContext.identity = Identity(credential: credential, user: redditUser)
+                    self.storeUserToDisk(name: redditUser.name)
                     success()
                 } catch let jsonError {
                     print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
@@ -79,6 +80,11 @@ class RedditAuthService : AuthService {
         userDefaults.set(cred.oauthToken, forKey: "oauth-token")
         userDefaults.set(cred.oauthTokenSecret, forKey: "oauth-token-secret")
         userDefaults.set(cred.oauthRefreshToken, forKey: "oauth-refresh-token")
+    }
+    
+    private func storeUserToDisk(name: String) {
+        let userDefaults = UserDefaults()
+        userDefaults.set(name, forKey: "currentAuthenticatedUser")
     }
     
     internal func restoreAuthorizedUser() {
@@ -99,7 +105,11 @@ class RedditAuthService : AuthService {
         restoreableOauthSwift.client.credential.oauthRefreshToken = refreshToken
         restoreableOauthSwift.client.credential.oauthTokenSecret = tokenSecret
         
+        guard let user = userDefaults.string(forKey: "currentAuthenticatedUser") else { print("Couldn't get current authenticated user"); return }
+
+        self.appContext.identity = Identity(credential: restoreableOauthSwift.client.credential, user: RedditUser(name: user))
         self.oauthSwift = restoreableOauthSwift
+        
         print("restore successful...")
     }
     
