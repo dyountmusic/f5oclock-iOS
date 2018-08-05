@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     var apiService = RedditAPIService()
     
     public var appContext: AppContext?
+    public var authService: AuthService?
     
     var redditUser: RedditUser? {
         didSet {
@@ -48,8 +49,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
-        if apiService.networkServiceModel.oauthAuthorizer != nil {
-            retrieveIdentity()
+        if let authService = self.authService {
+            authService.initializeIdentity() {
+                self.setIdentityLabel()
+            }
         } else {
             identityLabel.text = ""
         }
@@ -94,8 +97,15 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         controller.dismiss(animated: true, completion: nil)
     }
     
+    private func setIdentityLabel() {
+        let name = self.appContext?.identity?.name ?? ""
+        identityLabel.text = "Logged in as: \(name)"
+    }
+    
     @IBAction func logIntoReddit(_ sender: Any) {
-        handleAuth()
+        self.authService?.authorizeUser(initiatingViewController: self) {
+            self.setIdentityLabel()
+        }
     }
     
     @IBAction func dismiss(_ sender: Any) {

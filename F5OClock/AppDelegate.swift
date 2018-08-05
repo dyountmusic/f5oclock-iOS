@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: Register Services
         container.register(AppContext.self) { _ in AppContext() }.inObjectScope(.container)
+        container.register(AuthService.self) { r in
+            let appContext = r.resolve(AppContext.self)!
+            return RedditAuthService(appContext: appContext)
+        }
         
         // MARK: Register Storyboards
         container.storyboardInitCompleted(RisingStoriesViewController.self) { (r, c) in
@@ -28,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         container.storyboardInitCompleted(SettingsViewController.self) { (r, c) in
             c.appContext = r.resolve(AppContext.self)
+            c.authService = r.resolve(AuthService.self)
         }
         
         return container
@@ -40,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        UserDefaults.standard.set(false, forKey: "RealTimeEnabled")
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let storyboard = SwinjectStoryboard.create(name: "F5OClock", bundle: nil, container: container)
@@ -77,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
-        if (url.host == "callback") {
+        if (url.host == "oauthcallback") {
             OAuthSwift.handle(url: url)
         }
         return true
