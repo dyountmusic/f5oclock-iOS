@@ -32,8 +32,6 @@ class RedditAuthService : AuthService {
         oauthswift.accessTokenBasicAuthentification = true
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: initiatingViewController, oauthSwift: oauthswift)
         
-        self.oauthSwift = oauthswift
-        
         let state = generateState(withLength: 20)
         let parameters = [
             "client_id" : RedditAuthorizationStrings.clientID.rawValue,
@@ -46,6 +44,7 @@ class RedditAuthService : AuthService {
         
         let _ = oauthswift.authorize(withCallbackURL: "f5oclock://oauthcallback", scope: "vote identity mysubreddits", state: state, parameters: parameters, headers: nil, success: { (credential, response, parameters) in
             // Success
+            self.oauthSwift = oauthswift
             self.appContext.identity = Identity(credential: credential, name: "")
             self.initializeIdentity(success)
         }) { (error) in
@@ -73,8 +72,18 @@ class RedditAuthService : AuthService {
         }
     }
     
-    func getAuthorizedClient() -> OAuthSwiftClient? {
-        return self.oauthSwift?.client
+    func getAuthorizedClient(_ vc: UIViewController) -> OAuthSwiftClient? {
+        guard let client = self.oauthSwift?.client else {
+            let loginAlert = UIAlertController.init(title: "Login to Continue", message: "You must be logged in to perform that action.", preferredStyle: .alert)
+            loginAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                
+            }))
+            vc.present(loginAlert, animated: true, completion: nil)
+            
+            return nil
+        }
+        
+        return client
     }
     
     init(appContext: AppContext) {

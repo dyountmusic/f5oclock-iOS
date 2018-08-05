@@ -13,11 +13,11 @@ class RedditAPIService {
     
     private let authService: AuthService
     
-    func getUserInfo(completionHandler: @escaping (RedditUser?, Error?) -> Void) {
+    func getUserInfo(_ vc: UIViewController, completionHandler: @escaping (RedditUser?, Error?) -> Void) {
         let url = RedditAuthorizationStrings.baseURL.rawValue
         let path = "/api/v1/me"
         
-        guard let client = self.authService.getAuthorizedClient() else { return }
+        guard let client = self.authService.getAuthorizedClient(vc) else { return }
         
         let result = client.get(url + path, success: { (response) in
             // Success

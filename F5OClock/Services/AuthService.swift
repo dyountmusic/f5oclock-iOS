@@ -16,5 +16,5 @@ protocol AuthService {
     
     func initializeIdentity(_ success: @escaping () -> ())
     
-    func getAuthorizedClient() -> OAuthSwiftClient?
+    func getAuthorizedClient(_ vc: UIViewController) -> OAuthSwiftClient?
 }

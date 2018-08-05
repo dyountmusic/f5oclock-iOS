@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.register(AuthService.self) { r in
             let appContext = r.resolve(AppContext.self)!
             return RedditAuthService(appContext: appContext)
-        }
+        }.inObjectScope(.container)
         container.register(RedditAPIService.self) { r in
             let authService = r.resolve(AuthService.self)!
             return RedditAPIService(authService: authService)
