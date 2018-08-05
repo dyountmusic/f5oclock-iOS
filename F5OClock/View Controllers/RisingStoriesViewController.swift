@@ -109,13 +109,11 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         guard let thumbnailURL = URL(string:redditPostDownloader.posts[indexPath.row].thumbnail) else {
             return cell
         }
-        
-		imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
-			DispatchQueue.main.async() {
-				cell.thumbnail.image = image
-			}
-		}
-
+        imageCache.loadImageAsync(url: thumbnailURL) { (image) -> (Void) in
+            DispatchQueue.main.async() {
+                cell.thumbnail.image = image
+            }
+        }
         return cell
     }
     

@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12ACD7E53839C0CEA43084EE /* Pods_F5OClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFCD6B471629B2711F45BF8 /* Pods_F5OClock.framework */; };
+		241DA82515893206C465AA33 /* Pods_F5OClockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F4D8913A44560EC122F66B /* Pods_F5OClockTests.framework */; };
+		59775B1AE26D433F63EAC6E7 /* Pods_F5OClockUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E38FF0FA133F0ADBF93BD6A /* Pods_F5OClockUITests.framework */; };
 		BFB39E1E1FBBE0A100B4AB09 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */; };
 		BFF5762E1FBCE64C006CA25D /* TableViewRowAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */; };
+		D43EF601AEBC1C33073635DC /* Pods_Top_Story.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23EE026B7A4BAF7F18659D2 /* Pods_Top_Story.framework */; };
+		EA025FE221149D0D00787D80 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA025FE121149D0D00787D80 /* AppContext.swift */; };
+		EA025FE42114A2FB00787D80 /* RedditUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA025FE32114A2FB00787D80 /* RedditUser.swift */; };
+		EA025FE52114A30900787D80 /* RedditUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA025FE32114A2FB00787D80 /* RedditUser.swift */; };
 		EA02BB071F907523000A8AF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB061F907523000A8AF8 /* AppDelegate.swift */; };
 		EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */; };
 		EA02BB0C1F907523000A8AF8 /* F5OClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02BB0A1F907523000A8AF8 /* F5OClock.storyboard */; };
@@ -29,6 +36,7 @@
 		EA743985204A2F22005A3B14 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA743984204A2F22005A3B14 /* TodayViewController.swift */; };
 		EA743988204A2F22005A3B14 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA743986204A2F22005A3B14 /* MainInterface.storyboard */; };
 		EA74398C204A2F22005A3B14 /* Top Story.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EA74397F204A2F22005A3B14 /* Top Story.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EA86B28121141653005B473E /* RedditOAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA86B28021141653005B473E /* RedditOAuthService.swift */; };
 		EAFDB3A02048DF2300E4D215 /* RedditPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB39F2048DF2300E4D215 /* RedditPost.swift */; };
 		EAFDB3A72048E31600E4D215 /* RedditPostDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */; };
 /* End PBXBuildFile section */
@@ -72,8 +80,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		24CB7AD81F5E3A58AEEB5797 /* Pods-F5OClockUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F5OClockUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-F5OClockUITests/Pods-F5OClockUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D3019501A5C38E83758297D /* Pods-F5OClockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F5OClockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-F5OClockTests/Pods-F5OClockTests.release.xcconfig"; sourceTree = "<group>"; };
+		58F4D8913A44560EC122F66B /* Pods_F5OClockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_F5OClockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E38FF0FA133F0ADBF93BD6A /* Pods_F5OClockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_F5OClockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68B5E702BF79CA78FE5E4A63 /* Pods-F5OClock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F5OClock.release.xcconfig"; path = "Pods/Target Support Files/Pods-F5OClock/Pods-F5OClock.release.xcconfig"; sourceTree = "<group>"; };
+		6AFCD6B471629B2711F45BF8 /* Pods_F5OClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_F5OClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		848CCD77C0A86E308BFAFD41 /* Pods-F5OClock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F5OClock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-F5OClock/Pods-F5OClock.debug.xcconfig"; sourceTree = "<group>"; };
+		8FDE68F8854B8527B373F954 /* Pods-F5OClockUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F5OClockUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-F5OClockUITests/Pods-F5OClockUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AD9E924E08FC484EF4699160 /* Pods-Top Story.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Top Story.release.xcconfig"; path = "Pods/Target Support Files/Pods-Top Story/Pods-Top Story.release.xcconfig"; sourceTree = "<group>"; };
+		AF42A0B0DDF9A6A6D2446801 /* Pods-F5OClockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F5OClockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-F5OClockTests/Pods-F5OClockTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCache.swift; sourceTree = "<group>"; };
 		BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRowAnimator.swift; sourceTree = "<group>"; };
+		E0AD2212E13B6FC5EE5FA252 /* Pods-Top Story.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Top Story.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Top Story/Pods-Top Story.debug.xcconfig"; sourceTree = "<group>"; };
+		EA025FE121149D0D00787D80 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
+		EA025FE32114A2FB00787D80 /* RedditUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditUser.swift; sourceTree = "<group>"; };
 		EA02BB031F907523000A8AF8 /* F5OClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F5OClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA02BB061F907523000A8AF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RisingStoriesViewController.swift; sourceTree = "<group>"; };
@@ -97,9 +118,11 @@
 		EA743984204A2F22005A3B14 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		EA743987204A2F22005A3B14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		EA743989204A2F22005A3B14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA86B28021141653005B473E /* RedditOAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditOAuthService.swift; sourceTree = "<group>"; };
 		EAC48332204A6892000165CA /* F5OClock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = F5OClock.entitlements; sourceTree = "<group>"; };
 		EAFDB39F2048DF2300E4D215 /* RedditPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPost.swift; sourceTree = "<group>"; };
 		EAFDB3A62048E31600E4D215 /* RedditPostDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostDownloader.swift; sourceTree = "<group>"; };
+		F23EE026B7A4BAF7F18659D2 /* Pods_Top_Story.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Top_Story.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12ACD7E53839C0CEA43084EE /* Pods_F5OClock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				241DA82515893206C465AA33 /* Pods_F5OClockTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59775B1AE26D433F63EAC6E7 /* Pods_F5OClockUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,12 +155,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA743982204A2F22005A3B14 /* NotificationCenter.framework in Frameworks */,
+				D43EF601AEBC1C33073635DC /* Pods_Top_Story.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1321DE20B8DFA76DB846C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				848CCD77C0A86E308BFAFD41 /* Pods-F5OClock.debug.xcconfig */,
+				68B5E702BF79CA78FE5E4A63 /* Pods-F5OClock.release.xcconfig */,
+				AF42A0B0DDF9A6A6D2446801 /* Pods-F5OClockTests.debug.xcconfig */,
+				2D3019501A5C38E83758297D /* Pods-F5OClockTests.release.xcconfig */,
+				24CB7AD81F5E3A58AEEB5797 /* Pods-F5OClockUITests.debug.xcconfig */,
+				8FDE68F8854B8527B373F954 /* Pods-F5OClockUITests.release.xcconfig */,
+				E0AD2212E13B6FC5EE5FA252 /* Pods-Top Story.debug.xcconfig */,
+				AD9E924E08FC484EF4699160 /* Pods-Top Story.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EA01EDAA2048FA5900C433E9 /* Downloaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +194,7 @@
 				EA02BB251F907524000A8AF8 /* F5OClockUITests */,
 				EA743980204A2F22005A3B14 /* Frameworks */,
 				EA02BB041F907523000A8AF8 /* Products */,
+				4F1321DE20B8DFA76DB846C4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,7 +216,9 @@
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */,
 				BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */,
+				EA025FE121149D0D00787D80 /* AppContext.swift */,
 				EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */,
+				EA86B28021141653005B473E /* RedditOAuthService.swift */,
 				EA01EDAA2048FA5900C433E9 /* Downloaders */,
 				EA02BB361F907547000A8AF8 /* Models */,
 				EA42B9DC1F95698B009D6521 /* TableView Cells */,
@@ -234,6 +279,10 @@
 			isa = PBXGroup;
 			children = (
 				EA743981204A2F22005A3B14 /* NotificationCenter.framework */,
+				6AFCD6B471629B2711F45BF8 /* Pods_F5OClock.framework */,
+				58F4D8913A44560EC122F66B /* Pods_F5OClockTests.framework */,
+				5E38FF0FA133F0ADBF93BD6A /* Pods_F5OClockUITests.framework */,
+				F23EE026B7A4BAF7F18659D2 /* Pods_Top_Story.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -252,6 +301,7 @@
 		EAFDB3A52048E1BA00E4D215 /* Reddit JSON */ = {
 			isa = PBXGroup;
 			children = (
+				EA025FE32114A2FB00787D80 /* RedditUser.swift */,
 				EAFDB39F2048DF2300E4D215 /* RedditPost.swift */,
 			);
 			path = "Reddit JSON";
@@ -264,10 +314,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA02BB2B1F907524000A8AF8 /* Build configuration list for PBXNativeTarget "F5OClock" */;
 			buildPhases = (
+				DD44B33CC1FFFC0C3F78019F /* [CP] Check Pods Manifest.lock */,
 				EA02BAFF1F907523000A8AF8 /* Sources */,
 				EA02BB001F907523000A8AF8 /* Frameworks */,
 				EA02BB011F907523000A8AF8 /* Resources */,
 				EA743990204A2F22005A3B14 /* Embed App Extensions */,
+				1A118DE0FCE9B82EED022631 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -283,6 +335,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA02BB2E1F907524000A8AF8 /* Build configuration list for PBXNativeTarget "F5OClockTests" */;
 			buildPhases = (
+				E4619194E83FD58F0464702C /* [CP] Check Pods Manifest.lock */,
 				EA02BB131F907524000A8AF8 /* Sources */,
 				EA02BB141F907524000A8AF8 /* Frameworks */,
 				EA02BB151F907524000A8AF8 /* Resources */,
@@ -301,6 +354,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA02BB311F907524000A8AF8 /* Build configuration list for PBXNativeTarget "F5OClockUITests" */;
 			buildPhases = (
+				1492914973A692CA53D2CE44 /* [CP] Check Pods Manifest.lock */,
 				EA02BB1E1F907524000A8AF8 /* Sources */,
 				EA02BB1F1F907524000A8AF8 /* Frameworks */,
 				EA02BB201F907524000A8AF8 /* Resources */,
@@ -319,6 +373,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA74398F204A2F22005A3B14 /* Build configuration list for PBXNativeTarget "Top Story" */;
 			buildPhases = (
+				636E82105E82ED71CF805D48 /* [CP] Check Pods Manifest.lock */,
 				EA74397B204A2F22005A3B14 /* Sources */,
 				EA74397C204A2F22005A3B14 /* Frameworks */,
 				EA74397D204A2F22005A3B14 /* Resources */,
@@ -339,11 +394,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Daniel Yount";
 				TargetAttributes = {
 					EA02BB021F907523000A8AF8 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -353,16 +409,19 @@
 					};
 					EA02BB161F907524000A8AF8 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EA02BB021F907523000A8AF8;
 					};
 					EA02BB211F907524000A8AF8 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EA02BB021F907523000A8AF8;
 					};
 					EA74397E204A2F22005A3B14 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -429,15 +488,111 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1492914973A692CA53D2CE44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-F5OClockUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1A118DE0FCE9B82EED022631 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-F5OClock/Pods-F5OClock-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-F5OClock/Pods-F5OClock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		636E82105E82ED71CF805D48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Top Story-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD44B33CC1FFFC0C3F78019F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-F5OClock-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4619194E83FD58F0464702C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-F5OClockTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EA02BAFF1F907523000A8AF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EA65E3411F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift in Sources */,
+				EA025FE42114A2FB00787D80 /* RedditUser.swift in Sources */,
+				EA025FE221149D0D00787D80 /* AppContext.swift in Sources */,
 				EA65E3431F92AA4600B0E33D /* PostTableViewCell.swift in Sources */,
 				EA02BB091F907523000A8AF8 /* RisingStoriesViewController.swift in Sources */,
 				BFF5762E1FBCE64C006CA25D /* TableViewRowAnimator.swift in Sources */,
+				EA86B28121141653005B473E /* RedditOAuthService.swift in Sources */,
 				EAFDB3A02048DF2300E4D215 /* RedditPost.swift in Sources */,
 				BFB39E1E1FBBE0A100B4AB09 /* WebImageCache.swift in Sources */,
 				EAFDB3A72048E31600E4D215 /* RedditPostDownloader.swift in Sources */,
@@ -467,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA025FE52114A30900787D80 /* RedditUser.swift in Sources */,
 				EA53D9FA20CA10BB00FB0F48 /* RedditModel.swift in Sources */,
 				EA743985204A2F22005A3B14 /* TodayViewController.swift in Sources */,
 				EA53D9FB20CA110E00FB0F48 /* RedditPost.swift in Sources */,
@@ -537,6 +693,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -544,6 +701,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -594,6 +752,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -601,6 +760,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -632,8 +792,8 @@
 		};
 		EA02BB2C1F907524000A8AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 848CCD77C0A86E308BFAFD41 /* Pods-F5OClock.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = F5OClock/F5OClock.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -645,15 +805,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielyount.F5OClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		EA02BB2D1F907524000A8AF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68B5E702BF79CA78FE5E4A63 /* Pods-F5OClock.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = F5OClock/F5OClock.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -665,13 +825,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielyount.F5OClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		EA02BB2F1F907524000A8AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF42A0B0DDF9A6A6D2446801 /* Pods-F5OClockTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -682,7 +843,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielyount.F5OClockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/F5OClock.app/F5OClock";
 			};
@@ -690,6 +851,7 @@
 		};
 		EA02BB301F907524000A8AF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D3019501A5C38E83758297D /* Pods-F5OClockTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -700,7 +862,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielyount.F5OClockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/F5OClock.app/F5OClock";
 			};
@@ -708,6 +870,7 @@
 		};
 		EA02BB321F907524000A8AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24CB7AD81F5E3A58AEEB5797 /* Pods-F5OClockUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -717,7 +880,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielyount.F5OClockUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = F5OClock;
 			};
@@ -725,6 +888,7 @@
 		};
 		EA02BB331F907524000A8AF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FDE68F8854B8527B373F954 /* Pods-F5OClockUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -734,7 +898,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.danielyount.F5OClockUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = F5OClock;
 			};
@@ -742,6 +906,7 @@
 		};
 		EA74398D204A2F22005A3B14 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0AD2212E13B6FC5EE5FA252 /* Pods-Top Story.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -755,13 +920,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielyount.F5OClock.Top-Story";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		EA74398E204A2F22005A3B14 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD9E924E08FC484EF4699160 /* Pods-Top Story.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -775,7 +941,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielyount.F5OClock.Top-Story";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
