@@ -71,6 +71,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wG-oJ-MFf">
+                                <rect key="frame" x="164" y="462" width="46" height="30"/>
+                                <state key="normal" title="Test"/>
+                                <connections>
+                                    <action selector="testRedditAPI:" destination="Tip-4P-faa" eventType="touchUpInside" id="8aX-tg-YLu"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqa-F6-c32">
+                                <rect key="frame" x="16" y="512" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -80,19 +93,25 @@
                             <constraint firstItem="7Sc-uc-l0w" firstAttribute="centerX" secondItem="FcN-mK-ph1" secondAttribute="centerX" id="Ayf-Mu-qNp"/>
                             <constraint firstItem="7Sc-uc-l0w" firstAttribute="leading" secondItem="4wF-Nd-FaS" secondAttribute="leading" constant="132" id="BUw-1b-zp3"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="centerX" secondItem="STI-wv-ok9" secondAttribute="centerX" id="LFN-F1-Fk4"/>
+                            <constraint firstAttribute="bottom" secondItem="bqa-F6-c32" secondAttribute="bottom" constant="279" id="LJ4-8y-JSS"/>
                             <constraint firstItem="bpl-N1-4O4" firstAttribute="trailing" secondItem="EaF-jP-IOO" secondAttribute="trailingMargin" id="Pdh-LK-hoZ"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="trailing" secondItem="BGb-T9-FQK" secondAttribute="trailing" id="Q9K-VL-0jl"/>
                             <constraint firstItem="STI-wv-ok9" firstAttribute="leading" secondItem="4wF-Nd-FaS" secondAttribute="leading" constant="16" id="R5L-vY-Lih"/>
                             <constraint firstItem="4wF-Nd-FaS" firstAttribute="bottom" secondItem="FcN-mK-ph1" secondAttribute="bottom" constant="8" id="X3L-Ev-sc1"/>
+                            <constraint firstItem="bqa-F6-c32" firstAttribute="leading" secondItem="BGb-T9-FQK" secondAttribute="leading" id="ZeW-r2-tYc"/>
                             <constraint firstItem="STI-wv-ok9" firstAttribute="top" secondItem="NRq-zZ-ffo" secondAttribute="bottom" constant="8" symbolic="YES" id="aaU-TK-7lT"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="bpl-N1-4O4" secondAttribute="top" id="bCV-Hd-9ox"/>
+                            <constraint firstItem="3wG-oJ-MFf" firstAttribute="centerX" secondItem="bqa-F6-c32" secondAttribute="centerX" id="fNO-QU-N34"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="EaF-jP-IOO" secondAttribute="leadingMargin" id="fYT-MW-hj5"/>
                             <constraint firstItem="BGb-T9-FQK" firstAttribute="top" secondItem="STI-wv-ok9" secondAttribute="bottom" constant="8" symbolic="YES" id="iPE-2j-CJe"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="leading" secondItem="NRq-zZ-ffo" secondAttribute="leading" id="lSy-EM-i2W"/>
                             <constraint firstItem="FcN-mK-ph1" firstAttribute="top" secondItem="7Sc-uc-l0w" secondAttribute="bottom" constant="8" symbolic="YES" id="lVN-lg-Sey"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="leading" secondItem="BGb-T9-FQK" secondAttribute="leading" id="nYZ-PX-ubM"/>
                             <constraint firstItem="NRq-zZ-ffo" firstAttribute="top" secondItem="cUJ-3Y-IHi" secondAttribute="bottom" constant="8" symbolic="YES" id="ont-aZ-29x"/>
+                            <constraint firstItem="bqa-F6-c32" firstAttribute="trailing" secondItem="BGb-T9-FQK" secondAttribute="trailing" id="qaX-rF-DxO"/>
                             <constraint firstItem="cUJ-3Y-IHi" firstAttribute="top" secondItem="4wF-Nd-FaS" secondAttribute="top" constant="28" id="wPK-qE-k3V"/>
+                            <constraint firstItem="3wG-oJ-MFf" firstAttribute="leading" secondItem="4wF-Nd-FaS" secondAttribute="leading" constant="164" id="yJK-kT-edj"/>
+                            <constraint firstItem="bqa-F6-c32" firstAttribute="top" secondItem="3wG-oJ-MFf" secondAttribute="bottom" constant="20" id="z8X-DJ-WTx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4wF-Nd-FaS"/>
                     </view>
@@ -105,6 +124,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="authLabel" destination="bqa-F6-c32" id="SIn-Sk-i4z"/>
                         <outlet property="identityLabel" destination="BGb-T9-FQK" id="IOA-WU-wyf"/>
                         <outlet property="logInButton" destination="STI-wv-ok9" id="nXi-Yc-iCf"/>
                         <outlet property="realTimeSwitch" destination="bpl-N1-4O4" id="04y-Xe-7kq"/>

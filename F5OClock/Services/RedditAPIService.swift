@@ -21,7 +21,6 @@ class RedditAPIService {
         
         _ = client.get(url + path, success: { (response) in
             // Success
-            print("Got user info response!")
             do {
                 let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                 completionHandler(redditUser, nil)
@@ -30,10 +29,19 @@ class RedditAPIService {
                 completionHandler(nil, jsonError)
             }
         }, failure: { (error) in
+            if error.localizedDescription.description == "The operation couldn’t be completed. (OAuthSwiftError error -2.)" {
+                self.authService.renewAccessToken()
+                // Try request again
+                self.getUserInfo(vc, completionHandler: { (user, error) in
+                    completionHandler(user, error)
+                })
+            }
             completionHandler(nil, error)
         })
         
     }
+    
+    
     
     func upvotePost() {
         

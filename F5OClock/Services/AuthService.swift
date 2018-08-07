@@ -17,4 +17,7 @@ protocol AuthService {
     func getAuthorizedClient(_ vc: UIViewController) -> OAuthSwiftClient?
     
     func restoreAuthorizedUser()
+    
+    func renewAccessToken()
+    
 }

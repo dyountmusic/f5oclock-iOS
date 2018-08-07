@@ -88,7 +88,6 @@ class RedditAuthService : AuthService {
     }
     
     internal func restoreAuthorizedUser() {
-        print("Attempting restore")
         let restoreableOauthSwift = OAuth2Swift(consumerKey: RedditAuthorizationStrings.clientID.rawValue,
                                     consumerSecret: "",
                                     authorizeUrl: RedditAuthorizationStrings.authURL.rawValue,
@@ -109,8 +108,6 @@ class RedditAuthService : AuthService {
 
         self.appContext.identity = Identity(credential: restoreableOauthSwift.client.credential, user: RedditUser(name: user))
         self.oauthSwift = restoreableOauthSwift
-        
-        print("restore successful...")
     }
     
     func getAuthorizedClient(_ vc: UIViewController) -> OAuthSwiftClient? {
@@ -125,6 +122,22 @@ class RedditAuthService : AuthService {
         }
         
         return client
+    }
+    
+    func renewAccessToken() {
+        guard let oauth = oauthSwift else { return }
+        oauth.accessTokenBasicAuthentification = true
+        guard let refreshToken = UserDefaults().string(forKey: "oauth-refresh-token") else { return }
+        
+        oauth.renewAccessToken(withRefreshToken: refreshToken, success: { (credential, response, parameters) in
+            // Success
+            
+        }) { (error) in
+            // Failure
+            print(error.localizedDescription)
+        }
+        
+        
     }
     
     init(appContext: AppContext) {

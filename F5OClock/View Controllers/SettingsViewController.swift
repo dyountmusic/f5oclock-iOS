@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var realTimeSwitch: UISwitch!
     @IBOutlet weak var identityLabel: UILabel!
     @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var authLabel: UILabel!
     
     public var appContext: AppContext?
     public var authService: AuthService?
@@ -30,7 +31,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         authService?.restoreAuthorizedUser()
-        print("I am: \(appContext?.identity?.redditUser.name)")
     }
     
     fileprivate func checkForRealTime() {
@@ -92,6 +92,19 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     private func setIdentityLabel() {
         let name = self.appContext?.identity?.redditUser.name ?? ""
         identityLabel.text = "Logged in as: \(name)"
+    }
+    
+    @IBAction func testRedditAPI(_ sender: Any) {
+        guard let auth = authService else { return }
+        let redditAPI = RedditAPIService(authService: auth)
+        self.authLabel.text = "Testing..."
+        redditAPI.getUserInfo(self) { (user, error) in
+            if (error != nil) {
+                self.authLabel.text = "🔴"
+            } else {
+                self.authLabel.text = "✅"
+            }
+        }
     }
     
     @IBAction func logIntoReddit(_ sender: Any) {
