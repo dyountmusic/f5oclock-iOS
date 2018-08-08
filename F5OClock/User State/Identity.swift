@@ -11,11 +11,11 @@ import OAuthSwift
 
 class Identity {
     
-    var credential: OAuthSwiftCredential
+    var oauthSwift: OAuthSwift
     var redditUser: RedditUser
     
-    init (credential: OAuthSwiftCredential, user: RedditUser) {
-        self.credential = credential
+    init (oauth: OAuthSwift, user: RedditUser) {
+        self.oauthSwift = oauth
         self.redditUser = user
     }
     

@@ -90,7 +90,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     private func setIdentityLabel() {
-        let name = self.appContext?.identity?.redditUser.name ?? ""
+        let name = self.appContext?.identity?.redditUser.name ?? "Not Authenticated"
         identityLabel.text = "Logged in as: \(name)"
     }
     
@@ -114,6 +114,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         
     }
     
+    @IBAction func logOutOfReddit(_ sender: Any) {
+        authService?.logOut()
+        setIdentityLabel()
+    }
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

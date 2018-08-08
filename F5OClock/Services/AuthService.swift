@@ -18,6 +18,8 @@ protocol AuthService {
     
     func restoreAuthorizedUser()
     
-    func renewAccessToken()
+    func renewAccessToken(completionHandler: @escaping (Error?) -> Void)
+    
+    func logOut()
     
 }

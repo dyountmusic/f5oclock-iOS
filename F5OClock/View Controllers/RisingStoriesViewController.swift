@@ -18,7 +18,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: Properties
     
     let redditPostDownloader = RedditPostDownloadService()
-    let realTimeHandler = RealTimePostRefreshFetcher()
+    let realTimePostRefreshService = RealTimePostRefreshFetcher()
     let imageCache = WebImageCache()
     
     public var redditAPIService: RedditAPIService?
@@ -54,7 +54,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         
         // Look for user settings for real time feature
         if isRealTime || isFirstLaunch {
-            realTimeHandler.startTimer(viewController: self)
+            realTimePostRefreshService.startTimer(viewController: self)
         }
         
         // Configure Refresh Control
@@ -164,7 +164,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        
         present(viewControllerToCommit, animated: true)
     }
     
@@ -178,11 +177,11 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 		}
 		
         if !isRealTime {
-            realTimeHandler.stopTimer()
+            realTimePostRefreshService.stopTimer()
         }
         
         if isRealTime {
-            realTimeHandler.startTimer(viewController: self)
+            realTimePostRefreshService.startTimer(viewController: self)
         }
 
 		// Reload table view data after all posts have been downloaded without blocking thread
@@ -208,7 +207,6 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 	}
     
     func updateUIWithoutRefreshControl() {
-        
         redditPostDownloader.downloadPosts() {
             DispatchQueue.main.sync {
                 let animator = TableViewRowAnimator(originState: self.redditPostDownloader.previousState, targetState: self.redditPostDownloader.posts)
