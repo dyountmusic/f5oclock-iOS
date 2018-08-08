@@ -8,7 +8,6 @@
 
 import Foundation
 import OAuthSwift
-import KeychainSwift
 
 enum RedditAuthorizationStrings: String {
     case baseURL = "https://oauth.reddit.com"

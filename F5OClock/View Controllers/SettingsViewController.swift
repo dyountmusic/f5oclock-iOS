@@ -9,7 +9,6 @@
 import UIKit
 import MessageUI
 import OAuthSwift
-import KeychainSwift
 
 class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
 

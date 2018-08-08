@@ -1,29 +1,25 @@
 PODS:
-  - KeychainSwift (11.0.0)
   - OAuthSwift (1.2.2)
   - Swinject (2.4.1)
   - SwinjectStoryboard (2.0.2):
     - Swinject (~> 2.4)
 
 DEPENDENCIES:
-  - KeychainSwift (~> 11.0)
   - OAuthSwift (~> 1.2.0)
   - Swinject (~> 2.4.1)
   - SwinjectStoryboard (~> 2.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - KeychainSwift
     - OAuthSwift
     - Swinject
     - SwinjectStoryboard
 
 SPEC CHECKSUMS:
-  KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
   OAuthSwift: 27b34fe80b76b67cd8f45571e0be2432bc9f6de1
   Swinject: f7f15a9672e99328c1f07f277091087917215700
   SwinjectStoryboard: 365698aec11b57c6b14a3c1f52d0308759d377bf
 
-PODFILE CHECKSUM: 623e4236275e5ce076df10b714ce6992a6dd04d7
+PODFILE CHECKSUM: d2a01ab52a370597b30139337f05b7337992c78c
 
 COCOAPODS: 1.5.3
