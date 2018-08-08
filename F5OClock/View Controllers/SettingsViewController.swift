@@ -9,6 +9,7 @@
 import UIKit
 import MessageUI
 import OAuthSwift
+import KeychainSwift
 
 class SettingsViewController: UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
 
@@ -16,18 +17,10 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var realTimeSwitch: UISwitch!
     @IBOutlet weak var identityLabel: UILabel!
     @IBOutlet weak var logInButton: UIButton!
-    
-    var apiService = RedditAPIService()
+    @IBOutlet weak var authLabel: UILabel!
     
     public var appContext: AppContext?
     public var authService: AuthService?
-    
-    var redditUser: RedditUser? {
-        didSet {
-            guard let name = redditUser?.name else { return }
-            identityLabel.text = "Logged in as: \(name)"
-        }
-    }
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
@@ -37,6 +30,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        authService?.restoreAuthorizedUser()
     }
     
     fileprivate func checkForRealTime() {
@@ -49,10 +43,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
-        if let authService = self.authService {
-            authService.initializeIdentity() {
-                self.setIdentityLabel()
-            }
+        if self.appContext?.identity != nil {
+            self.setIdentityLabel()
         } else {
             identityLabel.text = ""
         }
@@ -98,16 +90,34 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     private func setIdentityLabel() {
-        let name = self.appContext?.identity?.name ?? ""
+        let name = self.appContext?.identity?.redditUser.name ?? "Not Authenticated"
         identityLabel.text = "Logged in as: \(name)"
+    }
+    
+    @IBAction func testRedditAPI(_ sender: Any) {
+        guard let auth = authService else { return }
+        let redditAPI = RedditAPIService(authService: auth)
+        self.authLabel.text = "Testing..."
+        redditAPI.getUserInfo(self) { (user, error) in
+            if (error != nil) {
+                self.authLabel.text = "🔴"
+            } else {
+                self.authLabel.text = "✅"
+            }
+        }
     }
     
     @IBAction func logIntoReddit(_ sender: Any) {
         self.authService?.authorizeUser(initiatingViewController: self) {
             self.setIdentityLabel()
         }
+        
     }
     
+    @IBAction func logOutOfReddit(_ sender: Any) {
+        authService?.logOut()
+        setIdentityLabel()
+    }
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

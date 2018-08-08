@@ -9,6 +9,9 @@
 import Foundation
 struct RedditUser: Codable {
     
-    var name: String
+    var name: String = ""
     
+    init(name: String) {
+        self.name = name
+    }
 }

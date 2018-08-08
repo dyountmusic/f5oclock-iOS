@@ -10,6 +10,7 @@ target 'F5OClock' do
   pod 'OAuthSwift', '~> 1.2.0'
   pod 'Swinject', '~> 2.4.1'
   pod 'SwinjectStoryboard', '~> 2.0.2'
+  pod 'KeychainSwift', '~> 11.0'
 
   target 'F5OClockTests' do
     inherit! :search_paths
