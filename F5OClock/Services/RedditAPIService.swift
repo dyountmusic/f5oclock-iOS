@@ -13,6 +13,8 @@ class RedditAPIService {
     
     private let authService: AuthService
     
+    // MARK: User Information Requests
+    
     func getUserInfo(_ vc: UIViewController, completionHandler: @escaping (RedditUser?, Error?) -> Void) {
         let url = RedditURL.baseURL.rawValue
         let path = "/api/v1/me"
@@ -47,43 +49,24 @@ class RedditAPIService {
         
     }
     
+    // MARK: Voting Functions
+    
     func upvotePost(id: String, type: String) {
         let parameters = [
             "dir" : "1",
             "id" : "\(type)_\(id)",
             "rank" : "2"
             ]
-        
-        let client = authService.getAuthorizedClient()
-        
-        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (response) in
-            // Success
-            print("Upvote Delivered!")
-        }, failure: { (error) in
-            // Failure
-            print("Error in upvote!")
-        })
+        vote(id: id, type: type, parameters: parameters)
     }
     
     func downVotePost(id: String, type: String) {
-        
         let parameters = [
             "dir" : "-1",
             "id" : "\(type)_\(id)",
             "rank" : "2"
         ]
-        
-        let client = authService.getAuthorizedClient()
-        
-        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
-            // Success
-            print("Downvote Delivered!")
-        }, failure: { (error) in
-            // Failure
-            print("Downvote Failed!")
-            print(error.localizedDescription)
-        })
-        
+        vote(id: id, type: type, parameters: parameters)
     }
     
     func resetVote(id: String, type: String) {
@@ -92,18 +75,22 @@ class RedditAPIService {
             "id" : "\(type)_\(id)",
             "rank" : "2"
         ]
-        
+        vote(id: id, type: type, parameters: parameters)
+    }
+    
+    // Abstracted vote method
+    private func vote(id: String, type: String, parameters: [String : String]) {
         let client = authService.getAuthorizedClient()
         
         let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
             // Success
-            print("Downvote Delivered!")
         }, failure: { (error) in
             // Failure
-            print("Downvote Failed!")
             print(error.localizedDescription)
         })
     }
+    
+    // MARK: Initializers
     
     init(authService: AuthService) {
         self.authService = authService
