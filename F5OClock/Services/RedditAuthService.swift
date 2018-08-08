@@ -78,6 +78,11 @@ class RedditAuthService : AuthService {
         return client
     }
     
+    func getAuthorizedClient() -> OAuthSwiftClient? {
+        guard let client = self.oauthSwift?.client else { return nil }
+        return client
+    }
+    
     func renewAccessToken(completionHandler: @escaping (Error?) -> Void) {
         guard let oauth = oauthSwift else { return }
         oauth.accessTokenBasicAuthentification = true

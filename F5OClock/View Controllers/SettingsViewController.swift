@@ -104,6 +104,20 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
                 self.authLabel.text = "✅"
             }
         }
+        
+    }
+    
+    
+    @IBAction func upvote(_ sender: Any) {
+        guard let auth = authService else { return }
+        let redditAPI = RedditAPIService(authService: auth)
+        redditAPI.upvotePost(id: "95j13m", type: "t3")
+    }
+    
+    @IBAction func downvote(_ sender: Any) {
+        guard let auth = authService else { return }
+        let redditAPI = RedditAPIService(authService: auth)
+        redditAPI.downVotePost(id: "95j13m", type: "t3")
     }
     
     @IBAction func logIntoReddit(_ sender: Any) {

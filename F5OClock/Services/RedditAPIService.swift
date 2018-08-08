@@ -49,14 +49,37 @@ class RedditAPIService {
     
     func upvotePost(id: String, type: String) {
         let parameters = [
-            "dir" : "-1",
+            "dir" : "1",
             "id" : "\(type)_\(id)",
-            "rank" : "2",
-            "uh" : ""
+            "rank" : "2"
             ]
+        
+        let client = authService.getAuthorizedClient()
+        
+        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
+            // Success
+            print("Upvote Delivered!")
+        }, failure: { (error) in
+            // Failure
+            print("Error in upvote!")
+        })
     }
     
-    func downVotePost() {
+    func downVotePost(id: String, type: String) {
+        
+        let parameters = [
+            "dir" : "-1",
+            "id" : "\(type)_\(id)",
+            "rank" : "2"
+        ]
+        
+        let client = authService.getAuthorizedClient()
+        
+        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
+            // Success
+        }, failure: { (error) in
+            // Failure
+        })
         
     }
     
