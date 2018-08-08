@@ -56,7 +56,7 @@ class RedditAPIService {
         
         let client = authService.getAuthorizedClient()
         
-        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
+        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (response) in
             // Success
             print("Upvote Delivered!")
         }, failure: { (error) in
@@ -77,10 +77,32 @@ class RedditAPIService {
         
         let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
             // Success
+            print("Downvote Delivered!")
         }, failure: { (error) in
             // Failure
+            print("Downvote Failed!")
+            print(error.localizedDescription)
         })
         
+    }
+    
+    func resetVote(id: String, type: String) {
+        let parameters = [
+            "dir" : "0",
+            "id" : "\(type)_\(id)",
+            "rank" : "2"
+        ]
+        
+        let client = authService.getAuthorizedClient()
+        
+        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
+            // Success
+            print("Downvote Delivered!")
+        }, failure: { (error) in
+            // Failure
+            print("Downvote Failed!")
+            print(error.localizedDescription)
+        })
     }
     
     init(authService: AuthService) {
