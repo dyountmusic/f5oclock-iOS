@@ -9,7 +9,7 @@
 import Foundation
 import OAuthSwift
 
-enum RedditAuthorizationStrings: String {
+enum RedditURL: String {
     case baseURL = "https://oauth.reddit.com"
     case authURL = "https://www.reddit.com/api/v1/authorize.compact?"
     case accessTokenURL = "https://www.reddit.com/api/v1/access_token"
@@ -26,14 +26,11 @@ class RedditAuthService : AuthService {
     func authorizeUser(initiatingViewController: UIViewController, _ success: @escaping () -> ()) {
         
         let oauthswifttemp = generateNewOAuthSwift()
-        
         oauthswifttemp.authorizeURLHandler = SafariURLHandler(viewController: initiatingViewController, oauthSwift: oauthswifttemp)
-        
         self.oauthSwift = oauthswifttemp
-        
         let state = generateState(withLength: 20)
         let parameters = [
-            "client_id" : RedditAuthorizationStrings.clientID.rawValue,
+            "client_id" : RedditURL.clientID.rawValue,
             "response_type" : "code",
             "state" : state,
             "redirect_uri" : "f5oclock://oauthcallback",
@@ -51,12 +48,7 @@ class RedditAuthService : AuthService {
     }
     
     internal func restoreAuthorizedUser() {
-        let restoreableOauthSwift = OAuth2Swift(consumerKey: RedditAuthorizationStrings.clientID.rawValue,
-                                    consumerSecret: "",
-                                    authorizeUrl: RedditAuthorizationStrings.authURL.rawValue,
-                                    accessTokenUrl: RedditAuthorizationStrings.accessTokenURL.rawValue,
-                                    responseType: "token"
-        )
+        let restoreableOauthSwift = generateNewOAuthSwift()
         
         let userDefaults = UserDefaults()
         guard let token = userDefaults.string(forKey: "oauth-token") else { print("Oauth Token Not found"); return }
@@ -66,7 +58,8 @@ class RedditAuthService : AuthService {
         restoreableOauthSwift.client.credential.oauthRefreshToken = refreshToken
         
         guard let user = userDefaults.string(forKey: "currentAuthenticatedUser") else { print("Couldn't get current authenticated user"); return }
-
+        guard let modhash = userDefaults.string(forKey: "modhash") else { return }
+        
         self.appContext.identity = Identity(oauth: restoreableOauthSwift, user: RedditUser(name: user))
         self.oauthSwift = restoreableOauthSwift
     }
@@ -131,7 +124,7 @@ class RedditAuthService : AuthService {
         guard let oauthSwift = self.oauthSwift else { return }
         
         DispatchQueue.global(qos: .userInitiated).async {
-            oauthSwift.client.request(RedditAuthorizationStrings.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
+            oauthSwift.client.request(RedditURL.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
                 do {
                     let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                     self.appContext.identity = Identity(oauth: oauthSwift, user: redditUser)
@@ -148,10 +141,10 @@ class RedditAuthService : AuthService {
     }
     
     private func generateNewOAuthSwift() -> OAuth2Swift {
-        let oauthswifttemp = OAuth2Swift(consumerKey: RedditAuthorizationStrings.clientID.rawValue,
+        let oauthswifttemp = OAuth2Swift(consumerKey: RedditURL.clientID.rawValue,
                                          consumerSecret: "",
-                                         authorizeUrl: RedditAuthorizationStrings.authURL.rawValue,
-                                         accessTokenUrl: RedditAuthorizationStrings.accessTokenURL.rawValue,
+                                         authorizeUrl: RedditURL.authURL.rawValue,
+                                         accessTokenUrl: RedditURL.accessTokenURL.rawValue,
                                          responseType: "token"
         )
         oauthswifttemp.accessTokenBasicAuthentification = true

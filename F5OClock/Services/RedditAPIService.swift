@@ -14,7 +14,7 @@ class RedditAPIService {
     private let authService: AuthService
     
     func getUserInfo(_ vc: UIViewController, completionHandler: @escaping (RedditUser?, Error?) -> Void) {
-        let url = RedditAuthorizationStrings.baseURL.rawValue
+        let url = RedditURL.baseURL.rawValue
         let path = "/api/v1/me"
         
         guard let client = self.authService.getAuthorizedClient(vc) else { return }
@@ -47,8 +47,13 @@ class RedditAPIService {
         
     }
     
-    func upvotePost() {
-        
+    func upvotePost(id: String, type: String) {
+        let parameters = [
+            "dir" : "-1",
+            "id" : "\(type)_\(id)",
+            "rank" : "2",
+            "uh" : ""
+            ]
     }
     
     func downVotePost() {
