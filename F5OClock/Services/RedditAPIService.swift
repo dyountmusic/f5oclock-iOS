@@ -52,6 +52,7 @@ class RedditAPIService {
     // MARK: Voting Functions
     
     func upvotePost(id: String, type: String) {
+        print("upvote...")
         let parameters = [
             "dir" : "1",
             "id" : "\(type)_\(id)",
@@ -61,6 +62,7 @@ class RedditAPIService {
     }
     
     func downVotePost(id: String, type: String) {
+        print("downvote...")
         let parameters = [
             "dir" : "-1",
             "id" : "\(type)_\(id)",
@@ -80,9 +82,8 @@ class RedditAPIService {
     
     // Abstracted vote method
     private func vote(id: String, type: String, parameters: [String : String]) {
-        let client = authService.getAuthorizedClient()
-        
-        let _ = client?.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
+        guard let client = authService.getAuthorizedClient() else { print("Authorized client not found"); return }
+        let _ = client.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
             // Success
         }, failure: { (error) in
             // Failure

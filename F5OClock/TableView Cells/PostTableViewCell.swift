@@ -22,6 +22,7 @@ class PostTableViewCell: UITableViewCell {
     var redditPost: RedditPost?
     
     var link = ""
+    var vote = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,12 +53,13 @@ class PostTableViewCell: UITableViewCell {
     }
     
     @IBAction func upvoteAction(_ sender: Any) {
-        print("upvote action")
-        
+        guard let id = redditPost?.id else { return }
+        redditAPIService?.upvotePost(id: id, type: "t3")
     }
     
     @IBAction func downvoteAction(_ sender: Any) {
-        print("downvote action")
+        guard let id = redditPost?.id else { return }
+        redditAPIService?.downVotePost(id: id, type: "t3")
     }
     
 }

@@ -44,6 +44,7 @@ struct RedditPost: Codable, Hashable {
     let url: String
     let thumbnail: String
     let commentCount: Int
+    
     let id: String
     
     enum CodingKeys: String, CodingKey {
