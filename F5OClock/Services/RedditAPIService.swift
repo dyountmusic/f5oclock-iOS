@@ -72,19 +72,34 @@ class RedditAPIService {
     // Abstracted vote method
     private func vote(id: String, type: String, parameters: [String : String]) {
         guard let client = authService.getAuthorizedClient() else { print("Authorized client not found"); return }
-        let _ = client.post(RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, success: { (respoinse) in
-            // Success
-        }, failure: { (error) in
-            // Failure
-            print(error.localizedDescription)
-        })
+        
+        request(url: RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, method: .POST) { (response, error) in
+            if error != nil {
+                print("Error Posting Vote to Reddit: \(error?.localizedDescription).")
+            }
+        }
     }
     
     // Private Methods
     
+    private func request(url: String, parameters: [String : String], method: OAuthSwiftHTTPRequest.Method, completionHandler: @escaping (OAuthSwiftResponse?, Error?) -> ()) {
+        guard let client = authService.getAuthorizedClient() else { print("Authorized client not found"); return }
+        let _ = client.request(url, method: method, success: { (response) in
+            // Success
+            completionHandler(response, nil)
+        }) { (error) in
+            // Failure
+            self.handleFailure(error: error, completionHandler: { (error) in
+                if error != nil {
+                    print("RedditAPI request failed, after attempting to handle: \(error?.localizedDescription ?? "")")
+                }
+            })
+            completionHandler(nil, error)
+        }
+    }
+    
     private func handleFailure(error: Error?, completionHandler: @escaping (Error?) -> Void) {
         guard let error = error?.localizedDescription else { return }
-        
         if error.description == "The operation couldn’t be completed. (OAuthSwiftError error -2.)" {
             self.authService.renewAccessToken { (error) in
                 if error == nil {
