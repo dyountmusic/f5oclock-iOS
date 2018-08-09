@@ -263,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				EA65E3421F92AA4600B0E33D /* PostTableViewCell.swift */,
-				27726C38211CE39B001FA1EB /* ActionPoster.swift */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -271,6 +270,7 @@
 		EA65E33D1F91C73200B0E33D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				27726C38211CE39B001FA1EB /* ActionPoster.swift */,
 				EA02BB081F907523000A8AF8 /* RisingStoriesViewController.swift */,
 				EA65E33E1F91C77000B0E33D /* SettingsViewController.swift */,
 			);
