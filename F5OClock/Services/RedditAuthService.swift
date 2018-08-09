@@ -79,7 +79,11 @@ class RedditAuthService : AuthService {
     }
     
     func getAuthorizedClient() -> OAuthSwiftClient? {
-        guard let client = self.oauthSwift?.client else { return nil }
+        guard let client = self.oauthSwift?.client else {
+            restoreAuthorizedUser()
+            guard let client = self.oauthSwift?.client else { return nil }
+            return client
+        }
         return client
     }
     
