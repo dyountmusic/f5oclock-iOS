@@ -47,7 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         set { UserDefaults.standard.set(newValue, forKey: "IsFirstLaunch") }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
         UserDefaults.standard.set(false, forKey: "RealTimeEnabled")
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -84,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
 
         if (url.host == "oauthcallback") {
             OAuthSwift.handle(url: url)

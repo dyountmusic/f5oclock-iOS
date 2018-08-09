@@ -17,9 +17,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var identityLabel: UILabel!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var authLabel: UILabel!
-    
-    public var appContext: AppContext?
-    public var authService: AuthService?
+
+    var appContext: AppContext?
+    var authService: AuthService?
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
@@ -106,7 +106,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         }
         
     }
-    
     
     @IBAction func upvote(_ sender: Any) {
         guard let auth = authService else { return }

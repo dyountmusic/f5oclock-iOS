@@ -14,6 +14,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var upvoteCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
+    @IBOutlet weak var upvoteButton: UIButton!
+    @IBOutlet weak var downvoteButton: UIButton!
     
     var link = ""
     
@@ -44,5 +46,13 @@ class PostTableViewCell: UITableViewCell {
             
         })
     }
-
+    
+    @IBAction func upvoteAction(_ sender: Any) {
+    
+    }
+    
+    @IBAction func downvoteAction(_ sender: Any) {
+    
+    }
+    
 }
