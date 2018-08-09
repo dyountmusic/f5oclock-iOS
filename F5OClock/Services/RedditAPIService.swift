@@ -19,23 +19,21 @@ class RedditAPIService {
         let url = RedditURL.baseURL.rawValue
         let path = "/api/v1/me"
         
-        guard let client = self.authService.getAuthorizedClient(vc) else { return }
-        _ = client.get(url + path, success: { (response) in
-            // Success
-            do {
-                let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
-                completionHandler(redditUser, nil)
-            } catch let jsonError {
-                print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
-                completionHandler(nil, jsonError)
+        request(url: url + path, parameters: nil, method: .GET) { (response, error) in
+            if error != nil {
+                print("Get User Info Failed with error: \(String(describing: error?.localizedDescription))")
+                completionHandler(nil, error)
+            } else {
+                do {
+                    guard let response = response else { return }
+                    let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
+                    completionHandler(redditUser, nil)
+                } catch let jsonError {
+                    print("Error serializing JSON from remote server \(jsonError.localizedDescription)")
+                    completionHandler(nil, jsonError)
+                }
             }
-        }, failure: { (error) in
-            self.handleFailure(error: error, completionHandler: { (error) in
-                
-            })
-            completionHandler(nil, error)
-        })
-        
+        }
     }
     
     // MARK: Voting Functions
@@ -71,18 +69,16 @@ class RedditAPIService {
     
     // Abstracted vote method
     private func vote(id: String, type: String, parameters: [String : String]) {
-        guard let client = authService.getAuthorizedClient() else { print("Authorized client not found"); return }
-        
         request(url: RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, method: .POST) { (response, error) in
             if error != nil {
-                print("Error Posting Vote to Reddit: \(error?.localizedDescription).")
+                print("Error Posting Vote to Reddit: \(String(describing: error)).")
             }
         }
     }
     
     // Private Methods
     
-    private func request(url: String, parameters: [String : String], method: OAuthSwiftHTTPRequest.Method, completionHandler: @escaping (OAuthSwiftResponse?, Error?) -> ()) {
+    private func request(url: String, parameters: [String : String]?, method: OAuthSwiftHTTPRequest.Method, completionHandler: @escaping (OAuthSwiftResponse?, Error?) -> ()) {
         guard let client = authService.getAuthorizedClient() else { print("Authorized client not found"); return }
         let _ = client.request(url, method: method, success: { (response) in
             // Success
@@ -91,7 +87,7 @@ class RedditAPIService {
             // Failure
             self.handleFailure(error: error, completionHandler: { (error) in
                 if error != nil {
-                    print("RedditAPI request failed, after attempting to handle: \(error?.localizedDescription ?? "")")
+                    print("RedditAPI request failed, after attempting to handle: \(String(describing: error?.localizedDescription))")
                 }
             })
             completionHandler(nil, error)
@@ -107,7 +103,7 @@ class RedditAPIService {
                     completionHandler(nil)
                 } else {
                     // Failure
-                    print("Failed to renew access token.")
+                    print("Failed to renew access token with error: \(String(describing: error?.localizedDescription))")
                     completionHandler(error)
                 }
             }
