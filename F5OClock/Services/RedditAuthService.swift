@@ -10,11 +10,10 @@ import Foundation
 import OAuthSwift
 
 enum RedditURL: String {
-    case baseUrl = "https://www.reddit.com"
+    case baseUrl = "https://oauth.reddit.com"
     case authUrl = "https://www.reddit.com/api/v1/authorize.compact?"
     case accessTokenUrl = "https://www.reddit.com/api/v1/access_token"
     case clientId = "1dz4paXlzSx97w"
-    case oAuthUrl = "https://oauth.reddit.com"
 }
 
 class RedditAuthService : AuthService {
@@ -137,7 +136,7 @@ class RedditAuthService : AuthService {
         guard let oauthSwift = self.oauthSwift else { return }
         
         DispatchQueue.global(qos: .userInitiated).async {
-            oauthSwift.client.request(RedditURL.oAuthUrl.rawValue + "/api/v1/me", method: .GET, success: { (response) in
+            oauthSwift.client.request(RedditURL.baseUrl.rawValue + "/api/v1/me", method: .GET, success: { (response) in
                 do {
                     let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                     self.appContext.identity = Identity(oauth: oauthSwift, user: redditUser)

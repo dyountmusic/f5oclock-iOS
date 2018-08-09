@@ -16,7 +16,7 @@ class RedditAPIService {
     // MARK: User Information Requests
     
     func getUserInfo(_ vc: UIViewController, completionHandler: @escaping (RedditUser?, Error?) -> Void) {
-        let url = RedditURL.oAuthUrl.rawValue
+        let url = RedditURL.baseUrl.rawValue
         let path = "/api/v1/me"
         
         request(url: url + path, parameters: nil, headers: nil, body: nil, method: .GET) { (response, error) in
@@ -69,7 +69,7 @@ class RedditAPIService {
     
     // Abstracted vote method
     private func vote(id: String, type: String, parameters: [String : String]) {
-        request(url: RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, method: .POST) { (response, error) in
+        request(url: RedditURL.baseUrl.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, method: .POST) { (response, error) in
             if error != nil {
                 print("Error Posting Vote to Reddit: \(String(describing: error?.localizedDescription)).")
             }
