@@ -116,6 +116,9 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
                 cell.thumbnail.image = image
             }
         }
+        
+        cell.redditAPIService = self.redditAPIService
+        cell.redditPost = self.redditPostDownloader.posts[indexPath.row]
         return cell
     }
     

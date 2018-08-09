@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OAuthSwift
 
 class PostTableViewCell: UITableViewCell {
     
@@ -17,13 +18,14 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var upvoteButton: UIButton!
     @IBOutlet weak var downvoteButton: UIButton!
     
+    var redditAPIService: RedditAPIService?
+    var redditPost: RedditPost?
+    
     var link = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        upvoteButton.tintColor = .black
-        downvoteButton.tintColor = .black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,6 +53,7 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func upvoteAction(_ sender: Any) {
         print("upvote action")
+        
     }
     
     @IBAction func downvoteAction(_ sender: Any) {
