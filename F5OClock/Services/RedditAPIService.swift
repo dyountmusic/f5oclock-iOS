@@ -19,7 +19,7 @@ class RedditAPIService {
         let url = RedditURL.baseURL.rawValue
         let path = "/api/v1/me"
         
-        request(url: url + path, parameters: nil, method: .GET) { (response, error) in
+        request(url: url + path, parameters: nil, headers: nil, body: nil, method: .GET) { (response, error) in
             if error != nil {
                 print("Get User Info Failed with error: \(String(describing: error?.localizedDescription))")
                 completionHandler(nil, error)
@@ -69,28 +69,27 @@ class RedditAPIService {
     
     // Abstracted vote method
     private func vote(id: String, type: String, parameters: [String : String]) {
-        request(url: RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, method: .POST) { (response, error) in
+        request(url: RedditURL.baseURL.rawValue + "/api/vote", parameters: parameters, headers: nil, body: nil, method: .POST) { (response, error) in
             if error != nil {
-                print("Error Posting Vote to Reddit: \(String(describing: error)).")
+                print("Error Posting Vote to Reddit: \(String(describing: error?.localizedDescription)).")
             }
         }
     }
     
     // Private Methods
     
-    private func request(url: String, parameters: [String : String]?, method: OAuthSwiftHTTPRequest.Method, completionHandler: @escaping (OAuthSwiftResponse?, Error?) -> ()) {
+    private func request(url: String, parameters: [String : String]?, headers: [String : String]?, body: Data?, method: OAuthSwiftHTTPRequest.Method, completionHandler: @escaping (OAuthSwiftResponse?, Error?) -> ()) {
         guard let client = authService.getAuthorizedClient() else { print("Authorized client not found"); return }
-        let _ = client.request(url, method: method, success: { (response) in
+        guard let parameters = parameters else { return }
+        let _ = client.request(url, method: method, parameters: parameters, headers: headers, body: body, checkTokenExpiration: true, success: { (response) in
             // Success
             completionHandler(response, nil)
         }) { (error) in
-            // Failure
             self.handleFailure(error: error, completionHandler: { (error) in
                 if error != nil {
                     print("RedditAPI request failed, after attempting to handle: \(String(describing: error?.localizedDescription))")
                 }
             })
-            completionHandler(nil, error)
         }
     }
     
