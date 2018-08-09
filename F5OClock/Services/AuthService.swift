@@ -24,4 +24,6 @@ protocol AuthService {
     
     func logOut()
     
+    func handleFailure()
+    
 }

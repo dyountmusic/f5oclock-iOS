@@ -111,6 +111,11 @@ class RedditAuthService : AuthService {
         appContext.identity?.redditUser = RedditUser(name: "")
     }
     
+    func handleFailure() {
+        print("Handling failure...")
+        
+    }
+    
     // MARK: Private Functions
     
     private func storeTokensToDisk(cred: OAuthSwiftCredential) {
