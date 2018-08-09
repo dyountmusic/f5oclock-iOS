@@ -242,7 +242,6 @@
                                             <state key="normal" image="downvoteIcon"/>
                                             <connections>
                                                 <action selector="downvoteAction:" destination="Zo5-rC-ZHx" eventType="touchUpInside" id="cel-Ex-W4h"/>
-                                                <action selector="exit:" destination="0Sh-3o-Wgd" eventType="touchUpInside" id="B5g-qN-kV9"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -303,7 +302,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tC-NT-QSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="0Sh-3o-Wgd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3965.5999999999999" y="16.256157635467982"/>
         </scene>
