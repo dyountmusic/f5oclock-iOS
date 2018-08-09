@@ -22,6 +22,8 @@ class PostTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        upvoteButton.tintColor = .black
+        downvoteButton.tintColor = .black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
