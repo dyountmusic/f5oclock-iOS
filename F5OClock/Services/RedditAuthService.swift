@@ -48,7 +48,7 @@ class RedditAuthService : AuthService {
         }
     }
     
-    internal func restoreAuthorizedUser() {
+    func restoreAuthorizedUser() {
         let restoreableOauthSwift = generateNewOAuthSwift()
         
         let userDefaults = UserDefaults()

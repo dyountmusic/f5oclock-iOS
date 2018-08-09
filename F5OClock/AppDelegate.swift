@@ -15,8 +15,7 @@ import SwinjectStoryboard
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var container: Container {
-        let container = Container()
+    private let container = Container() { container in
         Container.loggingFunction = nil
         
         // MARK: Register Services
@@ -38,8 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             c.appContext = r.resolve(AppContext.self)
             c.authService = r.resolve(AuthService.self)
         }
-        
-        return container
     }
     
     var isFirstLaunch: Bool {
@@ -79,6 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
+        let authService = container.resolve(AuthService.self)
+        authService?.restoreAuthorizedUser()
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -92,7 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-
 
 }
 
