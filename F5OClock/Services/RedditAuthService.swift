@@ -113,7 +113,6 @@ class RedditAuthService : AuthService {
     
     func handleFailure() {
         print("Handling failure...")
-        
     }
     
     // MARK: Private Functions

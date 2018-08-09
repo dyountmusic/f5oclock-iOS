@@ -30,20 +30,9 @@ class RedditAPIService {
                 completionHandler(nil, jsonError)
             }
         }, failure: { (error) in
-            if error.localizedDescription.description == "The operation couldn’t be completed. (OAuthSwiftError error -2.)" {
-                self.authService.renewAccessToken(completionHandler: { (error) in
-                    if error == nil {
-                        // Try request again
-                        self.getUserInfo(vc, completionHandler: { (user, error) in
-                            completionHandler(user, error)
-                        })
-                    } else {
-                        print("Failed to renew access token.")
-                    }
-                })
+            self.handleFailure(error: error, completionHandler: { (error) in
                 
-                
-            }
+            })
             completionHandler(nil, error)
         })
         
@@ -89,6 +78,25 @@ class RedditAPIService {
             // Failure
             print(error.localizedDescription)
         })
+    }
+    
+    // Private Methods
+    
+    private func handleFailure(error: Error?, completionHandler: @escaping (Error?) -> Void) {
+        guard let error = error?.localizedDescription else { return }
+        
+        if error.description == "The operation couldn’t be completed. (OAuthSwiftError error -2.)" {
+            self.authService.renewAccessToken { (error) in
+                if error == nil {
+                    // Success
+                    completionHandler(nil)
+                } else {
+                    // Failure
+                    print("Failed to renew access token.")
+                    completionHandler(error)
+                }
+            }
+        }
     }
     
     // MARK: Initializers
