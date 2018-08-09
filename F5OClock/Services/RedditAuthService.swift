@@ -10,10 +10,11 @@ import Foundation
 import OAuthSwift
 
 enum RedditURL: String {
-    case baseURL = "https://oauth.reddit.com"
-    case authURL = "https://www.reddit.com/api/v1/authorize.compact?"
-    case accessTokenURL = "https://www.reddit.com/api/v1/access_token"
-    case clientID = "1dz4paXlzSx97w"
+    case baseUrl = "https://www.reddit.com"
+    case authUrl = "https://www.reddit.com/api/v1/authorize.compact?"
+    case accessTokenUrl = "https://www.reddit.com/api/v1/access_token"
+    case clientId = "1dz4paXlzSx97w"
+    case oAuthUrl = "https://oauth.reddit.com"
 }
 
 class RedditAuthService : AuthService {
@@ -30,7 +31,7 @@ class RedditAuthService : AuthService {
         self.oauthSwift = oauthswifttemp
         let state = generateState(withLength: 20)
         let parameters = [
-            "client_id" : RedditURL.clientID.rawValue,
+            "client_id" : RedditURL.clientId.rawValue,
             "response_type" : "code",
             "state" : state,
             "redirect_uri" : "f5oclock://oauthcallback",
@@ -132,7 +133,7 @@ class RedditAuthService : AuthService {
         guard let oauthSwift = self.oauthSwift else { return }
         
         DispatchQueue.global(qos: .userInitiated).async {
-            oauthSwift.client.request(RedditURL.baseURL.rawValue + "/api/v1/me", method: .GET, success: { (response) in
+            oauthSwift.client.request(RedditURL.oAuthUrl.rawValue + "/api/v1/me", method: .GET, success: { (response) in
                 do {
                     let redditUser = try JSONDecoder().decode(RedditUser.self, from: response.data)
                     self.appContext.identity = Identity(oauth: oauthSwift, user: redditUser)
@@ -149,10 +150,10 @@ class RedditAuthService : AuthService {
     }
     
     private func generateNewOAuthSwift() -> OAuth2Swift {
-        let oauthswifttemp = OAuth2Swift(consumerKey: RedditURL.clientID.rawValue,
+        let oauthswifttemp = OAuth2Swift(consumerKey: RedditURL.clientId.rawValue,
                                          consumerSecret: "",
-                                         authorizeUrl: RedditURL.authURL.rawValue,
-                                         accessTokenUrl: RedditURL.accessTokenURL.rawValue,
+                                         authorizeUrl: RedditURL.authUrl.rawValue,
+                                         accessTokenUrl: RedditURL.accessTokenUrl.rawValue,
                                          responseType: "token"
         )
         oauthswifttemp.accessTokenBasicAuthentification = true
