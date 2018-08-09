@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ec1-uG-w2z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ec1-uG-w2z">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,7 +72,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wG-oJ-MFf">
-                                <rect key="frame" x="164" y="462" width="46" height="30"/>
+                                <rect key="frame" x="164" y="462" width="47" height="30"/>
                                 <state key="normal" title="Test"/>
                                 <connections>
                                     <action selector="testRedditAPI:" destination="Tip-4P-faa" eventType="touchUpInside" id="8aX-tg-YLu"/>
@@ -86,7 +85,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-Nt-K2z">
-                                <rect key="frame" x="161" y="329" width="52" height="30"/>
+                                <rect key="frame" x="161" y="329" width="53" height="30"/>
                                 <state key="normal" title="Log out"/>
                                 <connections>
                                     <action selector="logOutOfReddit:" destination="Tip-4P-faa" eventType="touchUpInside" id="kEy-SL-t0P"/>
@@ -231,7 +230,6 @@
                                             </constraints>
                                             <state key="normal" image="upvoteIcon"/>
                                             <connections>
-                                                <action selector="downvoteAction:" destination="Zo5-rC-ZHx" eventType="touchUpInside" id="E1d-3L-xlZ"/>
                                                 <action selector="upvoteAction:" destination="Zo5-rC-ZHx" eventType="touchUpInside" id="lFe-mT-OvT"/>
                                             </connections>
                                         </button>

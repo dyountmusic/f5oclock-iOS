@@ -48,11 +48,11 @@ class PostTableViewCell: UITableViewCell {
     }
     
     @IBAction func upvoteAction(_ sender: Any) {
-    
+        print("upvote action")
     }
     
     @IBAction func downvoteAction(_ sender: Any) {
-    
+        print("downvote action")
     }
     
 }
