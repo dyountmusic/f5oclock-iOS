@@ -58,7 +58,6 @@ class RedditAuthService : AuthService {
         restoreableOauthSwift.client.credential.oauthRefreshToken = refreshToken
         
         guard let user = userDefaults.string(forKey: "currentAuthenticatedUser") else { print("Couldn't get current authenticated user"); return }
-        guard let modhash = userDefaults.string(forKey: "modhash") else { return }
         
         self.appContext.identity = Identity(oauth: restoreableOauthSwift, user: RedditUser(name: user))
         self.oauthSwift = restoreableOauthSwift
