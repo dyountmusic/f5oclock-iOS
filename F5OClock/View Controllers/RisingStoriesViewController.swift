@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
+class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate, RedditUserActionDelegate {
     
     //MARK: Interface Builder Properties
     
@@ -117,7 +117,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             }
         }
         
-        cell.redditAPIService = self.redditAPIService
+        cell.redditUserActionDelegate = self
         cell.redditPost = self.redditPostDownloader.posts[indexPath.row]
         return cell
     }
@@ -223,6 +223,14 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func upvote(_ id: String, type: String) {
+        self.redditAPIService?.upvotePost(id: id, type: type)
+    }
+    
+    func downvote(_ id: String, type: String) {
+        self.redditAPIService?.downVotePost(id: id, type: type)
     }
         
     @objc private func refreshPostTableView(_ sender: Any) {

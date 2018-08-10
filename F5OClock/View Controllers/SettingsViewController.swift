@@ -29,7 +29,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        authService?.restoreAuthorizedUser()
     }
     
     fileprivate func checkForRealTime() {

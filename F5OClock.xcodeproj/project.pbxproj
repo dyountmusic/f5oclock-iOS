@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27726C39211CE39B001FA1EB /* RedditUserActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27726C38211CE39B001FA1EB /* RedditUserActionDelegate.swift */; };
 		2774BCA421167F250019BD1D /* Identity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2774BCA321167F250019BD1D /* Identity.swift */; };
 		2774BCAC2116B0E70019BD1D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2774BCAB2116B0E70019BD1D /* AuthService.swift */; };
 		52EC9112F750710510A03B05 /* Pods_Top_Story.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF7F1E45D2E6CD69D1314C4 /* Pods_Top_Story.framework */; };
@@ -85,6 +86,7 @@
 /* Begin PBXFileReference section */
 		0042DBD890B1606BE3BCFAD5 /* Pods_F5OClockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_F5OClockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1FCC90EDC6CFCD7DC61F29 /* Pods-F5OClockUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F5OClockUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-F5OClockUITests/Pods-F5OClockUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		27726C38211CE39B001FA1EB /* RedditUserActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditUserActionDelegate.swift; sourceTree = "<group>"; };
 		2774BCA321167F250019BD1D /* Identity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identity.swift; sourceTree = "<group>"; };
 		2774BCAB2116B0E70019BD1D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		399C972D03D2FE81D811000D /* Pods-Top Story.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Top Story.release.xcconfig"; path = "Pods/Target Support Files/Pods-Top Story/Pods-Top Story.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27726C3A211D14ED001FA1EB /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				27726C38211CE39B001FA1EB /* RedditUserActionDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		EA01EDAA2048FA5900C433E9 /* Downloaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +216,7 @@
 				EAC48332204A6892000165CA /* F5OClock.entitlements */,
 				EA02BB061F907523000A8AF8 /* AppDelegate.swift */,
 				EA38DF322116D36100B39480 /* User State */,
+				27726C3A211D14ED001FA1EB /* Delegates */,
 				BFB39E1D1FBBE0A100B4AB09 /* WebImageCache.swift */,
 				BFF5762D1FBCE64C006CA25D /* TableViewRowAnimator.swift */,
 				EA65E3401F91CEEA00B0E33D /* RealTimePostRefreshFetcher.swift */,
@@ -627,6 +638,7 @@
 				EAFDB3A02048DF2300E4D215 /* RedditPost.swift in Sources */,
 				BFB39E1E1FBBE0A100B4AB09 /* WebImageCache.swift in Sources */,
 				EAFDB3A72048E31600E4D215 /* RedditPostDownloadService.swift in Sources */,
+				27726C39211CE39B001FA1EB /* RedditUserActionDelegate.swift in Sources */,
 				EA02BB071F907523000A8AF8 /* AppDelegate.swift in Sources */,
 				2774BCAC2116B0E70019BD1D /* AuthService.swift in Sources */,
 				EA65E33F1F91C77000B0E33D /* SettingsViewController.swift in Sources */,
