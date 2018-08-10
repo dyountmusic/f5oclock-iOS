@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate, ActionPoster {
+class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate, RedditUserActionDelegate {
     
     //MARK: Interface Builder Properties
     
@@ -117,7 +117,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
             }
         }
         
-        cell.actionPoster = self
+        cell.redditUserActionDelegate = self
         cell.redditPost = self.redditPostDownloader.posts[indexPath.row]
         return cell
     }

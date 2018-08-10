@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ActionPoster {
+protocol RedditUserActionDelegate {
     func upvote(_ id: String, type: String)
     func downvote(_ id: String, type: String)
 }

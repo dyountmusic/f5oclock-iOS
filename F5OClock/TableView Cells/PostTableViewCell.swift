@@ -18,7 +18,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var upvoteButton: UIButton!
     @IBOutlet weak var downvoteButton: UIButton!
     
-    var actionPoster: ActionPoster?
+    var redditUserActionDelegate: RedditUserActionDelegate?
     
     //var redditAPIService: RedditAPIService?
     var redditPost: RedditPost?
@@ -39,13 +39,13 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func upvoteAction(_ sender: Any) {
         guard let id = redditPost?.id else { return }
-        self.actionPoster?.upvote(id, type: "t3")
+        self.redditUserActionDelegate?.upvote(id, type: "t3")
         //redditAPIService?.upvotePost(id: id, type: "t3")
     }
     
     @IBAction func downvoteAction(_ sender: Any) {
         guard let id = redditPost?.id else { return }
-        self.actionPoster?.downvote(id, type: "t3")
+        self.redditUserActionDelegate?.downvote(id, type: "t3")
         //redditAPIService?.downVotePost(id: id, type: "t3")
     }
     
