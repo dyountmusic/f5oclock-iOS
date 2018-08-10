@@ -48,6 +48,7 @@ class RedditPostDownloadService {
             do {
                 let redditData = try JSONDecoder().decode(RedditDataWrapper.self, from: data)
 				self.posts = [RedditPost]()
+                
 				for p in redditData.data.posts {
                     self.posts.append(p.data)
                 }

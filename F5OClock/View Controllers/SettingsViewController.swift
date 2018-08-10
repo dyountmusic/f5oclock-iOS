@@ -17,9 +17,9 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var identityLabel: UILabel!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var authLabel: UILabel!
-    
-    public var appContext: AppContext?
-    public var authService: AuthService?
+
+    var appContext: AppContext?
+    var authService: AuthService?
     
     var realTimeEnabled: Bool {
         get { return UserDefaults.standard.bool(forKey: "RealTimeEnabled") }
@@ -29,7 +29,6 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        authService?.restoreAuthorizedUser()
     }
     
     fileprivate func checkForRealTime() {
@@ -104,6 +103,19 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
                 self.authLabel.text = "✅"
             }
         }
+        
+    }
+    
+    @IBAction func upvote(_ sender: Any) {
+        guard let auth = authService else { return }
+        let redditAPI = RedditAPIService(authService: auth)
+        redditAPI.upvotePost(id: "95j13m", type: "t3")
+    }
+    
+    @IBAction func downvote(_ sender: Any) {
+        guard let auth = authService else { return }
+        let redditAPI = RedditAPIService(authService: auth)
+        redditAPI.downVotePost(id: "95j13m", type: "t3")
     }
     
     @IBAction func logIntoReddit(_ sender: Any) {

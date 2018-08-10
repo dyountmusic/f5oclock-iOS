@@ -15,8 +15,7 @@ import SwinjectStoryboard
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var container: Container {
-        let container = Container()
+    private let container = Container() { container in
         Container.loggingFunction = nil
         
         // MARK: Register Services
@@ -38,8 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             c.appContext = r.resolve(AppContext.self)
             c.authService = r.resolve(AuthService.self)
         }
-        
-        return container
     }
     
     var isFirstLaunch: Bool {
@@ -47,7 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         set { UserDefaults.standard.set(newValue, forKey: "IsFirstLaunch") }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
         UserDefaults.standard.set(false, forKey: "RealTimeEnabled")
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -78,20 +76,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
+        let authService = container.resolve(AuthService.self)
+        authService?.restoreAuthorizedUser()
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
 
         if (url.host == "oauthcallback") {
             OAuthSwift.handle(url: url)
         }
         return true
     }
-
 
 }
 
