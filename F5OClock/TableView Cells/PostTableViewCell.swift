@@ -18,7 +18,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var upvoteButton: UIButton!
     @IBOutlet weak var downvoteButton: UIButton!
     
-    var redditUserActionDelegate: RedditUserActionDelegate?
+    weak var redditUserActionDelegate: RedditUserActionDelegate?
     
     //var redditAPIService: RedditAPIService?
     var redditPost: RedditPost?
