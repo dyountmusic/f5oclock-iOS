@@ -96,6 +96,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         guard let auth = authService else { return }
         let redditAPI = RedditAPIService(authService: auth)
         self.authLabel.text = "Testing..."
+        
         redditAPI.getUserInfo(self) { (user, error) in
             if (error != nil) {
                 self.authLabel.text = "🔴"

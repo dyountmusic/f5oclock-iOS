@@ -80,8 +80,8 @@ class RedditAPIService {
     
     private func request(url: String, parameters: [String : String]?, headers: [String : String]?, body: Data?, method: OAuthSwiftHTTPRequest.Method, completionHandler: @escaping (OAuthSwiftResponse?, Error?) -> ()) {
         guard let client = authService.getAuthorizedClient() else { print("Authorized client not found"); return }
-        guard let parameters = parameters else { return }
-        let _ = client.request(url, method: method, parameters: parameters, headers: headers, body: body, checkTokenExpiration: true, success: { (response) in
+        
+        let _ = client.request(url, method: method, parameters: parameters ?? ["":""], headers: headers, body: body, checkTokenExpiration: true, success: { (response) in
             // Success
             completionHandler(response, nil)
         }) { (error) in
