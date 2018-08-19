@@ -8,19 +8,6 @@
 
 import Foundation
 
-protocol RedditDownloaderServiceProtocol {
-    func fetchDownloader(downloadType: RedditDownloader) -> RedditDownloaderProtocol
-}
-
-protocol RedditDownloaderProtocol {
-    
-}
-
-enum RedditDownloader {
-    case Post
-    case UserIdentity
-}
-
 struct RedditDownloaderService: RedditDownloaderServiceProtocol {
     
     func fetchDownloader(downloadType: RedditDownloader) -> RedditDownloaderProtocol {
