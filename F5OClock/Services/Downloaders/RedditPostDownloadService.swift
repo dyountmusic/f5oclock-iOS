@@ -9,12 +9,7 @@
 import Foundation
 
 class RedditPostDownloadService: RedditDownloaderProtocol {
-    
-    func download() {
-        // Stub
-    }
-    
-    
+
     // MARK: Properties
     
     // These properties are used to store the fetched data for reference

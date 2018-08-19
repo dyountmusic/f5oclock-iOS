@@ -13,7 +13,7 @@ protocol RedditDownloaderServiceProtocol {
 }
 
 protocol RedditDownloaderProtocol {
-    func download()
+    
 }
 
 enum RedditDownloader {
