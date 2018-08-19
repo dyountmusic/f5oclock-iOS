@@ -8,7 +8,12 @@
 
 import Foundation
 
-class RedditPostDownloadService {
+class RedditPostDownloadService: RedditDownloaderProtocol {
+    
+    func download() {
+        // Stub
+    }
+    
     
     // MARK: Properties
     

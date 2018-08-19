@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct RedditUser: Codable {
     
     var name: String = ""

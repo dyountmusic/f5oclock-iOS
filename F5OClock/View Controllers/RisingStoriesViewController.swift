@@ -172,7 +172,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     
-    // MARK: Functions
+    // MARK: Generic Functions
     
     func updateUI() {
         
