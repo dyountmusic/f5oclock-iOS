@@ -14,7 +14,7 @@ class RedditPostDownloadService {
     
     // These properties are used to store the fetched data for reference
     var posts = [RedditPost]()
-    var lastFetchedSubreddit = RedditModel().subredditName
+    var lastFetchedSubreddit = RedditMetaModel().subredditName
     
     //Stores the hash values of the previous state. Used for animating updates to post list
     var previousState = [Int]()
@@ -26,7 +26,7 @@ class RedditPostDownloadService {
         //save the current state before it is overwritten
         previousState = computeState()
 		
-        let jsonURLString = RedditModel().redditURL
+        let jsonURLString = RedditMetaModel().redditURL
         guard let url = URL(string: jsonURLString) else { return }
     
         URLSession.shared.dataTask(with: url) { (data, response, error) in

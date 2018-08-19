@@ -9,14 +9,12 @@
 import Foundation
 
 struct RedditDataWrapper: Codable {
-    
     let kind: String
     let data: RedditData
     
 }
 
 struct RedditData: Codable {
-    
     let numOfPosts: Int
     let posts: [RedditPosts]
     
@@ -38,13 +36,11 @@ struct RedditPosts: Codable {
 }
 
 struct RedditPost: Codable, Hashable {
-    
     let title: String
     let upvotes: Int
     let url: String
     let thumbnail: String
     let commentCount: Int
-    
     let id: String
     
     enum CodingKeys: String, CodingKey {
@@ -55,6 +51,8 @@ struct RedditPost: Codable, Hashable {
         case commentCount = "num_comments"
         case id = "id"
     }
+    
+    // Method Stubs to conform to Hashable
     
     var hashValue: Int {
         return title.hashValue

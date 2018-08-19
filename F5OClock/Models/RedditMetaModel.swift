@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RedditModel {
+class RedditMetaModel {
     
     public var subredditName: String {
         get {

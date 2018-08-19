@@ -40,7 +40,7 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditModel().subredditName.capitalized)"
+        redditSourceLabel.text = "📥 Currently Pulling From: \(RedditMetaModel().subredditName.capitalized)"
         if self.appContext?.identity != nil {
             self.setIdentityLabel()
         } else {

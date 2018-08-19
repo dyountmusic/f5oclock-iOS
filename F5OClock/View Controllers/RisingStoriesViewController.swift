@@ -17,7 +17,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: Properties
     
-    let redditPostDownloader = RedditPostDownloadService()
+    let redditPostFetcher = RedditPostDownloadService()
     let realTimePostRefreshService = RealTimePostRefreshFetcher()
     let imageCache = WebImageCache()
     
@@ -61,7 +61,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshPostTableView(_ :)), for: .valueChanged)
         
-        if redditPostDownloader.posts.isEmpty {
+        if redditPostFetcher.posts.isEmpty {
             title = "No Posts To Fetch"
         }
         
@@ -69,7 +69,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.title = "\(RedditModel().subredditName.capitalized)"
+        self.title = "\(RedditMetaModel().subredditName.capitalized)"
         updateUI()
     }
     
@@ -81,7 +81,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: TableView Functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return redditPostDownloader.posts.count
+        return redditPostFetcher.posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,25 +90,25 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 
         cell.backgroundColor = UIColor.white
         
-        cell.titleLabel.text = redditPostDownloader.posts[indexPath.row].title
-        cell.upvoteCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].upvotes)"
-        cell.commentCountLabel.text = "\(redditPostDownloader.posts[indexPath.row].commentCount)"
-        cell.link = redditPostDownloader.posts[indexPath.row].url
+        cell.titleLabel.text = redditPostFetcher.posts[indexPath.row].title
+        cell.upvoteCountLabel.text = "\(redditPostFetcher.posts[indexPath.row].upvotes)"
+        cell.commentCountLabel.text = "\(redditPostFetcher.posts[indexPath.row].commentCount)"
+        cell.link = redditPostFetcher.posts[indexPath.row].url
         
-        if redditPostDownloader.posts[indexPath.row].upvotes >= 100 {
+        if redditPostFetcher.posts[indexPath.row].upvotes >= 100 {
             cell.backgroundColor = #colorLiteral(red: 0.997941792, green: 0.6387887001, blue: 0, alpha: 0.3379999995)
         }
         
-        if redditPostDownloader.posts[indexPath.row].upvotes >= 250 {
+        if redditPostFetcher.posts[indexPath.row].upvotes >= 250 {
             cell.backgroundColor = #colorLiteral(red: 1, green: 0.3659999967, blue: 0.2240000069, alpha: 0.3140000105)
         }
         
-        if redditPostDownloader.posts[indexPath.row].upvotes >= 500 {
+        if redditPostFetcher.posts[indexPath.row].upvotes >= 500 {
             cell.backgroundColor = #colorLiteral(red: 0.8582192659, green: 0, blue: 0.05355661362, alpha: 0.3089999855)
         }
 
 		// Load in images asyncronously
-        guard let thumbnailURL = URL(string:redditPostDownloader.posts[indexPath.row].thumbnail) else {
+        guard let thumbnailURL = URL(string:redditPostFetcher.posts[indexPath.row].thumbnail) else {
             return cell
         }
         
@@ -119,13 +119,13 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         cell.redditUserActionDelegate = self
-        cell.redditPost = self.redditPostDownloader.posts[indexPath.row]
+        cell.redditPost = self.redditPostFetcher.posts[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let urlString = redditPostDownloader.posts[indexPath.row].url
+        let urlString = redditPostFetcher.posts[indexPath.row].url
         
         let config = SFSafariViewController.Configuration.init()
         config.entersReaderIfAvailable = true
@@ -151,7 +151,7 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
         
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
-        let urlString = redditPostDownloader.posts[indexPath.row].url
+        let urlString = redditPostFetcher.posts[indexPath.row].url
         
         guard let url = URL(string: urlString) else {
             return nil
@@ -190,9 +190,9 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 
 		// Reload table view data after all posts have been downloaded without blocking thread
 		self.refreshControl.beginRefreshing()
-		redditPostDownloader.downloadPosts() {
+		redditPostFetcher.downloadPosts() {
 			DispatchQueue.main.sync {
-                let animator = TableViewRowAnimator(originState: self.redditPostDownloader.previousState, targetState: self.redditPostDownloader.posts)
+                let animator = TableViewRowAnimator(originState: self.redditPostFetcher.previousState, targetState: self.redditPostFetcher.posts)
 				self.tableView.performBatchUpdates({
 					self.tableView.deleteRows(at: animator.deletions, with: .right)
 					self.tableView.insertRows(at: animator.insertions, with: .left)
@@ -211,9 +211,9 @@ class RisingStoriesViewController: UIViewController, UITableViewDataSource, UITa
 	}
     
     func updateUIWithoutRefreshControl() {
-        redditPostDownloader.downloadPosts() {
+        redditPostFetcher.downloadPosts() {
             DispatchQueue.main.sync {
-                let animator = TableViewRowAnimator(originState: self.redditPostDownloader.previousState, targetState: self.redditPostDownloader.posts)
+                let animator = TableViewRowAnimator(originState: self.redditPostFetcher.previousState, targetState: self.redditPostFetcher.posts)
                 self.tableView.performBatchUpdates({
                     self.tableView.deleteRows(at: animator.deletions, with: .right)
                     self.tableView.insertRows(at: animator.insertions, with: .left)
